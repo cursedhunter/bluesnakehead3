@@ -250,8 +250,6 @@ all:
                       #   ansible_host: 10.6.33.47
 
       vars:
-        # I think this is if you are using a bastion
-        #        ansible_host: 10.65.1.35
         ansible_connection: httpapi
         ansible_httpapi_port: 443
         ansible_httpapi_host: '{{ ansible_host }}'
