@@ -1,0 +1,24 @@
+{% set local_var = namespace() %}
+{% set local_var.device_filter = [] %}
+{% if device_filter is string %}
+{%     do local_var.device_filter.append(device_filter) %}
+{% else %}
+{%     set local_var.device_filter = device_filter %}
+{% endif %}
+{% set dev_cntr = namespace(value=0) %}
+---
+CVP_CHANGE_CONTROL:
+  name: CVP_CHANGE_CONTROL_FROM_AVD
+  notes: Created from eos_config_deploy_cvp
+  activities: 
+{%  for task_id in CVP_CONFIGLETS_STATUS.taskIds | arista.avd.natural_sort %}
+    - task_id: "{{ task_id | quote }}"
+      stage: Deploy_Task_{{ task_id }}
+{%  endfor %}
+  stages:
+    - name: AVD_Change_Control_Root
+      modes: series
+{%  for task_id in CVP_CONFIGLETS_STATUS.taskIds | arista.avd.natural_sort %}
+    - name: Deploy_Task_{{ task_id }}
+      parent: AVD_Change_Control_Root
+{%  endfor %}

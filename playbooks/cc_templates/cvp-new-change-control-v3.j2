@@ -1,0 +1,69 @@
+{% set super_spine_tasks = [] %}
+{% set spine_tasks = [] %}
+{% set leaf_tasks_mlag_left = [] %}
+{% set leaf_tasks_mlag_right = [] %}
+---
+CVP_CHANGE_CONTROL:
+  name: CVP_CHANGE_CONTROL_FROM_AVD
+  notes: Created from ansible playbook
+  activities:
+{%  for i in CVP_CONFIGLETS_STATUS.configlets_updated.configlets_updated_list %}
+{%      set configlet_name = CVP_CONFIGLETS_STATUS.configlets_updated.configlets_updated_list[loop.index-1] %}
+{%      set task_id = CVP_CONFIGLETS_STATUS.configlets_updated.taskIds[loop.index-1] %}     
+{%      for cvp_device in CVP_DEVICES %}
+{%          if configlet_name in cvp_device['configlets'] %}
+    - task_id: "{{ task_id | quote }}"
+      stage: Deploy_Task_{{ task_id }}_{{ cvp_device['fqdn'] }}
+{%              if hostvars[cvp_device['fqdn']].type in ['l3leaf'] %}
+{%                  if cvp_device['fqdn'].endswith("A") %}
+{%                      do leaf_tasks_mlag_left.append("Deploy_Task_"+task_id+"_"+cvp_device['fqdn']) %}
+{%                  else %}
+{%                      do leaf_tasks_mlag_right.append("Deploy_Task_"+task_id+"_"+cvp_device['fqdn']) %}
+{%                  endif %}
+{%              elif hostvars[cvp_device['fqdn']].type in ['spine']%}   
+{%                  do spine_tasks.append("Deploy_Task_"+task_id+"_"+cvp_device['fqdn']) %}
+{%              elif hostvars[cvp_device['fqdn']].type in ['super-spine']%}  
+{%                  do super_spine_tasks.append("Deploy_Task_"+task_id+"_"+cvp_device['fqdn']) %}  
+{%              endif %}
+{%          endif %}
+{%     endfor %}    
+{%  endfor %}
+  stages:
+    - name: AVD_Change_Control_Root
+      mode: parallel
+    - name: Super-Spine Tasks
+      mode: series
+      parent: AVD_Change_Control_Root
+{%  for task in super_spine_tasks %}
+    - name: {{ task }}
+      mode: series
+      parent: Super-Spine Tasks
+{%  endfor %}
+    - name: Spine Tasks
+      mode: series
+      parent: AVD_Change_Control_Root
+{%  for task in spine_tasks %}
+    - name: {{ task }}
+      mode: series
+      parent: Spine Tasks
+{%  endfor %}
+    - name: Leaf Tasks
+      mode: series
+      parent: AVD_Change_Control_Root
+    - name: Leaf Pre-Checks
+      mode: parallel 
+      parent: Leaf Tasks
+    - name: Leaf MLAG Left Tasks
+      mode: parallel
+      parent: Leaf Tasks
+    - name: Leaf MLAG Right Tasks
+      mode: parallel
+      parent: Leaf Tasks
+{%  for task in leaf_tasks_mlag_left %}
+    - name: {{ task }}
+      parent: Leaf MLAG Left Tasks
+{%  endfor %}
+{%  for task in leaf_tasks_mlag_right %}
+    - name: {{ task }}
+      parent: Leaf MLAG Right Tasks
+{%  endfor %}

@@ -1,0 +1,3 @@
+---
+root_dir: '{{ inventory_dir }}'
+# roles_path: "{{ lookup('ini', 'roles_path section=defaults file=ansible.cfg') }}"

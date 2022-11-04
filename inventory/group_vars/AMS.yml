@@ -1,0 +1,175 @@
+---
+fabric_name: AMS
+
+# evpn_ebgp_multihop: 5
+# evpn_overlay_bgp_rtc: true
+
+# Underlay routing protocol | Required.
+underlay_routing_protocol: EBGP
+overlay_routing_protocol: none
+
+# Defaults. Put these 4 in DCx_PODx for specifics
+mgmt_gateway: 192.168.0.1
+mgmt_interface: Management1
+mgmt_interface_vrf: mgmt
+mgmt_destination_networks:
+  - 0.0.0.0/0
+
+p2p_uplinks_qos_profile: P2P-QOS-PROFILE
+
+local_users:
+  admin:
+    privilege: 15
+    role: network-admin
+    sha512_password: $6$82gqIqw8b3nibNrk$MoZO0S8QMQN8uwnR8v48dbGrL0Ec/6q36tSx8y9IsExi4L.HtmokW9rX8VehLxhg542mNTBKqxMBF.LgnCTm4.
+
+  cvpadmin:
+    privilege: 15
+    role: network-admin
+    sha512_password: "$6$t6kTflZYzb.aBgf.$bO5g8VNl3r.KiqOAhOckBoYoTbZ.27ZmaTriznKKD13XwOpstTL6E1PRnSGmXC2pcTHw5DU2MUUIEv3WLSRDW1"
+
+  ansible:
+    privilege: 15
+    role: network-admin
+    sha512_password: "$6$Dzu11L7yp9j3nCM9$FSptxMPyIL555OMO.ldnjDXgwZmrfMYwHSr0uznE5Qoqvd9a6UdjiFcJUhGLtvXVZR1r.A/iF5aAt50hf/EK4/"
+
+# Cloud Vision server information
+cvp_instance_ip: 192.168.0.5
+
+daemon_terminattr:
+  cvaddrs:
+    - 192.168.0.5:9910
+  cvauth:
+    method: "token"
+    token_file: "/tmp/token"
+  cvvrf: mgmt
+  ingestexclude: "/Sysdb/cell/1/agent,/Sysdb/cell/2/agent"
+  smashexcludes: "ale,flexCounter,hardware,kni,pulse,strata"
+
+bgp_peer_groups:
+  IPv4_UNDERLAY_PEERS:
+    password: "AQQvKeimxJu+uGQ/yYvv9w=="
+  # EVPN_OVERLAY_PEERS:
+  #   password: "q+VNViP5i4rVjW1cxFv2wA=="
+  MLAG_IPv4_UNDERLAY_PEER:
+    password: "vnEaG8gMeQf3d3cN6PktXQ=="
+
+snmp_settings:
+  location: true
+
+# Consider whether pools or specific IPs would be better..
+l3_edge:
+  #  p2p_links_ip_pools:
+  #    pool-leaf: 11.1.0.0/24
+  #    pool-spine: 11.1.1.0/24
+  #    pool-super-spine: 11.1.2.0/24
+  p2p_links_profiles:
+    generic-profile:
+      mtu: 9214
+      bfd: true
+      ptp_enable: true
+  # This section will require some SOT thought:
+  p2p_links:
+    # nodes lists the devices that will interconnect to each other
+    - nodes: [DC1-POD1-LEAF1A, FIREWALL01]
+      # These ids seem to be incrementing in no particular order,
+      # but they aren't duplicated.
+      id: 20
+      # this list is commensurate to the nodes list above.
+      interfaces: [Ethernet28/1, E0]
+      # will use this AS as local and remote:
+      # local-as 64101 no-prepend replace-as
+      as: [64101, 64102]
+      # This shows you can use the pool
+      ip: [200.200.200.104/31, 200.200.200.105/31]
+      #      ip_pool: pool-leaf
+      profile: generic-profile
+      # This might be what installs the neighbor as a peer group member of "IPv4-UNDERLAY-PEERS"
+      include_in_underlay_protocol: true
+      # macsec_profile: MACSEC_PROFILE
+    - nodes: [DC1-POD1-LEAF1B, FIREWALL01]
+      # this node section is not working 1/3/22
+      # not sure on what the id is yet, docs says should be unique
+      id: 21
+      # These match the interfaces used to connect the upstream peers
+      interfaces: [Ethernet28/1, E1]
+      # these are their AS's.. in order. Obviously referencing a single entry for this will make life easier.
+      # this errors:
+      # as: [ "{{inventory_hostname.as}}", "{{inventory_hostname.as))" ]
+      as: [64201, 64202]
+      ip: [200.200.200.102/31, 200.200.200.103/31]
+      profile: generic-profile
+      include_in_underlay_protocol: true
+      # macsec_profile: MACSEC_PROFILE
+    - nodes: [DC2-POD1-LEAF1A, FIREWALL01]
+      id: 20
+      interfaces: [Ethernet28/1, E3]
+      as: [65101, 65102]
+      ip: [200.200.200.200/31, 200.200.200.201/31]
+      mtu: 1180
+      profile: generic-profile
+      include_in_underlay_protocol: true
+    - nodes: [DC2-POD1-LEAF1B, FIREWALL01]
+      id: 21
+      interfaces: [Ethernet28/1, E4]
+      as: [65201, 65202]
+      # This shows you can use specify the IP
+      ip: [200.200.200.100/31, 200.200.200.101/31]
+      # this is a snowflake bfd value
+      bfd: false
+      profile: generic-profile
+      include_in_underlay_protocol: true
+
+p2p_uplinks_mtu: 9214
+
+platform_settings:
+  - platforms: [default]
+    reload_delay:
+      mlag: 300
+      non_mlag: 330
+  - platforms: [vEOS-LAB]
+    raw_eos_cli: |
+      interface Loopback1111
+        description Loopback created from raw_eos_cli under platform_settings vEOS-LAB in AMS.yml
+    reload_delay:
+      mlag: 310
+      non_mlag: 400
+
+custom_structured_configuration_list_merge: 'append'
+
+# Node type definitions
+node_type_keys:
+  spine:
+    type: spine
+    default_evpn_role: none
+    ip_addressing:
+      p2p_uplinks_ip: 'ip_addressing/avd-v2-spine-p2p-uplinks-ip.j2'
+      p2p_uplinks_peer_ip: 'ip_addressing/avd-v2-spine-p2p-uplinks-peer-ip.j2'
+  l3leaf:
+    type: l3leaf
+    connected_endpoints: true
+    default_evpn_role: none
+    mlag_support: true
+    # these should, among other things, trigger the processing of vlans and svis in the templates
+    network_services:
+      l2: true
+      l3: true
+    vtep: true
+  l2leaf:
+    type: l2leaf
+    connected_endpoints: true
+    mlag_support: true
+    network_services:
+      l2: true
+    underlay_router: false
+    uplink_type: port-channel
+  super_spine:
+    type: super-spine
+    default_evpn_role: none
+  overlay_controller:
+    type: overlay-controller
+    default_evpn_role: none
+
+veos_version: 4.27.1F
+cvp_version: 2021.3.0
+cvp_group: CVP

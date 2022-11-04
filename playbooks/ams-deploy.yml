@@ -1,0 +1,138 @@
+---
+- name: Manage Arista EOS Configuration
+  hosts: AMS
+  connection: local
+  gather_facts: false
+  collections:
+    - arista.avd
+    - arista.cvp
+  tasks:
+    - name: "Reset local folders for output"
+      tags: [generate]
+      ansible.builtin.import_role:
+        name: arista.avd.build_output_folders
+
+    - name: Generate intended variables
+      tags: [generate]
+      ansible.builtin.import_role:
+        name: arista.avd.eos_designs
+
+    - name: Generate device intended config and documentation
+      tags: [generate]
+      ansible.builtin.import_role:
+        name: eos_cli_config_gen
+
+        # - name: generate ACT topology file
+        #   tags: [generate]
+        #   run_once: true
+        #   delegate_to: localhost
+        #   ansible.builtin.template:
+        #     src: ../templates/acttopology.yml.j2 # noqa no-relative-paths
+        #     dest: "{{ output_dir }}/acttopology.yml"
+        #     mode: 0664
+
+- name: Configuration deployment with CVP
+  hosts: cv_server
+  connection: local
+  gather_facts: false
+  collections:
+    - arista.avd
+    - arista.cvp
+  tasks:
+    - name: Run CVP provisioning
+      block:
+        - name: Deploy with CVP
+          tags: [deploy]
+          ansible.builtin.import_role:
+            name: arista.avd.eos_config_deploy_cvp
+          vars:
+            container_root: "AMS"
+            configlets_prefix: "AMS-AVD"
+            # device_filter: "AMS"
+            state: present
+            create_and_execute_change_control: true
+            cvp_change_control_template: "{{ cc_template_path }}"
+            cv_collection: v3
+            # - name: Create and Execute CVP Change Control
+            #   when:
+            #     - CVP_CONFIGLETS_STATUS.taskIds | length > 0
+            #   block:
+            #     - name: Save CVP task list to file
+            #       tags: [deploy]
+            #       run_once: true
+            #       delegate_to: localhost
+            #       ansible.builtin.copy:
+            #         # content: "{{ CVP_CONFIGLETS_STATUS.taskIds }}"
+            #         content: "{{ CVP_CONFIGLETS_STATUS }}"
+            #         dest: "{{ output_dir }}/CVP_deployment_tasks.txt"
+            #         mode: 0664
+            #     - name: "Collect CVP facts"
+            #       tags: [deploy]
+            #       arista.cvp.cv_facts_v3:
+            #         facts:
+            #           - devices
+            #       register: facts_devices
+            #     # - name: Save CVP facts list to file
+            #     #   tags: [deploy]
+            #     #   run_once: true
+            #     #   delegate_to: localhost
+            #     #   ansible.builtin.copy:
+            #     #     content: "{{ facts_devices }}"
+            #     #     dest: "{{ output_dir }}/CVP_facts.txt"
+            #     #     mode: 0664
+            #     - name: "Debug CVP fact"
+            #       tags: [deploy]
+            #       ansible.builtin.debug:
+            #         msg: "{{ facts_devices }}"
+            #     - name: "Build Change Control definition for {{ inventory_hostname }}"
+            #       tags: [deploy]
+            #       run_once: true
+            #       delegate_to: localhost
+            #       ansible.builtin.template:
+            #         src: "../templates/cvp-new-change-control-v3.j2" # noqa no-relative-paths
+            #         dest: "{{ output_dir }}/cvp_change_control.yml"
+            #         mode: 0664
+            #     - name: "Include Change Control definition variables"
+            #       tags: [deploy]
+            #       run_once: true
+            #       delegate_to: localhost
+            #       ansible.builtin.include_vars: "{{ output_dir }}/cvp_change_control.yml"
+            #     - name: Debug change control defintion
+            #       tags: [deploy]
+            #       ansible.builtin.debug:
+            #         msg: "Change control: {{ CVP_CHANGE_CONTROL }}"
+            #     - name: "Create a Change Control on CVP {{ inventory_hostname }}"
+            #       tags: [deploy]
+            #       arista.cvp.cv_change_control_v3:
+            #         change: "{{ CVP_CHANGE_CONTROL }}"
+            #         state: set
+            #       register: cv_change_control
+            #     - name: "Execute a Change Control on CVP {{ inventory_hostname }}"
+            #       tags: [deploy]
+            #       arista.cvp.cv_change_control_v3:
+            #         state: approve_and_execute
+            #         change_id: ["{{ cv_change_control.data.id }}"]
+            #     - name: "Show the CC until it completes"
+            #       tags: [deploy]
+            #       arista.cvp.cv_change_control_v3:
+            #         state: show
+            #         change_id: ["{{ cv_change_control.data.id }}"]
+            #       register: cc_show_result
+            #       until: cc_show_result.data['change_controls:'][0]['value'].status == "CHANGE_CONTROL_STATUS_COMPLETED"
+            #       failed_when: cc_show_result.data['change_controls:'][0]['value'].error is defined
+            #       retries: 30
+            #       delay: 60
+
+- name: Validate deployment
+  hosts: AMS
+  gather_facts: false
+  collections:
+    - arista.avd
+    - arista.cvp
+  tasks:
+    - name: Validate deployment
+      block:
+        - name: Validate deployment
+          tags: [validate]
+          ansible.builtin.import_role:
+            name: arista.avd.eos_validate_state

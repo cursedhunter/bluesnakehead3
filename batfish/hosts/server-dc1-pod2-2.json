@@ -1,0 +1,10 @@
+{
+  "hostname" : "server-dc1-pod2-2",
+  "iptablesFile" : "iptables/server-dc1-pod2-2.iptables",
+  "hostInterfaces" : {
+    "eno3" : {
+      "name": "eno3",
+      "prefix" : "10.0.200.101/24"
+    }
+  }
+}

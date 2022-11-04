@@ -1,0 +1,244 @@
+---
+default:
+  image: localhost:5000/pipeline:latest
+
+workflow:
+  rules:
+    - when: always
+
+stages:
+  - parse-variables
+  # - change-management
+  # - prepare-lab
+  - merge-results
+  - generate-config
+  - integrity-check
+  - pre-deployment-testing
+  # - cleanup-lab
+  - deployment
+  - validation
+  - merge-change
+  # - backup
+
+parse-variables:
+  stage: parse-variables
+  environment: production/ams
+  before_script:
+    - source /etc/pipeline.env
+  script:
+    - >-
+      cicd_exec parse_variables
+      --url $CI_SERVER_URL
+      --token $PIPELINE_ACCESS_TOKEN
+      --project-id $CI_PROJECT_ID
+      --request-id $CI_MERGE_REQUEST_ID
+      --request-id $CI_MERGE_REQUEST_IID
+  artifacts:
+    reports:
+      dotenv: vars.env
+
+# create-change-request:
+#   stage: change-management
+#   script:
+#     - echo "Creating change request..."
+#     - sleep 10
+#     - echo "Done"
+
+# wait-for-approval:
+#   stage: change-management
+#   script:
+#     - echo "Waiting for approval..."
+#     - sleep 10
+#     - echo "Approved"
+
+# start-lab:
+#   stage: prepare-lab
+#   before_script:
+#     - >-
+#       if [ ! -z "$OPENVPN_CONFIG" ]; then
+#       openvpn --config "/etc/openvpn/client/$OPENVPN_CONFIG" --daemon;
+#       fi
+#     - if [ ! -z "$OPENVPN_CONFIG" ]; then sleep 30; fi
+#     - >-
+#       if [ ! -z "$OPENVPN_CONFIG" ]; then
+#       echo "10.8.0.1  lab.act.arista.com" >> /etc/hosts;
+#       fi
+#     - source /etc/pipeline.env
+#   script:
+#     - >-
+#       if [ "$VIRTUAL_ENV_TESTING" = "Yes" ]; then
+#       cicd_exec start_lab
+#       --username "$ACT_USERNAME"
+#       --password "$ACT_PASSWORD"
+#       --lab-name "$ACT_LAB_NAME"
+#       --no-wait;
+#       fi
+
+merge-results:
+  stage: merge-results
+  environment: production/ams
+  script:
+    - cicd_exec merge_results --request-id $CI_MERGE_REQUEST_IID
+  artifacts:
+    name: merged
+    paths:
+      - ./
+
+generate-config:
+  stage: generate-config
+  environment: production/ams
+  script:
+    - cicd_exec generate_config --playbook "$PLAYBOOK_NAME"
+  artifacts:
+    name: inventory
+    paths:
+      - inventory/
+
+integrity-check:
+  stage: integrity-check
+  script:
+    - cicd_exec integrity_check --checker topology
+  artifacts:
+    when: always
+    name: integrity_check
+    paths:
+      - IntegrityCheck*.csv
+
+batfish:
+  stage: pre-deployment-testing
+  script:
+    - >-
+      cicd_exec config_test --batfish-host $BATFISH_HOSTNAME
+      --enabled $BATFISH_TESTING
+  services:
+    - name: batfish/allinone
+      alias: batfish
+  artifacts:
+    reports:
+      junit: batfish/results.xml
+
+# arista-vane:
+#   stage: pre-deployment-testing
+# before_script:
+#   - >-
+#     if [ ! -z "$OPENVPN_CONFIG" ]; then
+#     openvpn --config "/etc/openvpn/client/$OPENVPN_CONFIG" --daemon;
+#     fi
+#   - if [ ! -z "$OPENVPN_CONFIG" ]; then sleep 30; fi
+#   - >-
+#     if [ ! -z "$OPENVPN_CONFIG" ]; then
+#     echo "10.8.0.1  lab.act.arista.com" >> /etc/hosts;
+#     fi
+#   - source /etc/pipeline.env
+# script:
+#   - >-
+#     if [ "$VIRTUAL_ENV_TESTING" = "Yes" ]; then
+#     cicd_exec start_lab
+#     --username "$ACT_USERNAME"
+#     --password "$ACT_PASSWORD"
+#     --lab-name "$ACT_LAB_NAME";
+#     fi
+#   - >-
+#     if [ "$VIRTUAL_ENV_TESTING" = "Yes" ]; then
+#     cicd_exec wait_for_cvp
+#     --node-name "$CVP_NODE_NAME"
+#     --inventory "$INVENTORY_NAME"
+#     --inventory "$ACT_INVENTORY_OVERRIDE_NAME";
+#     fi
+#   - >-
+#     if [ "$VIRTUAL_ENV_TESTING" = "Yes" ]; then
+#     echo "Running Vane tests...";
+#     echo "Done";
+#     fi
+
+# stop-lab:
+#   stage: cleanup-lab
+#   before_script:
+#     - >-
+#       if [ ! -z "$OPENVPN_CONFIG" ]; then
+#       openvpn --config "/etc/openvpn/client/$OPENVPN_CONFIG" --daemon;
+#       fi
+#     - if [ ! -z "$OPENVPN_CONFIG" ]; then sleep 30; fi
+#     - >-
+#       if [ ! -z "$OPENVPN_CONFIG" ]; then
+#       echo "10.8.0.1  lab.act.arista.com" >> /etc/hosts;
+#       fi
+#     - source /etc/pipeline.env
+#   script:
+#     - >-
+#       if [ "$VIRTUAL_ENV_TESTING" = "Yes" ]; then
+#       cicd_exec stop_lab
+#       --username "$ACT_USERNAME"
+#       --password "$ACT_PASSWORD"
+#       --lab-name "$ACT_LAB_NAME";
+#       fi
+
+deployment:
+  stage: deployment
+  environment: production/ams
+  script:
+    - >-
+      cicd_exec deploy --playbook "$PLAYBOOK_NAME"
+      --deploy-tag "$DEPLOY_TAG_NAME"
+      --inventory "$INVENTORY_NAME"
+      --cc-template "$CHANGE_CONTROL_TEMPLATE";
+  artifacts:
+    name: deploy_inventory
+    paths:
+      - inventory/
+
+# close-change-request:
+#   stage: merge-change
+#   script:
+#     - echo "Closing change request..."
+#     - sleep 10
+#     - echo "Done"
+
+eos-validate-state:
+  stage: validation
+  script:
+    - >-
+      cicd_exec validate --type evs --playbook "$PLAYBOOK_NAME"
+      --inventory "$INVENTORY_NAME"
+      --skip-hardware
+  after_script:
+    - >-
+      if [ $CI_JOB_STATUS != 'success' ]; then
+      cicd_exec cvp_rollback
+      --playbook "$PLAYBOOK_NAME"
+      --inventory "$INVENTORY_NAME";
+      fi
+  artifacts:
+    name: validation-reports
+    when: always
+    paths:
+      - inventory/reports/
+
+merge-change:
+  stage: merge-change
+  before_script:
+    - source /etc/pipeline.env
+  script:
+    - >-
+      cicd_exec merge --request-id $CI_MERGE_REQUEST_IID
+      --dest $CI_MERGE_REQUEST_TARGET_BRANCH_NAME
+      --url $CI_REPOSITORY_URL
+      --username $CI_PROJECT_NAME
+      --token $PIPELINE_ACCESS_TOKEN
+  artifacts:
+    name: merge_change_inventory
+    paths:
+      - inventory/
+
+# backup-scm-publish:
+#   stage: backup
+#   script:
+#     - >-
+#       if [ ! -z "$BACKUP_KEY" ]; then
+#       cicd_exec backup --request-id "$CI_MERGE_REQUEST_IID"
+#       --dest "$CI_MERGE_REQUEST_TARGET_BRANCH_NAME"
+#       --hostname "$BACKUP_HOST"
+#       --username "$BACKUP_USER"
+#       --key-name "$BACKUP_KEY"
+#       --repo-path "$BACKUP_REPO";
+#       fi

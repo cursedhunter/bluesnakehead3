@@ -1,0 +1,28 @@
+- name: Configure DHCP Services
+  hosts: CVP-1-SSH
+  gather_facts: false
+
+  tasks:
+
+    - name: Configure and enable DHCP services for ZTP provisioning
+      import_role:
+          name: arista.avd.dhcp_provisioner
+      vars:
+        ansible_user: root
+# ---
+# - name: Build Switch configuration
+#   hosts: cv_server
+#   connection: local
+#   gather_facts: true
+#   tasks:
+#     - name: Create dhcp configuration file
+#       import_role:
+#           name: arista.avd.dhcp_provisioner
+#       vars:
+#         ztp_network_summary: 192.168.0.0/24
+#         ztp_pool_start: 192.168.0.10
+#         ztp_pool_end: 192.168.0.100
+#         ztp_lease_time: 300
+#         fabric_group: 'AMS'
+#         ztp_mac_source: interface
+#         ztp_mode: online

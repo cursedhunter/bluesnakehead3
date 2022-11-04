@@ -1,0 +1,19 @@
+---
+default-pipeline:
+  trigger:
+    include: .gitlab-ci/default.yml
+    strategy: depend
+  rules:
+    - if: $CI_MERGE_REQUEST_ID
+      when: never
+    - when: always
+
+deployment-pipeline:
+  trigger:
+    include: .gitlab-ci/deployment.yml
+    strategy: depend
+  rules:
+    - if: $CI_MERGE_REQUEST_ID
+      when: always
+  variables:
+    REQUEST_ID: $REQUEST_ID

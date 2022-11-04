@@ -1,0 +1,239 @@
+---
+# Is this actual compute or an L2 switch? Seems to be Leafs listed
+# what is the scope? How do I make this a template?
+# This seems to be literal. Server-1 is one server. Need to check out profiles up above.
+servers:
+  # "server-1" is prepended to the port-channel description
+  server-1:
+    # This is only used in snmp location data
+    rack: RackDC1_P1_R4
+    adapters:
+      - server_ports:
+          [
+            eno1,
+            eno2,
+            eno1,
+            eno2,
+            eno1,
+            eno2,
+            eno1,
+            eno2,
+            eno1,
+            eno2,
+            eno1,
+            eno2,
+            eno1,
+            eno2,
+            eno1,
+            eno2,
+            eno1,
+            eno2,
+            eno1,
+            eno2,
+            eno1,
+            eno2,
+            eno1,
+            eno2,
+            eno1,
+            eno2,
+            eno1,
+            eno2,
+          ]
+        switch_ports:
+          [
+            Ethernet1/1,
+            Ethernet1/1,
+            Ethernet1/1,
+            Ethernet1/1,
+            Ethernet1/1,
+            Ethernet1/1,
+            Ethernet1/1,
+            Ethernet1/1,
+            Ethernet1/1,
+            Ethernet1/1,
+            Ethernet1/1,
+            Ethernet1/1,
+            Ethernet1/1,
+            Ethernet1/1,
+            Ethernet1/1,
+            Ethernet1/1,
+            Ethernet1/1,
+            Ethernet1/1,
+            Ethernet1/1,
+            Ethernet1/1,
+            Ethernet1/1,
+            Ethernet1/1,
+            Ethernet1/1,
+            Ethernet1/1,
+            Ethernet1/1,
+            Ethernet1/1,
+            Ethernet1/1,
+            Ethernet1/1,
+          ]
+        switches:
+          [
+            DC1-POD1-LEAF1A,
+            DC1-POD1-LEAF1B,
+            DC1-POD1-LEAF2A,
+            DC1-POD1-LEAF2B,
+            DC1-POD1-LEAF3A,
+            DC1-POD1-LEAF3B,
+            DC1-POD1-LEAF4A,
+            DC1-POD1-LEAF4B,
+            DC1-POD1-LEAF5A,
+            DC1-POD1-LEAF5B,
+            DC1-POD1-LEAF6A,
+            DC1-POD1-LEAF6B,
+            DC1-POD1-LEAF7A,
+            DC1-POD1-LEAF7B,
+            DC1-POD1-LEAF8A,
+            DC1-POD1-LEAF8B,
+            DC1-POD1-LEAF9A,
+            DC1-POD1-LEAF9B,
+            DC1-POD1-LEAF10A,
+            DC1-POD1-LEAF10B,
+            DC1-POD1-LEAF11A,
+            DC1-POD1-LEAF11B,
+            DC1-POD1-LEAF12A,
+            DC1-POD1-LEAF12B,
+            DC1-POD1-LEAF13A,
+            DC1-POD1-LEAF13B,
+            DC1-POD1-LEAF14A,
+            DC1-POD1-LEAF14B,
+          ]
+        profile: TENANT_C_DATA
+      # Any partial entries seem to override anythingn in the profile. So a description-only here causes nothing to be entered
+      #        port_channel:
+      #          description: Server-1 Data
+      #          #short_esi: 0303:0202:0101 // https://avd.sh/en/latest/roles/eos_designs/doc/connected-endpoints.html
+      - server_ports:
+          [
+            eno3,
+            eno4,
+            eno3,
+            eno4,
+            eno3,
+            eno4,
+            eno3,
+            eno4,
+            eno3,
+            eno4,
+            eno3,
+            eno4,
+            eno3,
+            eno4,
+            eno3,
+            eno4,
+            eno3,
+            eno4,
+            eno3,
+            eno4,
+            eno3,
+            eno4,
+            eno3,
+            eno4,
+            eno3,
+            eno4,
+            eno3,
+            eno4,
+          ]
+        switch_ports:
+          [
+            Ethernet6/1,
+            Ethernet6/1,
+            Ethernet6/1,
+            Ethernet6/1,
+            Ethernet6/1,
+            Ethernet6/1,
+            Ethernet6/1,
+            Ethernet6/1,
+            Ethernet6/1,
+            Ethernet6/1,
+            Ethernet6/1,
+            Ethernet6/1,
+            Ethernet6/1,
+            Ethernet6/1,
+            Ethernet6/1,
+            Ethernet6/1,
+            Ethernet6/1,
+            Ethernet6/1,
+            Ethernet6/1,
+            Ethernet6/1,
+            Ethernet6/1,
+            Ethernet6/1,
+            Ethernet6/1,
+            Ethernet6/1,
+            Ethernet6/1,
+            Ethernet6/1,
+            Ethernet6/1,
+            Ethernet6/1,
+          ]
+        switches:
+          [
+            DC1-POD1-LEAF1A,
+            DC1-POD1-LEAF1B,
+            DC1-POD1-LEAF2A,
+            DC1-POD1-LEAF2B,
+            DC1-POD1-LEAF3A,
+            DC1-POD1-LEAF3B,
+            DC1-POD1-LEAF4A,
+            DC1-POD1-LEAF4B,
+            DC1-POD1-LEAF5A,
+            DC1-POD1-LEAF5B,
+            DC1-POD1-LEAF6A,
+            DC1-POD1-LEAF6B,
+            DC1-POD1-LEAF7A,
+            DC1-POD1-LEAF7B,
+            DC1-POD1-LEAF8A,
+            DC1-POD1-LEAF8B,
+            DC1-POD1-LEAF9A,
+            DC1-POD1-LEAF9B,
+            DC1-POD1-LEAF10A,
+            DC1-POD1-LEAF10B,
+            DC1-POD1-LEAF11A,
+            DC1-POD1-LEAF11B,
+            DC1-POD1-LEAF12A,
+            DC1-POD1-LEAF12B,
+            DC1-POD1-LEAF13A,
+            DC1-POD1-LEAF13B,
+            DC1-POD1-LEAF14A,
+            DC1-POD1-LEAF14B,
+          ]
+        profile: TENANT_C_M2C2
+  #        structured_config:
+  #          description: Set using structured_config on server adapter
+  #        port_channel:
+  #          structured_config:
+  #            description: Set using structured_config on server adapter port-channel
+  #          description: Server-1 M2C2
+  #        raw_eos_cli: |
+  #          comment
+  #          Comment created from raw_eos_cli under adapter for switch Eth17
+  #          EOF
+
+  # This is concise and works:
+  # But still is a per-server entry. Thousands of these?
+  server-dc1-pod1-2:
+    rack: RackDC1_P1_R4
+    adapters:
+      - server_ports: [eno3, eno4]
+        switch_ports: [Ethernet10/1, Ethernet10/1]
+        switches: [DC1-POD1-LEAF4A, DC1-POD1-LEAF4B]
+        profile: TENANT_B
+  # this works! Find a way to identify snowflake/hw_profile and racks?
+  server-dc1-pod1-3:
+    rack: RackDC1_P1_R4
+    adapters:
+      - server_ports: [eno3, eno4, eno3, eno4]
+        switch_ports: [Ethernet9/1, Ethernet9/1, Ethernet9/1, Ethernet9/1]
+        switches:
+          [DC1-POD1-LEAF3A, DC1-POD1-LEAF3B, DC1-POD1-LEAF4A, DC1-POD1-LEAF4B]
+        profile: TENANT_B
+
+network_ports:
+  - switches:
+      - DC1-POD1-LEAF.*
+    switch_ports:
+      - Ethernet17-20/1-4
+    profile: UNUSED_PORT
+    description: Unused Ports in DC1 POD1

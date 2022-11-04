@@ -1,0 +1,884 @@
+{
+    "edges": [
+        {
+            "node1": {
+                "hostname": "DC1-POD1-SPINE1",
+                "interfaceName": "Ethernet29/2"
+            },
+            "node2": {
+                "hostname": "SUPER-SPINE1",
+                "interfaceName": "Ethernet1/1"
+            }
+        },
+        {
+            "node1": {
+                "hostname": "DC1-POD1-SPINE2",
+                "interfaceName": "Ethernet29/2"
+            },
+            "node2": {
+                "hostname": "SUPER-SPINE1",
+                "interfaceName": "Ethernet2/1"
+            }
+        },
+        {
+            "node1": {
+                "hostname": "DC1-POD2-SPINE1",
+                "interfaceName": "Ethernet29/1"
+            },
+            "node2": {
+                "hostname": "SUPER-SPINE1",
+                "interfaceName": "Ethernet5/1"
+            }
+        },
+        {
+            "node1": {
+                "hostname": "DC1-POD2-SPINE2",
+                "interfaceName": "Ethernet29/1"
+            },
+            "node2": {
+                "hostname": "SUPER-SPINE1",
+                "interfaceName": "Ethernet6/1"
+            }
+        },
+        {
+            "node1": {
+                "hostname": "DC2-POD1-SPINE1",
+                "interfaceName": "Ethernet29/1"
+            },
+            "node2": {
+                "hostname": "SUPER-SPINE1",
+                "interfaceName": "Ethernet9/1"
+            }
+        },
+        {
+            "node1": {
+                "hostname": "DC2-POD1-SPINE2",
+                "interfaceName": "Ethernet29/1"
+            },
+            "node2": {
+                "hostname": "SUPER-SPINE1",
+                "interfaceName": "Ethernet10/1"
+            }
+        },
+        {
+            "node1": {
+                "hostname": "DC1-POD1-SPINE1",
+                "interfaceName": "Ethernet30/2"
+            },
+            "node2": {
+                "hostname": "SUPER-SPINE2",
+                "interfaceName": "Ethernet1/1"
+            }
+        },
+        {
+            "node1": {
+                "hostname": "DC1-POD1-SPINE2",
+                "interfaceName": "Ethernet30/2"
+            },
+            "node2": {
+                "hostname": "SUPER-SPINE2",
+                "interfaceName": "Ethernet2/1"
+            }
+        },
+        {
+            "node1": {
+                "hostname": "DC1-POD2-SPINE1",
+                "interfaceName": "Ethernet30/1"
+            },
+            "node2": {
+                "hostname": "SUPER-SPINE2",
+                "interfaceName": "Ethernet5/1"
+            }
+        },
+        {
+            "node1": {
+                "hostname": "DC1-POD2-SPINE2",
+                "interfaceName": "Ethernet30/1"
+            },
+            "node2": {
+                "hostname": "SUPER-SPINE2",
+                "interfaceName": "Ethernet6/1"
+            }
+        },
+        {
+            "node1": {
+                "hostname": "DC2-POD1-SPINE1",
+                "interfaceName": "Ethernet30/1"
+            },
+            "node2": {
+                "hostname": "SUPER-SPINE2",
+                "interfaceName": "Ethernet9/1"
+            }
+        },
+        {
+            "node1": {
+                "hostname": "DC2-POD1-SPINE2",
+                "interfaceName": "Ethernet30/1"
+            },
+            "node2": {
+                "hostname": "SUPER-SPINE2",
+                "interfaceName": "Ethernet10/1"
+            }
+        },
+        {
+            "node1": {
+                "hostname": "DC1-POD1-LEAF1A",
+                "interfaceName": "Ethernet29/1"
+            },
+            "node2": {
+                "hostname": "DC1-POD1-SPINE1",
+                "interfaceName": "Ethernet1/1"
+            }
+        },
+        {
+            "node1": {
+                "hostname": "DC1-POD1-LEAF1A",
+                "interfaceName": "Ethernet29/2"
+            },
+            "node2": {
+                "hostname": "DC1-POD1-SPINE1",
+                "interfaceName": "Ethernet1/2"
+            }
+        },
+        {
+            "node1": {
+                "hostname": "DC1-POD1-LEAF1B",
+                "interfaceName": "Ethernet29/1"
+            },
+            "node2": {
+                "hostname": "DC1-POD1-SPINE1",
+                "interfaceName": "Ethernet1/3"
+            }
+        },
+        {
+            "node1": {
+                "hostname": "DC1-POD1-LEAF1B",
+                "interfaceName": "Ethernet29/2"
+            },
+            "node2": {
+                "hostname": "DC1-POD1-SPINE1",
+                "interfaceName": "Ethernet1/4"
+            }
+        },
+        {
+            "node1": {
+                "hostname": "DC1-POD1-LEAF2A",
+                "interfaceName": "Ethernet29/1"
+            },
+            "node2": {
+                "hostname": "DC1-POD1-SPINE1",
+                "interfaceName": "Ethernet2/1"
+            }
+        },
+        {
+            "node1": {
+                "hostname": "DC1-POD1-LEAF2A",
+                "interfaceName": "Ethernet29/2"
+            },
+            "node2": {
+                "hostname": "DC1-POD1-SPINE1",
+                "interfaceName": "Ethernet2/2"
+            }
+        },
+        {
+            "node1": {
+                "hostname": "DC1-POD1-LEAF2B",
+                "interfaceName": "Ethernet29/1"
+            },
+            "node2": {
+                "hostname": "DC1-POD1-SPINE1",
+                "interfaceName": "Ethernet2/3"
+            }
+        },
+        {
+            "node1": {
+                "hostname": "DC1-POD1-LEAF2B",
+                "interfaceName": "Ethernet29/2"
+            },
+            "node2": {
+                "hostname": "DC1-POD1-SPINE1",
+                "interfaceName": "Ethernet2/4"
+            }
+        },
+        {
+            "node1": {
+                "hostname": "DC1-POD1-LEAF3A",
+                "interfaceName": "Ethernet29/1"
+            },
+            "node2": {
+                "hostname": "DC1-POD1-SPINE1",
+                "interfaceName": "Ethernet3/1"
+            }
+        },
+        {
+            "node1": {
+                "hostname": "DC1-POD1-LEAF3A",
+                "interfaceName": "Ethernet29/2"
+            },
+            "node2": {
+                "hostname": "DC1-POD1-SPINE1",
+                "interfaceName": "Ethernet3/2"
+            }
+        },
+        {
+            "node1": {
+                "hostname": "DC1-POD1-LEAF3B",
+                "interfaceName": "Ethernet29/1"
+            },
+            "node2": {
+                "hostname": "DC1-POD1-SPINE1",
+                "interfaceName": "Ethernet3/3"
+            }
+        },
+        {
+            "node1": {
+                "hostname": "DC1-POD1-LEAF3B",
+                "interfaceName": "Ethernet29/2"
+            },
+            "node2": {
+                "hostname": "DC1-POD1-SPINE1",
+                "interfaceName": "Ethernet3/4"
+            }
+        },
+        {
+            "node1": {
+                "hostname": "DC1-POD1-LEAF4A",
+                "interfaceName": "Ethernet29/1"
+            },
+            "node2": {
+                "hostname": "DC1-POD1-SPINE1",
+                "interfaceName": "Ethernet4/1"
+            }
+        },
+        {
+            "node1": {
+                "hostname": "DC1-POD1-LEAF4A",
+                "interfaceName": "Ethernet29/2"
+            },
+            "node2": {
+                "hostname": "DC1-POD1-SPINE1",
+                "interfaceName": "Ethernet4/2"
+            }
+        },
+        {
+            "node1": {
+                "hostname": "DC1-POD1-LEAF4B",
+                "interfaceName": "Ethernet29/1"
+            },
+            "node2": {
+                "hostname": "DC1-POD1-SPINE1",
+                "interfaceName": "Ethernet4/3"
+            }
+        },
+        {
+            "node1": {
+                "hostname": "DC1-POD1-LEAF4B",
+                "interfaceName": "Ethernet29/2"
+            },
+            "node2": {
+                "hostname": "DC1-POD1-SPINE1",
+                "interfaceName": "Ethernet4/4"
+            }
+        },
+        {
+            "node1": {
+                "hostname": "DC1-POD1-LEAF1A",
+                "interfaceName": "Ethernet30/1"
+            },
+            "node2": {
+                "hostname": "DC1-POD1-SPINE2",
+                "interfaceName": "Ethernet1/1"
+            }
+        },
+        {
+            "node1": {
+                "hostname": "DC1-POD1-LEAF1A",
+                "interfaceName": "Ethernet30/2"
+            },
+            "node2": {
+                "hostname": "DC1-POD1-SPINE2",
+                "interfaceName": "Ethernet1/2"
+            }
+        },
+        {
+            "node1": {
+                "hostname": "DC1-POD1-LEAF1B",
+                "interfaceName": "Ethernet30/1"
+            },
+            "node2": {
+                "hostname": "DC1-POD1-SPINE2",
+                "interfaceName": "Ethernet1/3"
+            }
+        },
+        {
+            "node1": {
+                "hostname": "DC1-POD1-LEAF1B",
+                "interfaceName": "Ethernet30/2"
+            },
+            "node2": {
+                "hostname": "DC1-POD1-SPINE2",
+                "interfaceName": "Ethernet1/4"
+            }
+        },
+        {
+            "node1": {
+                "hostname": "DC1-POD1-LEAF2A",
+                "interfaceName": "Ethernet30/1"
+            },
+            "node2": {
+                "hostname": "DC1-POD1-SPINE2",
+                "interfaceName": "Ethernet2/1"
+            }
+        },
+        {
+            "node1": {
+                "hostname": "DC1-POD1-LEAF2A",
+                "interfaceName": "Ethernet30/2"
+            },
+            "node2": {
+                "hostname": "DC1-POD1-SPINE2",
+                "interfaceName": "Ethernet2/2"
+            }
+        },
+        {
+            "node1": {
+                "hostname": "DC1-POD1-LEAF2B",
+                "interfaceName": "Ethernet30/1"
+            },
+            "node2": {
+                "hostname": "DC1-POD1-SPINE2",
+                "interfaceName": "Ethernet2/3"
+            }
+        },
+        {
+            "node1": {
+                "hostname": "DC1-POD1-LEAF2B",
+                "interfaceName": "Ethernet30/2"
+            },
+            "node2": {
+                "hostname": "DC1-POD1-SPINE2",
+                "interfaceName": "Ethernet2/4"
+            }
+        },
+        {
+            "node1": {
+                "hostname": "DC1-POD1-LEAF3A",
+                "interfaceName": "Ethernet30/1"
+            },
+            "node2": {
+                "hostname": "DC1-POD1-SPINE2",
+                "interfaceName": "Ethernet3/1"
+            }
+        },
+        {
+            "node1": {
+                "hostname": "DC1-POD1-LEAF3A",
+                "interfaceName": "Ethernet30/2"
+            },
+            "node2": {
+                "hostname": "DC1-POD1-SPINE2",
+                "interfaceName": "Ethernet3/2"
+            }
+        },
+        {
+            "node1": {
+                "hostname": "DC1-POD1-LEAF3B",
+                "interfaceName": "Ethernet30/1"
+            },
+            "node2": {
+                "hostname": "DC1-POD1-SPINE2",
+                "interfaceName": "Ethernet3/3"
+            }
+        },
+        {
+            "node1": {
+                "hostname": "DC1-POD1-LEAF3B",
+                "interfaceName": "Ethernet30/2"
+            },
+            "node2": {
+                "hostname": "DC1-POD1-SPINE2",
+                "interfaceName": "Ethernet3/4"
+            }
+        },
+        {
+            "node1": {
+                "hostname": "DC1-POD1-LEAF4A",
+                "interfaceName": "Ethernet30/1"
+            },
+            "node2": {
+                "hostname": "DC1-POD1-SPINE2",
+                "interfaceName": "Ethernet4/1"
+            }
+        },
+        {
+            "node1": {
+                "hostname": "DC1-POD1-LEAF4A",
+                "interfaceName": "Ethernet30/2"
+            },
+            "node2": {
+                "hostname": "DC1-POD1-SPINE2",
+                "interfaceName": "Ethernet4/2"
+            }
+        },
+        {
+            "node1": {
+                "hostname": "DC1-POD1-LEAF4B",
+                "interfaceName": "Ethernet30/1"
+            },
+            "node2": {
+                "hostname": "DC1-POD1-SPINE2",
+                "interfaceName": "Ethernet4/3"
+            }
+        },
+        {
+            "node1": {
+                "hostname": "DC1-POD1-LEAF4B",
+                "interfaceName": "Ethernet30/2"
+            },
+            "node2": {
+                "hostname": "DC1-POD1-SPINE2",
+                "interfaceName": "Ethernet4/4"
+            }
+        },
+        {
+            "node1": {
+                "hostname": "DC1-POD1-LEAF1B",
+                "interfaceName": "Ethernet15/1"
+            },
+            "node2": {
+                "hostname": "DC1-POD1-LEAF1A",
+                "interfaceName": "Ethernet15/1"
+            }
+        },
+        {
+            "node1": {
+                "hostname": "DC1-POD1-LEAF1B",
+                "interfaceName": "Ethernet16/1"
+            },
+            "node2": {
+                "hostname": "DC1-POD1-LEAF1A",
+                "interfaceName": "Ethernet16/1"
+            }
+        },
+        {
+            "node1": {
+                "hostname": "DC1-POD1-LEAF2B",
+                "interfaceName": "Ethernet15/1"
+            },
+            "node2": {
+                "hostname": "DC1-POD1-LEAF2A",
+                "interfaceName": "Ethernet15/1"
+            }
+        },
+        {
+            "node1": {
+                "hostname": "DC1-POD1-LEAF2B",
+                "interfaceName": "Ethernet16/1"
+            },
+            "node2": {
+                "hostname": "DC1-POD1-LEAF2A",
+                "interfaceName": "Ethernet16/1"
+            }
+        },
+        {
+            "node1": {
+                "hostname": "DC1-POD1-LEAF3B",
+                "interfaceName": "Ethernet15/1"
+            },
+            "node2": {
+                "hostname": "DC1-POD1-LEAF3A",
+                "interfaceName": "Ethernet15/1"
+            }
+        },
+        {
+            "node1": {
+                "hostname": "DC1-POD1-LEAF3B",
+                "interfaceName": "Ethernet16/1"
+            },
+            "node2": {
+                "hostname": "DC1-POD1-LEAF3A",
+                "interfaceName": "Ethernet16/1"
+            }
+        },
+        {
+            "node1": {
+                "hostname": "DC1-POD1-LEAF4B",
+                "interfaceName": "Ethernet15/1"
+            },
+            "node2": {
+                "hostname": "DC1-POD1-LEAF4A",
+                "interfaceName": "Ethernet15/1"
+            }
+        },
+        {
+            "node1": {
+                "hostname": "DC1-POD1-LEAF4B",
+                "interfaceName": "Ethernet16/1"
+            },
+            "node2": {
+                "hostname": "DC1-POD1-LEAF4A",
+                "interfaceName": "Ethernet16/1"
+            }
+        },
+        {
+            "node1": {
+                "hostname": "DC1-POD2-LEAF1B",
+                "interfaceName": "Ethernet15/1"
+            },
+            "node2": {
+                "hostname": "DC1-POD2-LEAF1A",
+                "interfaceName": "Ethernet15/1"
+            }
+        },
+        {
+            "node1": {
+                "hostname": "DC1-POD2-LEAF1B",
+                "interfaceName": "Ethernet16/1"
+            },
+            "node2": {
+                "hostname": "DC1-POD2-LEAF1A",
+                "interfaceName": "Ethernet16/1"
+            }
+        },
+        {
+            "node1": {
+                "hostname": "DC1-POD2-LEAF2B",
+                "interfaceName": "Ethernet15/1"
+            },
+            "node2": {
+                "hostname": "DC1-POD2-LEAF2A",
+                "interfaceName": "Ethernet15/1"
+            }
+        },
+        {
+            "node1": {
+                "hostname": "DC1-POD2-LEAF2B",
+                "interfaceName": "Ethernet16/1"
+            },
+            "node2": {
+                "hostname": "DC1-POD2-LEAF2A",
+                "interfaceName": "Ethernet16/1"
+            }
+        },
+        {
+            "node1": {
+                "hostname": "DC1-POD2-LEAF3B",
+                "interfaceName": "Ethernet15/1"
+            },
+            "node2": {
+                "hostname": "DC1-POD2-LEAF3A",
+                "interfaceName": "Ethernet15/1"
+            }
+        },
+        {
+            "node1": {
+                "hostname": "DC1-POD2-LEAF3B",
+                "interfaceName": "Ethernet16/1"
+            },
+            "node2": {
+                "hostname": "DC1-POD2-LEAF3A",
+                "interfaceName": "Ethernet16/1"
+            }
+        },
+        {
+            "node1": {
+                "hostname": "DC1-POD2-LEAF4B",
+                "interfaceName": "Ethernet15/1"
+            },
+            "node2": {
+                "hostname": "DC1-POD2-LEAF4A",
+                "interfaceName": "Ethernet15/1"
+            }
+        },
+        {
+            "node1": {
+                "hostname": "DC1-POD2-LEAF4B",
+                "interfaceName": "Ethernet16/1"
+            },
+            "node2": {
+                "hostname": "DC1-POD2-LEAF4A",
+                "interfaceName": "Ethernet16/1"
+            }
+        },
+        {
+            "node1": {
+                "hostname": "DC2-POD1-LEAF1B",
+                "interfaceName": "Ethernet15/1"
+            },
+            "node2": {
+                "hostname": "DC2-POD1-LEAF1A",
+                "interfaceName": "Ethernet15/1"
+            }
+        },
+        {
+            "node1": {
+                "hostname": "DC2-POD1-LEAF1B",
+                "interfaceName": "Ethernet16/1"
+            },
+            "node2": {
+                "hostname": "DC2-POD1-LEAF1A",
+                "interfaceName": "Ethernet16/1"
+            }
+        },
+        {
+            "node1": {
+                "hostname": "DC2-POD1-LEAF2B",
+                "interfaceName": "Ethernet15/1"
+            },
+            "node2": {
+                "hostname": "DC2-POD1-LEAF2A",
+                "interfaceName": "Ethernet15/1"
+            }
+        },
+        {
+            "node1": {
+                "hostname": "DC2-POD1-LEAF2B",
+                "interfaceName": "Ethernet16/1"
+            },
+            "node2": {
+                "hostname": "DC2-POD1-LEAF2A",
+                "interfaceName": "Ethernet16/1"
+            }
+        },
+        {
+            "node1": {
+                "hostname": "DC1-POD2-LEAF1A",
+                "interfaceName": "Ethernet29/1"
+            },
+            "node2": {
+                "hostname": "DC1-POD2-SPINE1",
+                "interfaceName": "Ethernet1/1"
+            }
+        },
+        {
+            "node1": {
+                "hostname": "DC1-POD2-LEAF1B",
+                "interfaceName": "Ethernet29/1"
+            },
+            "node2": {
+                "hostname": "DC1-POD2-SPINE1",
+                "interfaceName": "Ethernet2/1"
+            }
+        },
+        {
+            "node1": {
+                "hostname": "DC1-POD2-LEAF2A",
+                "interfaceName": "Ethernet29/1"
+            },
+            "node2": {
+                "hostname": "DC1-POD2-SPINE1",
+                "interfaceName": "Ethernet3/1"
+            }
+        },
+        {
+            "node1": {
+                "hostname": "DC1-POD2-LEAF2B",
+                "interfaceName": "Ethernet29/1"
+            },
+            "node2": {
+                "hostname": "DC1-POD2-SPINE1",
+                "interfaceName": "Ethernet4/1"
+            }
+        },
+        {
+            "node1": {
+                "hostname": "DC1-POD2-LEAF3A",
+                "interfaceName": "Ethernet29/1"
+            },
+            "node2": {
+                "hostname": "DC1-POD2-SPINE1",
+                "interfaceName": "Ethernet5/1"
+            }
+        },
+        {
+            "node1": {
+                "hostname": "DC1-POD2-LEAF3B",
+                "interfaceName": "Ethernet29/1"
+            },
+            "node2": {
+                "hostname": "DC1-POD2-SPINE1",
+                "interfaceName": "Ethernet6/1"
+            }
+        },
+        {
+            "node1": {
+                "hostname": "DC1-POD2-LEAF4A",
+                "interfaceName": "Ethernet29/1"
+            },
+            "node2": {
+                "hostname": "DC1-POD2-SPINE1",
+                "interfaceName": "Ethernet7/1"
+            }
+        },
+        {
+            "node1": {
+                "hostname": "DC1-POD2-LEAF4B",
+                "interfaceName": "Ethernet29/1"
+            },
+            "node2": {
+                "hostname": "DC1-POD2-SPINE1",
+                "interfaceName": "Ethernet8/1"
+            }
+        },
+        {
+            "node1": {
+                "hostname": "DC1-POD2-LEAF1A",
+                "interfaceName": "Ethernet30/1"
+            },
+            "node2": {
+                "hostname": "DC1-POD2-SPINE2",
+                "interfaceName": "Ethernet1/1"
+            }
+        },
+        {
+            "node1": {
+                "hostname": "DC1-POD2-LEAF1B",
+                "interfaceName": "Ethernet30/1"
+            },
+            "node2": {
+                "hostname": "DC1-POD2-SPINE2",
+                "interfaceName": "Ethernet2/1"
+            }
+        },
+        {
+            "node1": {
+                "hostname": "DC1-POD2-LEAF2A",
+                "interfaceName": "Ethernet30/1"
+            },
+            "node2": {
+                "hostname": "DC1-POD2-SPINE2",
+                "interfaceName": "Ethernet3/1"
+            }
+        },
+        {
+            "node1": {
+                "hostname": "DC1-POD2-LEAF2B",
+                "interfaceName": "Ethernet30/1"
+            },
+            "node2": {
+                "hostname": "DC1-POD2-SPINE2",
+                "interfaceName": "Ethernet4/1"
+            }
+        },
+        {
+            "node1": {
+                "hostname": "DC1-POD2-LEAF3A",
+                "interfaceName": "Ethernet30/1"
+            },
+            "node2": {
+                "hostname": "DC1-POD2-SPINE2",
+                "interfaceName": "Ethernet5/1"
+            }
+        },
+        {
+            "node1": {
+                "hostname": "DC1-POD2-LEAF3B",
+                "interfaceName": "Ethernet30/1"
+            },
+            "node2": {
+                "hostname": "DC1-POD2-SPINE2",
+                "interfaceName": "Ethernet6/1"
+            }
+        },
+        {
+            "node1": {
+                "hostname": "DC1-POD2-LEAF4A",
+                "interfaceName": "Ethernet30/1"
+            },
+            "node2": {
+                "hostname": "DC1-POD2-SPINE2",
+                "interfaceName": "Ethernet7/1"
+            }
+        },
+        {
+            "node1": {
+                "hostname": "DC1-POD2-LEAF4B",
+                "interfaceName": "Ethernet30/1"
+            },
+            "node2": {
+                "hostname": "DC1-POD2-SPINE2",
+                "interfaceName": "Ethernet8/1"
+            }
+        },
+        {
+            "node1": {
+                "hostname": "DC2-POD1-LEAF1A",
+                "interfaceName": "Ethernet29/1"
+            },
+            "node2": {
+                "hostname": "DC2-POD1-SPINE1",
+                "interfaceName": "Ethernet1/1"
+            }
+        },
+        {
+            "node1": {
+                "hostname": "DC2-POD1-LEAF1B",
+                "interfaceName": "Ethernet29/1"
+            },
+            "node2": {
+                "hostname": "DC2-POD1-SPINE1",
+                "interfaceName": "Ethernet2/1"
+            }
+        },
+        {
+            "node1": {
+                "hostname": "DC2-POD1-LEAF2A",
+                "interfaceName": "Ethernet29/1"
+            },
+            "node2": {
+                "hostname": "DC2-POD1-SPINE1",
+                "interfaceName": "Ethernet3/1"
+            }
+        },
+        {
+            "node1": {
+                "hostname": "DC2-POD1-LEAF2B",
+                "interfaceName": "Ethernet29/1"
+            },
+            "node2": {
+                "hostname": "DC2-POD1-SPINE1",
+                "interfaceName": "Ethernet4/1"
+            }
+        },
+        {
+            "node1": {
+                "hostname": "DC2-POD1-LEAF1A",
+                "interfaceName": "Ethernet30/1"
+            },
+            "node2": {
+                "hostname": "DC2-POD1-SPINE2",
+                "interfaceName": "Ethernet1/1"
+            }
+        },
+        {
+            "node1": {
+                "hostname": "DC2-POD1-LEAF1B",
+                "interfaceName": "Ethernet30/1"
+            },
+            "node2": {
+                "hostname": "DC2-POD1-SPINE2",
+                "interfaceName": "Ethernet2/1"
+            }
+        },
+        {
+            "node1": {
+                "hostname": "DC2-POD1-LEAF2A",
+                "interfaceName": "Ethernet30/1"
+            },
+            "node2": {
+                "hostname": "DC2-POD1-SPINE2",
+                "interfaceName": "Ethernet3/1"
+            }
+        },
+        {
+            "node1": {
+                "hostname": "DC2-POD1-LEAF2B",
+                "interfaceName": "Ethernet30/1"
+            },
+            "node2": {
+                "hostname": "DC2-POD1-SPINE2",
+                "interfaceName": "Ethernet4/1"
+            }
+        }
+    ]
+}

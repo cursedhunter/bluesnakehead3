@@ -1,0 +1,13 @@
+/.venv/
+/batfish/snapshot/
+/batfish/results.xml
+/inventory/**
+!/inventory/inventory.yml
+!/inventory/cc_templates
+!/inventory/cc_templates/**
+!/inventory/group_vars
+!/inventory/group_vars/**
+__pycache__/
+*.retry
+ansible-*
+.vscode

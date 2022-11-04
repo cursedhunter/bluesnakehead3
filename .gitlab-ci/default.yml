@@ -1,0 +1,73 @@
+---
+default:
+  image: localhost:5000/pipeline:latest
+
+workflow:
+  rules:
+    - when: always
+
+stages:
+  - static-checkers
+  - generate-config
+  - integrity-check
+  - config-testing
+
+ansible-lint:
+  stage: static-checkers
+  script:
+    - cicd_exec static_check --checker ansible_lint
+  artifacts:
+    when: always
+    name: ansiblelint
+    paths:
+      - ansiblelint_parsable_output.txt
+    reports:
+      junit: ansiblelint_report.xml
+
+
+yamllint:
+  stage: static-checkers
+  script:
+    - cicd_exec static_check --checker yamllint
+  artifacts:
+    when: always
+    name: yamllint
+    paths:
+      - yamllint_parsable_output.txt
+    reports:
+      junit: yamllint_report.xml
+
+generate-config:
+  stage: generate-config
+  script:
+    - chmod 0755 .
+    - cicd_exec generate_config --playbook playbooks/ams-deploy.yml
+  artifacts:
+    name: inventory
+    paths:
+      - inventory/
+
+integrity-check:
+  stage: integrity-check
+  script:
+    - cicd_exec integrity_check --checker topology
+  artifacts:
+    when: always
+    name: integrity_check
+    paths:
+      - IntegrityCheck*.csv
+
+batfish:
+  stage: config-testing
+  script:
+    - cicd_exec config_test --batfish-host batfish
+  services:
+    - name: localhost:5000/batfish_allinone:latest
+      alias: batfish
+  artifacts:
+    when: always
+    name: batfish_csv_output
+    paths:
+      - batfish/bf_csv_output
+    reports:
+      junit: batfish/results.xml
