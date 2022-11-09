@@ -1,3 +1,5 @@
+---
+# original didn't have --- to start the file
 - name: Configure DHCP Services
   hosts: CVP-1-SSH
   gather_facts: false
@@ -5,8 +7,8 @@
   tasks:
 
     - name: Configure and enable DHCP services for ZTP provisioning
-      import_role:
-          name: arista.avd.dhcp_provisioner
+      ansible.builtin.import_role:
+        name: arista.avd.dhcp_provisioner
       vars:
         ansible_user: root
 # ---
