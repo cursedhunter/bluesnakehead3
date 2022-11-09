@@ -489,27 +489,27 @@ l3leaf:
                                      Ethernet13/3, Ethernet13/4,
                                      Ethernet13/3, Ethernet13/4,
                                      Ethernet13/3, Ethernet13/4]
-    # RACK14_MLAG:
-    #   bgp_as: "64914"
-    #   mlag: true
-    #   # mlag_interfaces: [ Ethernet5, Ethernet6 ]
-    #   mlag_dual_primary_detection: true
-    #   mlag_peer_l3_vlan: 4094 # Using 4094 for both mlag peer and l3 peerings.
-    #   nodes:
-    #     DC1-POD1-LEAF14A:
-    #       id: 46
-    #       mgmt_ip: "{{ ansible_host }}/24"
-    #       uplink_switch_interfaces: [Ethernet14/1, Ethernet14/2,
-    #                                  Ethernet14/1, Ethernet14/2,
-    #                                  Ethernet14/1, Ethernet14/2,
-    #                                  Ethernet14/1, Ethernet14/2]
-    #     DC1-POD1-LEAF14B:
-    #       id: 47
-    #       mgmt_ip: "{{ ansible_host }}/24"
-    #       uplink_switch_interfaces: [Ethernet14/3, Ethernet14/4,
-    #                                  Ethernet14/3, Ethernet14/4,
-    #                                  Ethernet14/3, Ethernet14/4,
-    #                                  Ethernet14/3, Ethernet14/4]
+# RACK14_MLAG:
+#   bgp_as: "64914"
+#   mlag: true
+#   mlag_interfaces: [ Ethernet5, Ethernet6 ]
+#   mlag_dual_primary_detection: true
+#   mlag_peer_l3_vlan: 4094 # Using 4094 for both mlag peer and l3 peerings.
+#   nodes:
+#     DC1-POD1-LEAF14A:
+#       id: 46
+#       mgmt_ip: "{{ ansible_host }}/24"
+#       uplink_switch_interfaces: [Ethernet14/1, Ethernet14/2,
+#                                  Ethernet14/1, Ethernet14/2,
+#                                  Ethernet14/1, Ethernet14/2,
+#                                  Ethernet14/1, Ethernet14/2]
+#     DC1-POD1-LEAF14B:
+#       id: 47
+#       mgmt_ip: "{{ ansible_host }}/24"
+#       uplink_switch_interfaces: [Ethernet14/3, Ethernet14/4,
+#                                  Ethernet14/3, Ethernet14/4,
+#                                  Ethernet14/3, Ethernet14/4,
+#                                  Ethernet14/3, Ethernet14/4]
 
 # In DC1 we define all variables on specific node / node_group
 # l2leaf:
