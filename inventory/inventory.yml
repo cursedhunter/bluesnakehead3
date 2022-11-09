@@ -8,15 +8,15 @@ all:
           ansible_host: 10.65.2.9
         CVP-1-SSH:
       vars:
-      # ansible_user: cvpadmin
-      # ansible_password: cvp123!
-      # ansible_connection: httpapi
-      # ansible_httpapi_use_ssl: true
-      # ansible_httpapi_validate_certs: false
-      # ansible_network_os: eos
-      # ansible_httpapi_port: 443
-      # ansible_python_interpreter: $(which python3)
-      # cv_collection: v3
+       ansible_user: cvpadmin
+       ansible_password: ChangeMe!@34
+       ansible_connection: httpapi
+       ansible_httpapi_use_ssl: true
+       ansible_httpapi_validate_certs: false
+       ansible_network_os: eos
+       ansible_httpapi_port: 443
+       ansible_python_interpreter: $(which python3)
+       cv_collection: v3
     AMS:
       children:
         AMS_SUPER_SPINES:
