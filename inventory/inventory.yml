@@ -4,8 +4,8 @@ all:
     CVP:
       hosts:
         cv_server:
-          ansible_httpapi_host: 10.255.105.134
-          ansible_host: 10.255.105.134
+          ansible_httpapi_host: 10.65.2.9
+          ansible_host: 10.65.2.9
         CVP-1-SSH:
       vars:
       # ansible_user: cvpadmin
