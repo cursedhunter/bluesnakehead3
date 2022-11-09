@@ -361,8 +361,6 @@ all:
                       #                      ansible_port: 8023
 
       vars:
-        # I think this is if you are using a bastion
-        #        ansible_host: 10.65.1.35
         ansible_connection: httpapi
         ansible_httpapi_port: 443
         ansible_httpapi_host: '{{ ansible_host }}'
@@ -370,7 +368,7 @@ all:
         ansible_httpapi_validate_certs: false
         # ansible_network_os: arista.eos.eos
         ansible_user: cvpadmin
-        ansible_ssh_pass: cvp123!
+        ansible_ssh_pass: ChangeMe!@34
         ansible_become: true
         ansible_become_method: enable
         ansible_python_interpreter: $(which python)
