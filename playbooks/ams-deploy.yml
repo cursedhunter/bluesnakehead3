@@ -31,13 +31,13 @@
         #     dest: "{{ output_dir }}/acttopology.yml"
         #     mode: 0664
 
-- name: Configuration deployment with CVP
-  hosts: cv_server
-  connection: local
-  gather_facts: false
-  collections:
-    - arista.avd
-    - arista.cvp
+    - name: Configuration deployment with CVP
+      hosts: cv_server
+      connection: local
+      gather_facts: false
+      collections:
+        - arista.avd
+        - arista.cvp
   tasks:
     - name: Run CVP provisioning
       block:
@@ -50,7 +50,7 @@
             configlets_prefix: "AMS-AVD"
             # device_filter: "AMS"
             state: present
-            create_and_execute_change_control: true
+            # create_and_execute_change_control: true
             cvp_change_control_template: "{{ cc_template_path }}"
             cv_collection: v3
             # - name: Create and Execute CVP Change Control
