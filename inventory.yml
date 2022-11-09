@@ -17,7 +17,7 @@ all:
         ansible_httpapi_port: 443
         # Configuration to get Virtual Env information
         # ansible_python_interpreter: $(which python3)
-        ansible_python_interpreter: /usr/local/bin/python
+        ansible_python_interpreter: /usr/local/bin/python3.9
     AMS:
       children:
         AMS_SUPER_SPINES:

@@ -371,7 +371,7 @@ all:
         ansible_ssh_pass: ChangeMe!@34
         ansible_become: true
         ansible_become_method: enable
-        ansible_python_interpreter: $(which python)
+        ansible_python_interpreter: $(which python3)
         cv_collection: v3
 
     # Needed for who can reference the values:
