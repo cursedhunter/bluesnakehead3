@@ -31,13 +31,13 @@
         #     dest: "{{ output_dir }}/acttopology.yml"
         #     mode: 0664
 
-    - name: Configuration deployment with CVP
-      hosts: cv_server
-      connection: local
-      gather_facts: false
-      collections:
-        - arista.avd
-        - arista.cvp
+- name: Configuration deployment with CVP
+  hosts: cv_server
+  connection: local
+  gather_facts: false
+  collections:
+    - arista.avd
+    - arista.cvp
   tasks:
     - name: Run CVP provisioning
       block:
