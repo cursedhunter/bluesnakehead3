@@ -47,8 +47,8 @@ super_spine:
       bgp_as: 64504
       mgmt_ip: "{{ ansible_host }}/24"
       mac_address: "00:01:02:03:04:08"
-  # SUPER-SPINE5:
-  #   id: 14
-  #   bgp_as: 64505
-  #   mgmt_ip: "{{ ansible_host }}/24"
-  #   mac_address: "00:01:02:03:04:09"
+      # SUPER-SPINE5:
+      #   id: 14
+      #   bgp_as: 64505
+      #   mgmt_ip: "{{ ansible_host }}/24"
+      #   mac_address: "00:01:02:03:04:09"
