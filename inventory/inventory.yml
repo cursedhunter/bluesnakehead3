@@ -27,12 +27,12 @@ all:
             SUPER-SPINE2:
               type: super-spine
               ansible_host: 10.6.0.11
-              # SUPER-SPINE3:
-              #   type: super-spine
-              #   ansible_host: 10.6.0.12
-              # SUPER-SPINE4:
-              #   type: super-spine
-              #   ansible_host: 10.6.0.13
+            SUPER-SPINE3:
+              type: super-spine
+              ansible_host: 10.6.0.12
+            SUPER-SPINE4:
+              type: super-spine
+              ansible_host: 10.6.0.13
               # SUPER-SPINE5:
               #   type: super-spine
               #   ansible_host: 10.6.0.14

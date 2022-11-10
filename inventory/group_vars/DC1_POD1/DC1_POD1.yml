@@ -17,7 +17,7 @@ spine:
     bgp_as: "64600"
     loopback_ipv4_pool: 10.4.0.0/24
     # Spines use this to source their uplinks to SS, in order. # should match # of SS's and in SS interface description
-    uplink_interfaces: ['Ethernet29/2', 'Ethernet30/2', 'Ethernet31/2', 'Ethernet32/2']
+    uplink_interfaces: ['Ethernet29/1', 'Ethernet30/1', 'Ethernet31/1', 'Ethernet32/1']
     uplink_switches: ['SUPER-SPINE1', 'SUPER-SPINE2', 'SUPER-SPINE3', 'SUPER-SPINE4']
     # USI maps to the SS listed above. S-to SSP from eth1 to eth17/1,
     # Can't really use this, because every spine will try to map to SS's in the same order.
