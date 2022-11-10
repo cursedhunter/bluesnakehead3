@@ -17,7 +17,7 @@ super_spine:
       - 'graceful-restart'
   nodes:
     SUPER-SPINE1:
-      id: 10
+      id: 1
       # platform: 7060
       bgp_as: 64501
       mgmt_ip: "{{ ansible_host }}/24"
@@ -31,24 +31,24 @@ super_spine:
         # evpn_role: none
         # evpn_route_servers: []
     SUPER-SPINE2:
-      id: 11
+      id: 2
       bgp_as: 64502
       mgmt_ip: "{{ ansible_host }}/24"
       mac_address: "00:01:02:03:04:06"
       # evpn_role: none
       # evpn_route_servers: []
     SUPER-SPINE3:
-      id: 12
+      id: 3
       bgp_as: 64503
       mgmt_ip: "{{ ansible_host }}/24"
       mac_address: "00:01:02:03:04:07"
     SUPER-SPINE4:
-      id: 13
+      id: 4
       bgp_as: 64504
       mgmt_ip: "{{ ansible_host }}/24"
       mac_address: "00:01:02:03:04:08"
       # SUPER-SPINE5:
-      #   id: 14
+      #   id: 5
       #   bgp_as: 64505
       #   mgmt_ip: "{{ ansible_host }}/24"
       #   mac_address: "00:01:02:03:04:09"
