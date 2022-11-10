@@ -20,7 +20,7 @@ super_spine:
       id: 10
       # platform: 7060
       bgp_as: 64501
-      mgmt_ip: "192.168.1.10/24"
+      mgmt_ip: "{{ ansible_host }}/24"
       mac_address: "00:01:02:03:04:05"
       # Next four lines don't have an impact
       mgmt_gateway: 192.168.0.1
@@ -34,17 +34,21 @@ super_spine:
       id: 11
       bgp_as: 64502
       mgmt_ip: "{{ ansible_host }}/24"
+      mac_address: "00:01:02:03:04:06"
       # evpn_role: none
       # evpn_route_servers: []
     SUPER-SPINE3:
       id: 12
       bgp_as: 64503
       mgmt_ip: "{{ ansible_host }}/24"
+      mac_address: "00:01:02:03:04:07"      
     SUPER-SPINE4:
       id: 13
       bgp_as: 64504
       mgmt_ip: "{{ ansible_host }}/24"
+      mac_address: "00:01:02:03:04:08"      
     SUPER-SPINE5:
       id: 14
       bgp_as: 64505
       mgmt_ip: "{{ ansible_host }}/24"
+      mac_address: "00:01:02:03:04:09"      
