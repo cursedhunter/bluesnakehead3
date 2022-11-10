@@ -23,20 +23,19 @@ all:
           hosts:
             SUPER-SPINE1:
               type: super-spine
-              ansible_host: 192.168.0.37
+              ansible_host: 10.6.0.10
             SUPER-SPINE2:
               type: super-spine
-              ansible_host: 192.168.0.38
-              as: 65101
-              # SUPER-SPINE3:
-              #   type: super-spine
-              #   ansible_host: 10.6.0.12
-              # SUPER-SPINE4:
-              #   type: super-spine
-              #   ansible_host: 10.6.0.13
-              # SUPER-SPINE5:
-              #   type: super-spine
-              #   ansible_host: 10.6.0.14
+              ansible_host: 10.6.0.11
+            SUPER-SPINE3:
+              type: super-spine
+              ansible_host: 10.6.0.12
+            SUPER-SPINE4:
+              type: super-spine
+              ansible_host: 10.6.0.13
+            SUPER-SPINE5:
+              type: super-spine
+              ansible_host: 10.6.0.14
         DC1:
           children:
             DC1_POD1:
