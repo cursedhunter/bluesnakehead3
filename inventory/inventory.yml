@@ -50,7 +50,7 @@ all:
                       ansible_host: 192.168.0.20
                       # DC1-POD1-SPINE3:
                       # type: spine
-                      #ansible_host: 10.6.1.12
+                      # ansible_host: 10.6.1.12
                       # DC1-POD1-SPINE4:
                       # type: spine
                       # ansible_host: 10.6.1.13
