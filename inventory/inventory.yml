@@ -27,12 +27,12 @@ all:
             SUPER-SPINE2:
               type: super-spine
               ansible_host: 10.6.0.11
-            SUPER-SPINE3:
-              type: super-spine
-              ansible_host: 10.6.0.12
-            SUPER-SPINE4:
-              type: super-spine
-              ansible_host: 10.6.0.13
+              # SUPER-SPINE3:
+              # type: super-spine
+              # ansible_host: 10.6.0.12
+              # SUPER-SPINE4:
+              # type: super-spine
+              # ansible_host: 10.6.0.13
               # SUPER-SPINE5:
               #   type: super-spine
               #   ansible_host: 10.6.0.14
@@ -48,12 +48,12 @@ all:
                     DC1-POD1-SPINE2:
                       type: spine
                       ansible_host: 192.168.0.20
-                    DC1-POD1-SPINE3:
-                      type: spine
-                      ansible_host: 10.6.1.12
-                    DC1-POD1-SPINE4:
-                      type: spine
-                      ansible_host: 10.6.1.13
+                      # DC1-POD1-SPINE3:
+                      # type: spine
+                      #ansible_host: 10.6.1.12
+                      # DC1-POD1-SPINE4:
+                      # type: spine
+                      # ansible_host: 10.6.1.13
                 DC1_POD1_LEAFS:
                   hosts:
                     DC1-POD1-LEAF1A:
@@ -153,12 +153,12 @@ all:
                     DC1-POD2-SPINE2:
                       type: spine
                       ansible_host: 192.168.0.30
-                    DC1-POD2-SPINE3:
-                      type: spine
-                      ansible_host: 10.6.33.12
-                    DC1-POD2-SPINE4:
-                      type: spine
-                      ansible_host: 10.6.33.13
+                      # DC1-POD2-SPINE3:
+                      # type: spine
+                      # ansible_host: 10.6.33.12
+                      # DC1-POD2-SPINE4:
+                      # type: spine
+                      # ansible_host: 10.6.33.13
                 DC1_POD2_LEAFS:
                   hosts:
                     DC1-POD2-LEAF1A:
