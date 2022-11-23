@@ -29,6 +29,6 @@ def csv_to_json(csvFilePath, jsonFilePath):
         jsonString = json.dumps(edges_dict, indent=4)
         jsonf.write(jsonString)
           
-csvFilePath = r'./inventory/documentation/fabric/AMS-topology.csv'
-jsonFilePath = r'./inventory/documentation/fabric/AMS-topology.json'
+csvFilePath = r'../inventory/documentation/fabric/AMS-topology.csv'
+jsonFilePath = r'../inventory/documentation/fabric/AMS-topology.json'
 csv_to_json(csvFilePath, jsonFilePath)
