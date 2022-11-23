@@ -34,7 +34,7 @@
       tags: [generate]
       run_once: true
       delegate_to: localhost
-      ansible.builtin.script: ./documentation/fabric/topology_check.py
+      ansible.builtin.script: ./inventory/documentation/fabric/topology_check.py
       args:
         executable: "$(which python3)"
 
@@ -43,10 +43,10 @@
       run_once: true
       delegate_to: localhost
       ansible.builtin.template:
-        src: "./documentation/fabric/AMS-topology.json"
+        src: "./inventory/documentation/fabric/AMS-topology.json"
         dest: "../batfish/json/layer1_topology.json"
-        mode: 0664               
-      
+        mode: 0664
+
 - name: Configuration deployment with CVP
   hosts: cv_server
   connection: local
