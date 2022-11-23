@@ -34,7 +34,7 @@
       tags: [generate]
       run_once: true
       delegate_to: localhost
-      ansible.builtin.script: ./inventory/documentation/fabric/topology_check.py
+      ansible.builtin.script: ../inventory/documentation/fabric/topology_check.py
       args:
         executable: "$(which python3)"
 
