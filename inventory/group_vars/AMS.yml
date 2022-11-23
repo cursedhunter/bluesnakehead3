@@ -1,6 +1,8 @@
 ---
 fabric_name: AMS
 
+cvp_ingestauth_key: "$6$82gqIqw8b3nibNrk$MoZO0S8QMQN8uw"
+
 # evpn_ebgp_multihop: 5
 # evpn_overlay_bgp_rtc: true
 
