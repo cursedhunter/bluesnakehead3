@@ -6,7 +6,7 @@ dc_name: DC1
 # VPN import pruning
 # evpn_import_pruning: true
 
-spine:
-  defaults:
-    max_uplink_switches: 4
-    uplink_ipv4_pool: 172.16.0.0/24
+# spine:
+#  defaults:
+#    max_uplink_switches: 4
+#    uplink_ipv4_pool: 172.16.0.0/24
