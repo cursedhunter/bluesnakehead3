@@ -7,7 +7,7 @@
 !/inventory/cc_templates/**
 !/inventory/group_vars
 !/inventory/group_vars/**
-!/inventory/documentation/fabric/topology_check.py
+!/inventory/documentation/fabric/*
 __pycache__/
 *.retry
 ansible-*
