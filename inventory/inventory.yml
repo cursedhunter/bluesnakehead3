@@ -33,9 +33,6 @@ all:
             SUPER-SPINE4:
               type: super-spine
               ansible_host: 10.6.0.13
-              # SUPER-SPINE5:
-              #   type: super-spine
-              #   ansible_host: 10.6.0.14
         DC1:
           children:
             DC1_POD1:
