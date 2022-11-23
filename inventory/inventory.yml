@@ -68,9 +68,6 @@ all:
                     DC1-POD1-LEAF2B:
                       type: l3leaf
                       ansible_host: 10.6.1.23
-#                    DC1-POD1-L2LEAF1A:
-#                      type: l2leaf
-#                      ansible_host: 10.6.1.X
                     DC1-POD1-LEAF3A:
                       type: l3leaf
                       ansible_host: 10.6.1.24
