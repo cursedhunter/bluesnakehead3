@@ -19,7 +19,7 @@ super_spine:
       enable: true
   node_groups:
     DC1:
-      mgmt_gateway: 10.11.11.11
+      mgmt_gateway: 10.66.5.1
       platform: 7060DX4
       spanning_tree_mode: none
       bgp_as: "650000"
@@ -30,5 +30,5 @@ super_spine:
           id: 10
           # platform: 7060
           bgp_as: 650001
-          mgmt_ip: "10.66.1.11/24"
+          mgmt_ip: "10.66.5.12/24"
           mac_address: '94:8e:d3:c7:31:f8'
