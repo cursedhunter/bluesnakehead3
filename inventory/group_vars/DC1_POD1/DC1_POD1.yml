@@ -153,6 +153,8 @@ l3leaf:
       bgp_as: "651116"
       mlag: false
       evpn_role: server
+      filter:
+        tags: [Cust_A_Data, bitbucket, vmotion]
       nodes:
         DC1-POD1-LEAF6A:
           id: 16
@@ -166,6 +168,8 @@ l3leaf:
       bgp_as: "651117"
       mlag: false
       evpn_role: server
+      filter:
+        tags: [Cust_A_Data, bitbucket, vmotion]
       nodes:
         DC1-POD1-LEAF7A:
           id: 17
