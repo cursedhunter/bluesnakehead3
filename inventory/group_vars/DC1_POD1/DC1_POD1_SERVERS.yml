@@ -152,16 +152,6 @@ servers:
             DC1-POD1-LEAF7A,
           ]
         profile: TENANT_C_M2C2
-  #        structured_config:
-  #          description: Set using structured_config on server adapter
-  #        port_channel:
-  #          structured_config:
-  #            description: Set using structured_config on server adapter port-channel
-  #          description: Server-1 M2C2
-  #        raw_eos_cli: |
-  #          comment
-  #          Comment created from raw_eos_cli under adapter for switch Eth17
-  #          EOF
 
 network_ports:
   - switches:
