@@ -178,7 +178,7 @@ deployment:
   environment: production/ams
   script:
     - >-
-      cicd_exec deploy --playbook "$PLAYBOOK_NAME"
+      cicd_exec deploy --playbook playbooks/ams-deploy.yml
       --deploy-tag "$DEPLOY_TAG_NAME"
       --inventory "$INVENTORY_NAME"
       --cc-template "$CHANGE_CONTROL_TEMPLATE";
@@ -198,7 +198,7 @@ eos-validate-state:
   stage: validation
   script:
     - >-
-      cicd_exec validate --type evs --playbook "$PLAYBOOK_NAME"
+      cicd_exec validate --type evs --playbook playbooks/ams-deploy.yml
       --inventory "$INVENTORY_NAME"
       --skip-hardware
   after_script:
