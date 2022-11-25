@@ -36,11 +36,11 @@ local_users:
     sha512_password: "$6$Dzu11L7yp9j3nCM9$FSptxMPyIL555OMO.ldnjDXgwZmrfMYwHSr0uznE5Qoqvd9a6UdjiFcJUhGLtvXVZR1r.A/iF5aAt50hf/EK4/"
 
 # Cloud Vision server information
-cvp_instance_ip: 192.168.0.5
+cvp_instance_ip: 10.65.2.9
 
 daemon_terminattr:
   cvaddrs:
-    - 192.168.0.5:9910
+    - 10.65.2.9:9910
   cvauth:
     method: "token"
     token_file: "/tmp/token"
