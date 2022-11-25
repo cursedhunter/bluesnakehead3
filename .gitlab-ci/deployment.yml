@@ -108,7 +108,7 @@ batfish:
   stage: pre-deployment-testing
   script:
     - >-
-      cicd_exec config_test --batfish-host $BATFISH_HOSTNAME
+      cicd_exec config_test --batfish-host batfish
       --enabled $BATFISH_TESTING
   services:
     - name: batfish/allinone
