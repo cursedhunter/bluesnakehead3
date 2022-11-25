@@ -42,7 +42,7 @@ all:
                     DC1-POD1-SPINE3:
                       type: spine
                       ansible_host: 10.66.5.13
-                      mgmt_gateway: 10.66.5.1                      
+                      mgmt_gateway: 10.66.5.1                
                 DC1_POD1_LEAFS:
                   hosts:
                     DC1-POD1-LEAF3A:
@@ -51,28 +51,28 @@ all:
                       mgmt_gateway: 10.66.3.1
                       vlan100: 10.64.3.1/24
                       vlan67: 10.65.3.1/24
-                      vlan33: 10.65.131.1/24                      
+                      vlan33: 10.65.131.1/24
                     DC1-POD1-LEAF5A:
                       type: l3leaf
                       ansible_host: 10.66.5.11
                       vlan100: 10.64.5.1/24
-                      vlan67: 10.65.5.1/24    
-                      vlan33: 10.65.133.1/24                      
-                      mgmt_gateway: 10.66.5.1                  
+                      vlan67: 10.65.5.1/24
+                      vlan33: 10.65.133.1/24
+                      mgmt_gateway: 10.66.5.1
                     DC1-POD1-LEAF6A:
                       type: l3leaf
                       ansible_host: 10.66.3.16
                       vlan100: 10.64.6.1/24
                       vlan67: 10.65.6.1/24
-                      vlan33: 10.65.134.1/24                                            
-                      mgmt_gateway: 10.66.6.1                      
+                      vlan33: 10.65.134.1/24
+                      mgmt_gateway: 10.66.6.1
                     DC1-POD1-LEAF7A:
                       type: l3leaf
                       ansible_host: 10.66.3.17
                       vlan100: 10.64.7.1/24
                       vlan67: 10.65.7.1/24
-                      vlan33: 10.65.135.1/24                                            
-                      mgmt_gateway: 10.66.7.1   
+                      vlan33: 10.65.135.1/24
+                      mgmt_gateway: 10.66.7.1
 
       vars:
         ansible_connection: httpapi
