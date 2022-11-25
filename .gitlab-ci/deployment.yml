@@ -179,8 +179,8 @@ deployment:
   script:
     - >-
       cicd_exec deploy --playbook playbooks/ams-deploy.yml
-      --deploy-tag "$DEPLOY_TAG_NAME"
-      --inventory "$INVENTORY_NAME"
+      --deploy-tag deploy
+      --inventory inventory/inventory.yml
       --cc-template "$CHANGE_CONTROL_TEMPLATE";
   artifacts:
     name: deploy_inventory
@@ -199,7 +199,7 @@ eos-validate-state:
   script:
     - >-
       cicd_exec validate --type evs --playbook playbooks/ams-deploy.yml
-      --inventory "$INVENTORY_NAME"
+      --inventory inventory/inventory.yml
       --skip-hardware
   after_script:
     - >-
