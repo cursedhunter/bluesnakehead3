@@ -42,7 +42,7 @@ all:
                     DC1-POD1-SPINE3:
                       type: spine
                       ansible_host: 10.66.5.13
-                      mgmt_gateway: 10.66.5.1                
+                      mgmt_gateway: 10.66.5.1
                 DC1_POD1_LEAFS:
                   hosts:
                     DC1-POD1-LEAF3A:
