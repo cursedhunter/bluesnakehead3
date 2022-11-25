@@ -88,7 +88,7 @@ generate-config:
   stage: generate-config
   environment: production/ams
   script:
-    - cicd_exec generate_config --playbook "$PLAYBOOK_NAME"
+    - cicd_exec generate_config --playbook playbooks/ams-deploy.yml
   artifacts:
     name: inventory
     paths:
