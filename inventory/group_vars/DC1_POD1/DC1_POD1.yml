@@ -1,45 +1,46 @@
 ---
 pod_name: DC1_POD1
-#belowo has no effect in this position. Works under node_type:defaults:
-#ztp_network_summary: "10.66.0.0/16" ; doesn't work here.
+# belowo has no effect in this position. Works under node_type:defaults:
+# ztp_network_summary: "10.66.0.0/16" ; doesn't work here.
 defaults:
   raw_eos_cli: |
     service unsupported-transceiver Meadowgate_Lab b85d0a8
 # I take this to mean per leaf spine..
 # We are doing 2x100 each leaf to each spine
 max_l3leaf_to_spine_links: 16
-# this mgmt info can't be nested under node types. Solution is a mgmt_gateway value under each node in inventory
-#mgmt_gateway: 10.66.6.1, if not here, pulls from ABJ.yml
+# this mgmt info can't be nested under node types.
+# Solution is a mgmt_gateway value # under each node in inventory
+# mgmt_gateway: 10.66.6.1, if not here, pulls from ABJ.yml
 mgmt_interface: Management1
 mgmt_interface_vrf: mgmt
 mgmt_destination_networks:
   - 0.0.0.0/0
-  
+
 spine:
   defaults:
     raw_eos_cli: |    #this is appended at the bottom of the config. Do I care?
-      service unsupported-transceiver Meadowgate_Lab b85d0a8  
+      service unsupported-transceiver Meadowgate_Lab b85d0a8
     platform: vEOS-LAB
     bgp_as: "651000"
     loopback_ipv4_pool: 10.0.10.0/24
     max_uplink_switches: 32
-    #this is uplink to supers. Supers are even, starting at zero
+    # this is uplink to supers. Supers are even, starting at zero
     uplink_ipv4_pool: 10.67.1.0/24
     uplink_interfaces: ['Ethernet30/1']
     uplink_switches: ['SUPER-SPINE1']
     uplink_ptp:
-      enable: True
+      enable: true
     bgp_defaults:
       - 'no bgp default ipv4-unicast'
       - 'distance bgp 20 200 200'
       - 'graceful-restart restart-time 300'
       - 'graceful-restart'
-  nodes: #a node can be defined here and not in inventory. Result is a dhcp entry but no config files
+  nodes:
     DC1-POD1-SPINE1:
       id: 1
       bgp_as: "651001"
       mgmt_ip: "10.66.1.11/24"
-# This mac will be used in dhpcd.conf
+      # This mac will be used in dhpcd.conf
       mac_address: '0c:1d:c0:1d:62:01'
       uplink_switch_interfaces: ['Ethernet1/1']    # port on SS
       evpn_role: none
@@ -49,15 +50,15 @@ spine:
       evpn_role: none
       mgmt_ip: "10.66.2.11/24"
       mac_address: '0c:1d:c0:1d:62:02'
-            #This switch used local 1/1 to 4/1, and mapped each one to 2/1 on the SS
+      # This switch used local 1/1 to 4/1, and mapped each one to 2/1 on the SS
       uplink_switch_interfaces: ['Ethernet2/1']   # port on SS
     DC1-POD1-SPINE3:
       id: 3
       bgp_as: "651003"
       evpn_role: none
       mgmt_ip: "10.66.5.13/24"
-      mac_address: '2c:dd:e9:c7:66:74'      
-      #This switch used local 1/1 to 4/1, and mapped each one to 2/1 on the SS
+      mac_address: '2c:dd:e9:c7:66:74'
+      # This switch used local 1/1 to 4/1, and mapped each one to 2/1 on the SS
       uplink_switch_interfaces: ['Ethernet3/1']   # port on SS
 # In DC1 we define all variables on specific node / node_group
 l3leaf:
@@ -68,9 +69,9 @@ l3leaf:
     virtual_router_mac_address: 00:1c:73:00:dc:11
     platform: 7060X
     evpn_role: server
-#client    neighbor EVPN-OVERLAY-PEERS next-hop-unchanged
-#server    neighbor EVPN-OVERLAY-PEERS default-route-target only
-#    evpn_route_servers: [ DC1-POD1-LEAF1A, DC1-POD1-LEAF1B ]
+    # client    neighbor EVPN-OVERLAY-PEERS next-hop-unchanged
+    # server    neighbor EVPN-OVERLAY-PEERS default-route-target only
+    # evpn_route_servers: [ DC1-POD1-LEAF1A, DC1-POD1-LEAF1B ]
     igmp_snooping_enabled: true
     spanning_tree_mode: rstp
     spanning_tree_priority: 4096
@@ -78,11 +79,11 @@ l3leaf:
     # offset takes the "id:' and adds the offset
     loopback_ipv4_offset: 0
     vtep_loopback_ipv4_pool: 10.1.11.0/24
-# this seems unreasonably small. Probably need to specify exact at MG if possible
     uplink_ipv4_pool: 10.67.3.0/24
     uplink_ptp:
-      enable: True
-    #Leafs use this to source their uplinks to Spines, in order. # should match # of S's
+      enable: true
+    # Leafs use this to source their uplinks to Spines, in order.
+    # should match # of S's
     uplink_interfaces: ['Ethernet29/1', 'Ethernet30/1', 'Ethernet31/1']
     uplink_switches: ['DC1-POD1-SPINE1', 'DC1-POD1-SPINE2', 'DC1-POD1-SPINE3']
     max_parallel_uplinks: 2
@@ -92,60 +93,63 @@ l3leaf:
       - 'distance bgp 20 200 200'
       - 'graceful-restart restart-time 300'
       - 'graceful-restart'
-# filter matches tags specified in TENANT_NETWORKS.yml. This is where we associate vrfs/racks. Vlans in servers would match specific nodes. I'll have to check 'tag' capabilites there
+    # filter matches tags specified in TENANT_NETWORKS.yml.
+    # This is where we associate vrfs/racks. Vlans in servers
+    # would match specific nodes. I'll have to check 'tag' capabilites there
     filter:
-      always_include_vrfs_in_tenants: [ 'all' ] #Testing that we configure all VRFs even with no VLANs.
-      tags: [ 'all' ]
-#      tags: [ Cust_A_opzone ]      
+      # Testing that we configure all VRFs even with no VLANs.
+      always_include_vrfs_in_tenants: ['all']
+      tags: ['all']
+    # tags: [Cust_A_opzone]
     mlag: true
-    mlag_interfaces: [ Ethernet15/1, Ethernet16/1 ]    
+    mlag_interfaces: [Ethernet15/1, Ethernet16/1]
     mlag_peer_l3_ipv4_pool: 172.19.0.0/24
     mlag_peer_ipv4_pool: 172.19.1.0/24
-    mgmt_gateway: 10.66.66.1 #this has no effect at this level
+    mgmt_gateway: 10.66.66.1    # this has no effect at this level
   node_groups:
     # Single switch working as underlay L3 router and EVPN RS
     RACK3_SINGLE:
-      mgmt_gateway: 10.66.66.1 #this has no effect at this level
+      mgmt_gateway: 10.66.66.1     # this has no effect at this level
       platform: 7060X
       spanning_tree_mode: none
       bgp_as: "651107"
       mlag: false
       evpn_role: server
       filter:
-#       tags: [ 'all' ]
-        tags: [ Cust_A_Data, bitbucket, vmotion ] #Only loads this info from TENANT_NETWORKS
+        # tags: ['all']
+        # Only loads this info from TENANT_NETWORKS
+        tags: [Cust_A_Data, bitbucket, vmotion]
       nodes:
         DC1-POD1-LEAF3A:
           id: 7
           mgmt_ip: 10.66.3.10/24
-          mgmt_gateway: 10.66.66.1 #this has no effect at this level
           mac_address: '74:83:ef:54:3f:ea'
-          #Destination ports on spines
-          uplink_switch_interfaces: [ Ethernet1/1, Ethernet1/1, Ethernet1/1]
+          # Destination ports on spines
+          uplink_switch_interfaces: [Ethernet1/1, Ethernet1/1, Ethernet1/1]
     RACK5_SINGLE:
       platform: 7060X
-      #Moved to defaults
-      #uplink_interfaces: ['Ethernet1', 'Ethernet2']
-      #uplink_switches: ['DC1-POD1-SPINE1', 'DC1-POD1-SPINE2']
+      # Moved to defaults
+      # uplink_interfaces: ['Ethernet1', 'Ethernet2']
+      # uplink_switches: ['DC1-POD1-SPINE1', 'DC1-POD1-SPINE2']
       spanning_tree_mode: none
       bgp_as: "651106"
       mlag: false
       evpn_role: server
       filter:
-#        tags: [ 'all' ]
-        tags: [ Cust_A_M2, Cust_A_C2, bitbucket, vmotion ]      
+        # tags: ['all']
+        tags: [Cust_A_M2, Cust_A_C2, bitbucket, vmotion]
       nodes:
         DC1-POD1-LEAF5A:
           id: 6
           mgmt_ip: 10.66.5.11/24
-          mac_address: '74:83:ef:54:40:f2'          
-          #Destination ports on spines
-          uplink_switch_interfaces: [ Ethernet2/1, Ethernet2/1, Ethernet2/1]
+          mac_address: '74:83:ef:54:40:f2'
+          # Destination ports on spines
+          uplink_switch_interfaces: [Ethernet2/1, Ethernet2/1, Ethernet2/1]
     RACK6_SINGLE:
       platform: 7060X
-      #Moved to defaults
-      #uplink_interfaces: ['Ethernet1', 'Ethernet2']
-      #uplink_switches: ['DC1-POD1-SPINE1', 'DC1-POD1-SPINE2']
+      # Moved to defaults
+      # uplink_interfaces: ['Ethernet1', 'Ethernet2']
+      # uplink_switches: ['DC1-POD1-SPINE1', 'DC1-POD1-SPINE2']
       spanning_tree_mode: none
       bgp_as: "651116"
       mlag: false
@@ -154,9 +158,9 @@ l3leaf:
         DC1-POD1-LEAF6A:
           id: 16
           mgmt_ip: 10.66.6.11/24
-          mac_address: '74:83:ef:54:40:fe'          
-          #Destination ports on spines
-          uplink_switch_interfaces: [ Ethernet3/1, Ethernet3/1, Ethernet3/1 ]
+          mac_address: '74:83:ef:54:40:fe'
+          # Destination ports on spines
+          uplink_switch_interfaces: [Ethernet3/1, Ethernet3/1, Ethernet3/1]
     RACK7_SINGLE:
       platform: 7060X
       spanning_tree_mode: none
@@ -167,25 +171,5 @@ l3leaf:
         DC1-POD1-LEAF7A:
           id: 17
           mgmt_ip: 10.66.6.17/24
-          mac_address: '74:83:ef:5a:fa:be'          
-          uplink_switch_interfaces: [ Ethernet4/1, Ethernet4/1, Ethernet4/1 ]
-# In DC1 we define all variables on specific node / node_group
-#l2leaf:
-#  defaults:
-#    inband_management_subnet: 172.21.110.0/24
-#    inband_management_vlan: 4085
-#    mlag_peer_l3_ipv4_pool: 172.19.110.0/24
- #   mlag_peer_ipv4_pool: 172.20.110.0/24
- # node_groups:
- #   RACK2_SINGLE:
- #     platform: vEOS-LAB
-  #    uplink_switches: ['DC1-POD1-LEAF1A']
-   #   uplink_interfaces: [ Ethernet1 ]
-   #   spanning_tree_mode: mstp
-   #   spanning_tree_priority: 8192
-   #   mlag: false
-   #   nodes:
-   #     DC1-POD1-L2LEAF1A:
-   #       id: 1
-   #       # mgmt_ip: 192.168.1.10/24 Test without management IP
-   #       uplink_switch_interfaces: ['Ethernet3']
+          mac_address: '74:83:ef:5a:fa:be'
+          uplink_switch_interfaces: [Ethernet4/1, Ethernet4/1, Ethernet4/1]

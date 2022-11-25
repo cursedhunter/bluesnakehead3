@@ -30,16 +30,5 @@ super_spine:
           id: 10
           # platform: 7060
           bgp_as: 650001
-          mgmt_ip: "10.66.5.12/24"
+          mgmt_ip: "10.66.1.11/24"
           mac_address: '94:8e:d3:c7:31:f8'
-    DC2: #a node can be defined here and not in inventory. Result is a dhcp entry but no config files
-      platform: 7060DX4
-      spanning_tree_mode: none
-      bgp_as: "652000"
-      nodes:
-        SUPER-SPINE2:
-          id: 11
-          # platform: 7060
-          bgp_as: 650002
-          mgmt_ip: "10.166.5.12/24"
-          mac_address: '94:8e:d3:c7:31:f9'          
