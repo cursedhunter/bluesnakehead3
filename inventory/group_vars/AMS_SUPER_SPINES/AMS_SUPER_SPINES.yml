@@ -1,5 +1,5 @@
 ---
-mgmt_gateway: 192.168.0.1
+mgmt_gateway: 10.66.0.1
 mgmt_interface: Management1
 mgmt_interface_vrf: mgmt
 mgmt_destination_networks:
@@ -7,48 +7,39 @@ mgmt_destination_networks:
 
 super_spine:
   defaults:
-    platform: 7280R
-    bgp_as: 64500
-    loopback_ipv4_pool: 10.4.27.0/24
+    platform: 7060X
+    bgp_as: 650000
+    loopback_ipv4_pool: 10.0.9.0/24
     bgp_defaults:
       - 'no bgp default ipv4-unicast'
       - 'distance bgp 20 200 200'
       - 'graceful-restart restart-time 300'
       - 'graceful-restart'
-  nodes:
-    SUPER-SPINE1:
-      id: 1
-      # platform: 7060
-      bgp_as: 64501
-      mgmt_ip: "{{ ansible_host }}/24"
-      mac_address: "00:01:02:03:04:05"
-      # Next four lines don't have an impact
-      mgmt_gateway: 192.168.0.1
-      mgmt_interface: Management1
-      mgmt_interface_vrf: mgmt
-      mgmt_destination_networks:
-        - 0.0.0.0/0
-        # evpn_role: none
-        # evpn_route_servers: []
-    SUPER-SPINE2:
-      id: 2
-      bgp_as: 64502
-      mgmt_ip: "{{ ansible_host }}/24"
-      mac_address: "00:01:02:03:04:06"
-      # evpn_role: none
-      # evpn_route_servers: []
-    SUPER-SPINE3:
-      id: 3
-      bgp_as: 64503
-      mgmt_ip: "{{ ansible_host }}/24"
-      mac_address: "00:01:02:03:04:07"
-    SUPER-SPINE4:
-      id: 4
-      bgp_as: 64504
-      mgmt_ip: "{{ ansible_host }}/24"
-      mac_address: "00:01:02:03:04:08"
-      # SUPER-SPINE5:
-      #   id: 5
-      #   bgp_as: 64505
-      #   mgmt_ip: "{{ ansible_host }}/24"
-      #   mac_address: "00:01:02:03:04:09"
+    uplink_ptp:
+      enable: true
+  node_groups:
+    DC1:
+      mgmt_gateway: 10.11.11.11
+      platform: 7060DX4
+      spanning_tree_mode: none
+      bgp_as: "650000"
+      mlag: false
+      evpn_role: none
+      nodes:
+        SUPER-SPINE1:
+          id: 10
+          # platform: 7060
+          bgp_as: 650001
+          mgmt_ip: "10.66.5.12/24"
+          mac_address: '94:8e:d3:c7:31:f8'
+    DC2: #a node can be defined here and not in inventory. Result is a dhcp entry but no config files
+      platform: 7060DX4
+      spanning_tree_mode: none
+      bgp_as: "652000"
+      nodes:
+        SUPER-SPINE2:
+          id: 11
+          # platform: 7060
+          bgp_as: 650002
+          mgmt_ip: "10.166.5.12/24"
+          mac_address: '94:8e:d3:c7:31:f9'          
