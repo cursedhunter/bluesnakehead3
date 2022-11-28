@@ -1,6 +1,8 @@
 ---
 fabric_name: AMS
 
+template_dir: "../templates"
+
 cvp_ingestauth_key: "$6$82gqIqw8b3nibNrk$MoZO0S8QMQN8uw"
 
 # evpn_ebgp_multihop: 5
