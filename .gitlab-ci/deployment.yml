@@ -181,7 +181,6 @@ deployment:
       cicd_exec deploy --playbook playbooks/ams-deploy.yml
       --deploy-tag deploy
       --inventory inventory/inventory.yml
-      -vvv
       --cc-template "$CHANGE_CONTROL_TEMPLATE";
   artifacts:
     name: deploy_inventory
