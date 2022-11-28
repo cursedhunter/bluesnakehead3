@@ -116,7 +116,7 @@
             - name: Debug change control defintion
               tags: [deploy]
               ansible.builtin.debug:
-                 msg: "Change control: {{ CVP_CHANGE_CONTROL }}"
+                msg: "Change control: {{ CVP_CHANGE_CONTROL }}"
             - name: "Create a Change Control on CVP {{ inventory_hostname }}"
               tags: [deploy]
               arista.cvp.cv_change_control_v3:
