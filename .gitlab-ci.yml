@@ -17,3 +17,4 @@ deployment-pipeline:
       when: always
   variables:
     REQUEST_ID: $REQUEST_ID
+    GIT_SSL_NO_VERIFY: "true"
