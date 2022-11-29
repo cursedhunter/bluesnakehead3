@@ -45,7 +45,7 @@
         #   ansible.builtin.template:
         #     src: "../inventory/documentation/fabric/AMS-topology.json"
         #     dest: "../batfish/json/layer1_topology.json"
-        #     mode: 0665
+        #     mode: 0664
 
 - name: Configuration deployment with CVP
   hosts: cv_server
