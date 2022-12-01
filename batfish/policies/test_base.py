@@ -360,27 +360,27 @@ def test_traceroute_to_server_dc1_pod1_2(bf):
     record_results(bf, status=STATUS_PASS,
                    message='Traceroute from dc1-pod1-leaf1a to server-2')
 
-def test_reachability_to_server_dc1_pod1_2(bf):
-    os.environ['bf_policy_name'] = "Base configuration Hygiene Policies"
-    bf.asserts.current_assertion = 'Assert reachability to server-dc1-pod1-2 from dc1-pod1-leaf1A'
+# def test_reachability_to_server_dc1_pod1_2(bf):
+#    os.environ['bf_policy_name'] = "Base configuration Hygiene Policies"
+#    bf.asserts.current_assertion = 'Assert reachability to server-dc1-pod1-2 from dc1-pod1-leaf1A'
 
-    headers = HeaderConstraints(dstIps='server-dc1-pod1-2',srcIps='8.8.8.8', applications='DNS')
-    result = bf.q.reachability(pathConstraints=PathConstraints(startLocation = 'dc1-pod1-leaf1a[Loopback0]'), headers=headers, actions='SUCCESS').answer().frame()
+#    headers = HeaderConstraints(dstIps='server-dc1-pod1-2',srcIps='8.8.8.8', applications='DNS')
+#    result = bf.q.reachability(pathConstraints=PathConstraints(startLocation = 'dc1-pod1-leaf1a[Loopback0]'), headers=headers, actions='SUCCESS').answer().frame()
 
-    write_to_csv_output(result, "Reachability-Server-DC1-POD1-2")
-    record_results(bf, status=STATUS_PASS,
-                   message='Reachability from dc1-pod1-leaf1a to server-2')
+#    write_to_csv_output(result, "Reachability-Server-DC1-POD1-2")
+#    record_results(bf, status=STATUS_PASS,
+#                   message='Reachability from dc1-pod1-leaf1a to server-2')
 
-def test_reachability_to_server_dc1_pod2_2(bf):
-    os.environ['bf_policy_name'] = "Base configuration Hygiene Policies"
-    bf.asserts.current_assertion = 'Assert reachability to server-dc1-pod2-2 from dc1-pod1-leaf1A'
+# def test_reachability_to_server_dc1_pod2_2(bf):
+#    os.environ['bf_policy_name'] = "Base configuration Hygiene Policies"
+#    bf.asserts.current_assertion = 'Assert reachability to server-dc1-pod2-2 from dc1-pod1-leaf1A'
 
-    headers = HeaderConstraints(dstIps='server-dc1-pod2-2',srcIps='8.8.8.8', applications='DNS')
-    result = bf.q.reachability(pathConstraints=PathConstraints(startLocation = 'dc1-pod1-leaf1a[Loopback0]'), headers=headers, actions='SUCCESS').answer().frame()
+#    headers = HeaderConstraints(dstIps='server-dc1-pod2-2',srcIps='8.8.8.8', applications='DNS')
+#    result = bf.q.reachability(pathConstraints=PathConstraints(startLocation = 'dc1-pod1-leaf1a[Loopback0]'), headers=headers, actions='SUCCESS').answer().frame()
 
-    write_to_csv_output(result, "Reachability-Server-DC1-POD2-2")
-    record_results(bf, status=STATUS_PASS,
-                   message='Reachability from dc1-pod1-leaf1a to server-2')
+ #   write_to_csv_output(result, "Reachability-Server-DC1-POD2-2")
+ #   record_results(bf, status=STATUS_PASS,
+ #                  message='Reachability from dc1-pod1-leaf1a to server-2')
 
 # def test_reachability_server_dc1_pod1_2_to_server_dc1_pod2_2(bf):
 #     os.environ['bf_policy_name'] = "Base configuration Hygiene Policies"
