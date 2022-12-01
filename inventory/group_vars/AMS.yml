@@ -11,7 +11,7 @@ underlay_routing_protocol: EBGP
 overlay_routing_protocol: EBGP
 
 # Defaults. Put these 4 in DCx_PODx for specifics
-mgmt_gateway: 192.168.0.1
+mgmt_gateway: 10.66.0.1
 mgmt_interface: Management1
 mgmt_interface_vrf: mgmt
 mgmt_destination_networks:
@@ -72,55 +72,55 @@ l3_edge:
       ptp_enable: true
   # This section will require some SOT thought:
   p2p_links:
-    # nodes lists the devices that will interconnect to each other
-    - nodes: [DC1-POD1-LEAF1A, FIREWALL01]
-      # These ids seem to be incrementing in no particular order,
-      # but they aren't duplicated.
-      id: 20
-      # this list is commensurate to the nodes list above.
-      interfaces: [Ethernet28/1, E0]
-      # will use this AS as local and remote:
-      # local-as 64101 no-prepend replace-as
-      as: [64101, 64102]
-      # This shows you can use the pool
-      ip: [200.200.200.104/31, 200.200.200.105/31]
-      #      ip_pool: pool-leaf
-      profile: generic-profile
-      # This might be what installs the neighbor as a peer group member of "IPv4-UNDERLAY-PEERS"
-      include_in_underlay_protocol: true
-      # macsec_profile: MACSEC_PROFILE
-    - nodes: [DC1-POD1-LEAF1B, FIREWALL01]
-      # this node section is not working 1/3/22
-      # not sure on what the id is yet, docs says should be unique
-      id: 21
-      # These match the interfaces used to connect the upstream peers
-      interfaces: [Ethernet28/1, E1]
-      # these are their AS's.. in order. Obviously referencing a single entry for this will make life easier.
-      # this errors:
-      # as: [ "{{inventory_hostname.as}}", "{{inventory_hostname.as))" ]
-      as: [64201, 64202]
-      ip: [200.200.200.102/31, 200.200.200.103/31]
-      profile: generic-profile
-      include_in_underlay_protocol: true
-      # macsec_profile: MACSEC_PROFILE
-    - nodes: [DC2-POD1-LEAF1A, FIREWALL01]
-      id: 20
-      interfaces: [Ethernet28/1, E3]
-      as: [65101, 65102]
-      ip: [200.200.200.200/31, 200.200.200.201/31]
-      mtu: 1180
-      profile: generic-profile
-      include_in_underlay_protocol: true
-    - nodes: [DC2-POD1-LEAF1B, FIREWALL01]
-      id: 21
-      interfaces: [Ethernet28/1, E4]
-      as: [65201, 65202]
-      # This shows you can use specify the IP
-      ip: [200.200.200.100/31, 200.200.200.101/31]
-      # this is a snowflake bfd value
-      bfd: false
-      profile: generic-profile
-      include_in_underlay_protocol: true
+  # nodes lists the devices that will interconnect to each other
+  # - nodes: [DC1-POD1-LEAF1A, FIREWALL01]
+  #  # These ids seem to be incrementing in no particular order,
+  #  # but they aren't duplicated.
+  #  id: 20
+  #  # this list is commensurate to the nodes list above.
+  #  interfaces: [Ethernet28/1, E0]
+  #  # will use this AS as local and remote:
+  #  # local-as 64101 no-prepend replace-as
+  #  as: [64101, 64102]
+  #  # This shows you can use the pool
+  #  ip: [200.200.200.104/31, 200.200.200.105/31]
+  #  #    ip_pool: pool-leaf
+  #  profile: generic-profile
+  #  # This might be what installs the neighbor as a peer group member of "IPv4-UNDERLAY-PEERS"
+  #  include_in_underlay_protocol: true
+  #  # macsec_profile: MACSEC_PROFILE
+  # - nodes: [DC1-POD1-LEAF1B, FIREWALL01]
+  #  # this node section is not working 1/3/22
+  #  # not sure on what the id is yet, docs says should be unique
+  #  id: 21
+  #  # These match the interfaces used to connect the upstream peers
+  #  interfaces: [Ethernet28/1, E1]
+  #  # these are their AS's.. in order. Obviously referencing a single entry for this will make life easier.
+  #  # this errors:
+  #  # as: [ "{{inventory_hostname.as}}", "{{inventory_hostname.as))" ]
+  #  as: [64201, 64202]
+  #  ip: [200.200.200.102/31, 200.200.200.103/31]
+  #  profile: generic-profile
+  #  include_in_underlay_protocol: true
+  #  # macsec_profile: MACSEC_PROFILE
+  # - nodes: [DC2-POD1-LEAF1A, FIREWALL01]
+  #  id: 20
+  #  interfaces: [Ethernet28/1, E3]
+  #  as: [65101, 65102]
+  #  ip: [200.200.200.200/31, 200.200.200.201/31]
+  #  mtu: 1180
+  #  profile: generic-profile
+  #  include_in_underlay_protocol: true
+  # - nodes: [DC2-POD1-LEAF1B, FIREWALL01]
+  #  id: 21
+  #  interfaces: [Ethernet28/1, E4]
+  #  as: [65201, 65202]
+  #  # This shows you can use specify the IP
+  #  ip: [200.200.200.100/31, 200.200.200.101/31]
+  #  # this is a snowflake bfd value
+  #  bfd: false
+  #  profile: generic-profile
+  #  include_in_underlay_protocol: true
 
 p2p_uplinks_mtu: 9214
 

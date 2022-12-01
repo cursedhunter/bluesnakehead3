@@ -1,0 +1,24 @@
+---
+CVP_CHANGE_CONTROL:
+  name: CVP_CHANGE_CONTROL_FROM_AVD
+  notes: Created from ansible playbook
+  activities:
+{%  if task_list is arista.avd.defined %}
+{%      for task in task_list %}
+{%          set task_id = task[0] %}
+{%          set hostname = task[1] %}    
+    - task_id: "{{ task_id | quote }}"
+      stage: Deploy_Task_{{ task_id }}_{{ hostname }}
+{%      endfor %}
+{%  endif %}
+  stages:
+    - name: AVD_Change_Control_Root
+      mode: series
+{%  if task_list is arista.avd.defined %}
+{%      for task in task_list %}
+{%          set task_id = task[0] %}
+{%          set hostname = task[1] %}   
+    - name: Deploy_Task_{{ task_id }}_{{ hostname }}
+      parent: AVD_Change_Control_Root
+{%      endfor %}
+{%  endif %}

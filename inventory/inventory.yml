@@ -1,6 +1,19 @@
 ---
 all:
   children:
+    CONTAINERLAB:
+      hosts:
+        CL_1:
+          ansible_host: 10.255.8.45
+      vars:
+        ansible_user: ansible
+        ansible_password: ansible
+        ansible_become_password: ansible
+        containerlab_include_intfs_to_non_avd_nodes: false
+        containerlab_ceos_version: ceosimage:4.28.4M
+        containerlab_mgmt_network: 192.168.0.0/24
+        containerlab_custom_interface_mapping: true
+        containerlab_mode: 'installed'
     CVP:
       hosts:
         cv_server:
@@ -80,7 +93,7 @@ all:
         ansible_httpapi_host: '{{ ansible_host }}'
         ansible_httpapi_use_ssl: true
         ansible_httpapi_validate_certs: false
-        # ansible_network_os: arista.eos.eos
+        ansible_network_os: arista.eos.eos
         ansible_user: cvpadmin
         ansible_ssh_pass: ChangeMe!@34
         ansible_become: true

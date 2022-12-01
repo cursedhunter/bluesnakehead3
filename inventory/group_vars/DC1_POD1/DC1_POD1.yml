@@ -110,7 +110,7 @@ l3leaf:
     # Single switch working as underlay L3 router and EVPN RS
     RACK3_SINGLE:
       platform: 7060X
-      spanning_tree_mode: none
+      spanning_tree_mode: rstp
       bgp_as: "651107"
       mlag: false
       evpn_role: server
@@ -127,10 +127,7 @@ l3leaf:
           uplink_switch_interfaces: [Ethernet1/1, Ethernet1/1, Ethernet1/1]
     RACK5_SINGLE:
       platform: 7060X
-      # Moved to defaults
-      # uplink_interfaces: ['Ethernet1', 'Ethernet2']
-      # uplink_switches: ['DC1-POD1-SPINE1', 'DC1-POD1-SPINE2']
-      spanning_tree_mode: none
+      spanning_tree_mode: rstp
       bgp_as: "651106"
       mlag: false
       evpn_role: server
@@ -146,10 +143,7 @@ l3leaf:
           uplink_switch_interfaces: [Ethernet2/1, Ethernet2/1, Ethernet2/1]
     RACK6_SINGLE:
       platform: 7060X
-      # Moved to defaults
-      # uplink_interfaces: ['Ethernet1', 'Ethernet2']
-      # uplink_switches: ['DC1-POD1-SPINE1', 'DC1-POD1-SPINE2']
-      spanning_tree_mode: none
+      spanning_tree_mode: rstp
       bgp_as: "651116"
       mlag: false
       evpn_role: server
@@ -164,7 +158,7 @@ l3leaf:
           uplink_switch_interfaces: [Ethernet3/1, Ethernet3/1, Ethernet3/1]
     RACK7_SINGLE:
       platform: 7060X
-      spanning_tree_mode: none
+      spanning_tree_mode: rstp
       bgp_as: "651117"
       mlag: false
       evpn_role: server

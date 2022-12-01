@@ -7,21 +7,23 @@ CVP_CHANGE_CONTROL:
   name: CVP_CHANGE_CONTROL_FROM_AVD
   notes: Created from ansible playbook
   activities:
-{%  for task in task_list %}
-{%      set task_id = task[0] %}
-{%      set hostname = task[1] %}    
+{%  if task_list is arista.avd.defined %}
+{%      for task in task_list %}
+{%          set task_id = task[0] %}
+{%          set hostname = task[1] %}   
     - task_id: "{{ task_id | quote }}"
       stage: Deploy_Task_{{ task_id }}_{{ hostname }}
-{%      if hostvars[hostname].type in ['l3leaf'] %}
-{%          if hostname.endswith("A") %}
-{%              do leaf_tasks_mlag_left.append("Deploy_Task_"+task_id+"_"+hostname) %}
-{%          else %}
-{%              do leaf_tasks_mlag_right.append("Deploy_Task_"+task_id+"_"+hostname) %}
+{%          if hostvars[hostname].type in ['l3leaf'] %}
+{%              if hostname.endswith("A") %}
+{%                  do leaf_tasks_mlag_left.append("Deploy_Task_"+task_id+"_"+hostname) %}
+{%              else %}
+{%                  do leaf_tasks_mlag_right.append("Deploy_Task_"+task_id+"_"+hostname) %}
+{%              endif %}
+{%          elif hostvars[hostname].type in ['spine']%}   
+{%              do spine_tasks.append("Deploy_Task_"+task_id+"_"+hostname) %}
+{%          elif hostvars[hostname].type in ['super-spine']%}  
+{%              do super_spine_tasks.append("Deploy_Task_"+task_id+"_"+hostname) %}  
 {%          endif %}
-{%      elif hostvars[hostname].type in ['spine']%}   
-{%          do spine_tasks.append("Deploy_Task_"+task_id+"_"+hostname) %}
-{%      elif hostvars[hostname].type in ['super-spine']%}  
-{%          do super_spine_tasks.append("Deploy_Task_"+task_id+"_"+hostname) %}  
 {%      endif %}
 {%  endfor %}
   stages:

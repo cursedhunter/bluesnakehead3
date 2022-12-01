@@ -1,0 +1,116 @@
+---
+all:
+  children:
+    CVP:
+      hosts:
+        cv_ztp:
+          ansible_host: 10.255.113.155
+          ansible_user: root
+          ansible_password: cvproot
+        cv_server:
+          ansible_httpapi_host: 10.255.113.155
+          ansible_host: 10.255.113.155
+          ansible_user: cvpadmin_shell
+          ansible_password: cvp123!
+    VEOS:
+      hosts:
+        DC1-POD1-LEAF1A:
+          ansible_host: 10.255.19.225
+          ansible_user: cvpadmin
+          ansible_ssh_pass: cvp123!
+        DC1-POD1-LEAF1B:
+          ansible_host: 10.255.40.54
+          ansible_user: cvpadmin
+          ansible_ssh_pass: cvp123!
+        DC1-POD1-LEAF2A:
+          ansible_host: 10.255.120.222
+          ansible_user: cvpadmin
+          ansible_ssh_pass: cvp123!
+        DC1-POD1-LEAF2B:
+          ansible_host: 10.255.75.77
+          ansible_user: cvpadmin
+          ansible_ssh_pass: cvp123!
+        DC1-POD1-LEAF3A:
+          ansible_host: 10.255.38.148
+          ansible_user: cvpadmin
+          ansible_ssh_pass: cvp123!
+        DC1-POD1-LEAF3B:
+          ansible_host: 10.255.51.28
+          ansible_user: cvpadmin
+          ansible_ssh_pass: cvp123!
+        DC1-POD1-LEAF4A:
+          ansible_host: 10.255.8.216
+          ansible_user: cvpadmin
+          ansible_ssh_pass: cvp123!
+        DC1-POD1-LEAF4B:
+          ansible_host: 10.255.5.193
+          ansible_user: cvpadmin
+          ansible_ssh_pass: cvp123!
+        DC1-POD1-SPINE1:
+          ansible_host: 10.255.96.193
+          ansible_user: cvpadmin
+          ansible_ssh_pass: cvp123!
+        DC1-POD1-SPINE2:
+          ansible_host: 10.255.113.64
+          ansible_user: cvpadmin
+          ansible_ssh_pass: cvp123!
+        DC1-POD2-LEAF1A:
+          ansible_host: 10.255.112.80
+          ansible_user: cvpadmin
+          ansible_ssh_pass: cvp123!
+        DC1-POD2-LEAF1B:
+          ansible_host: 10.255.32.24
+          ansible_user: cvpadmin
+          ansible_ssh_pass: cvp123!
+        DC1-POD2-LEAF2A:
+          ansible_host: 10.255.63.249
+          ansible_user: cvpadmin
+          ansible_ssh_pass: cvp123!
+        DC1-POD2-LEAF2B:
+          ansible_host: 10.255.14.112
+          ansible_user: cvpadmin
+          ansible_ssh_pass: cvp123!
+        DC1-POD2-LEAF3A:
+          ansible_host: 10.255.4.132
+          ansible_user: cvpadmin
+          ansible_ssh_pass: cvp123!
+        DC1-POD2-LEAF3B:
+          ansible_host: 10.255.25.13
+          ansible_user: cvpadmin
+          ansible_ssh_pass: cvp123!
+        DC1-POD2-LEAF4A:
+          ansible_host: 10.255.38.160
+          ansible_user: cvpadmin
+          ansible_ssh_pass: cvp123!
+        DC1-POD2-LEAF4B:
+          ansible_host: 10.255.92.161
+          ansible_user: cvpadmin
+          ansible_ssh_pass: cvp123!
+        DC1-POD2-SPINE1:
+          ansible_host: 10.255.40.226
+          ansible_user: cvpadmin
+          ansible_ssh_pass: cvp123!
+        DC1-POD2-SPINE2:
+          ansible_host: 10.255.27.92
+          ansible_user: cvpadmin
+          ansible_ssh_pass: cvp123!
+        SUPER-SPINE1:
+          ansible_host: 10.255.81.199
+          ansible_user: cvpadmin
+          ansible_ssh_pass: cvp123!
+        SUPER-SPINE2:
+          ansible_host: 10.255.102.125
+          ansible_user: cvpadmin
+          ansible_ssh_pass: cvp123!
+      vars:
+        ansible_network_os: arista.eos.eos
+    GENERIC:
+      hosts:
+        gitlab:
+          ansible_host: 10.255.22.4
+          ansible_user: ansible
+          ansible_ssh_pass: ansible
+        runner:
+          ansible_host: 10.255.11.84
+          ansible_user: ansible
+          ansible_ssh_pass: ansible
