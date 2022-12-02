@@ -33,7 +33,7 @@ spine:
     # ....
     # Is this uplink spine-superspine?
     max_uplink_switches: 16
-    uplink_ipv4_pool: 172.16.32.0/23
+    uplink_ipv4_pool: 172.16.32.0/24
     uplink_ptp:
       enable: true
     bgp_defaults:
@@ -94,7 +94,7 @@ l3leaf:
     loopback_ipv4_pool: 10.4.33.0/24
     loopback_ipv4_offset: 2
     vtep_loopback_ipv4_pool: 10.5.33.0/24
-    uplink_ipv4_pool: 172.17.32.0/24
+    uplink_ipv4_pool: 172.17.32.0/23
     uplink_ptp:
       enable: true
     uplink_interfaces: ['Ethernet29/1', 'Ethernet30/1', 'Ethernet31/1', 'Ethernet32/1']
