@@ -30,7 +30,7 @@ spine:
     #      \ 'Ethernet17/4', 'Ethernet18/1', 'Ethernet18/2', 'Ethernet18/3', 'Ethernet18/4',\
     #      \ 'Ethernet19/1', 'Ethernet19/2', 'Ethernet19/3', 'Ethernet19/4', 'Ethernet20/1',\
     #      \ 'Ethernet20/2', 'Ethernet20/3', 'Ethernet20/4',]"
-    max_uplink_switches: 4
+    max_uplink_switches: 16
     uplink_ipv4_pool: 172.16.32.0/24
     uplink_ptp:
       enable: true
