@@ -7,7 +7,7 @@ defaults:
     service unsupported-transceiver Meadowgate_Lab b85d0a8
 # I take this to mean per leaf spine..
 # We are doing 2x100 each leaf to each spine
-max_l3leaf_to_spine_links: 8
+max_l3leaf_to_spine_links: 16
 # this mgmt info can't be nested under node types.
 # Solution is a mgmt_gateway value # under each node in inventory
 # mgmt_gateway: 10.66.6.1, if not here, pulls from ABJ.yml
