@@ -23,13 +23,15 @@ spine:
     platform: vEOS-LAB
     bgp_as: "64700"
     loopback_ipv4_pool: 10.4.32.0/24
-    # next line is local switch to super spine
+    # Spines use this to source their uplinks to SS, in order. # should match # of SS's and in SS interface description
     uplink_interfaces: ['Ethernet29/1', 'Ethernet30/1', 'Ethernet31/1', 'Ethernet32/1']
     uplink_switches: ['SUPER-SPINE1', 'SUPER-SPINE2', 'SUPER-SPINE3', 'SUPER-SPINE4']
-    #    uplink_switch_interfaces: "['Ethernet17/5', 'Ethernet17/2', 'Ethernet17/3',\
-    #      \ 'Ethernet17/4', 'Ethernet18/1', 'Ethernet18/2', 'Ethernet18/3', 'Ethernet18/4',\
-    #      \ 'Ethernet19/1', 'Ethernet19/2', 'Ethernet19/3', 'Ethernet19/4', 'Ethernet20/1',\
-    #      \ 'Ethernet20/2', 'Ethernet20/3', 'Ethernet20/4',]"
+    # USI maps to the SS listed above. S-to SSP from eth1 to eth17/1,
+    # Can't really use this, because every spine will try to map to SS's in the same order.
+    # It will overwrite the previous, so last in wins
+    #    uplink_switch_interfaces: ['Ethernet17/1', 'Ethernet17/2',
+    # ....
+    # Is this uplink spine-superspine?
     max_uplink_switches: 16
     uplink_ipv4_pool: 172.16.32.0/24
     uplink_ptp:
@@ -92,7 +94,7 @@ l3leaf:
     loopback_ipv4_pool: 10.4.33.0/24
     loopback_ipv4_offset: 2
     vtep_loopback_ipv4_pool: 10.5.33.0/24
-    uplink_ipv4_pool: 172.17.32.0/23
+    uplink_ipv4_pool: 172.17.32.0/24
     uplink_ptp:
       enable: true
     uplink_interfaces: ['Ethernet29/1', 'Ethernet30/1', 'Ethernet31/1', 'Ethernet32/1']
