@@ -360,7 +360,7 @@ def test_traceroute_to_server_dc1_pod1_2(bf):
     record_results(bf, status=STATUS_PASS,
                    message='Traceroute from dc1-pod1-leaf3a to server-2')
 
- def test_reachability_to_server_dc1_pod1_2(bf):
+def test_reachability_to_server_dc1_pod1_2(bf):
     os.environ['bf_policy_name'] = "Base configuration Hygiene Policies"
     bf.asserts.current_assertion = 'Assert reachability to server-dc1-pod1-2 from dc1-pod1-leaf3A'
 
