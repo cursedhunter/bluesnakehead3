@@ -169,4 +169,4 @@ servers:
       - server_ports: [eno3, eno4]
         switch_ports: [Ethernet15/1, Ethernet15/1]
         switches: [DC1-POD2-LEAF7A, DC1-POD2-LEAF7A]
-        profile: TENANT_B
+        profile: TENANT_C_DATA

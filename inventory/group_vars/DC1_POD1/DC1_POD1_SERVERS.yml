@@ -171,7 +171,7 @@ servers:
       - server_ports: [eno3, eno4]
         switch_ports: [Ethernet10/1, Ethernet11/1]
         switches: [DC1-POD1-LEAF3A, DC1-POD1-LEAF3B]
-        profile: TENANT_B
+        profile: TENANT_C_DATA
   # this works! Find a way to identify snowflake/hw_profile and racks?
   server-dc1-pod1-3:
     rack: RackDC1_P1_R4
