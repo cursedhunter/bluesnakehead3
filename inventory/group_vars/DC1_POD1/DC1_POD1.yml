@@ -67,20 +67,20 @@ spine:
       evpn_role: none
       mgmt_ip: 10.6.1.11/24
       mac_address: "ba:46:95:2b:f9:e4"
-      # This switch used local 1/1 to 4/1, and mapped each one to 2/1 on the SS
       uplink_switch_interfaces: ['Ethernet2/1', 'Ethernet2/1', 'Ethernet2/1', 'Ethernet2/1']
     DC1-POD1-SPINE3:
       id: 12
       bgp_as: "64603"
+      evpn_role: none
       mgmt_ip: "10.6.1.12/24"
       mac_address: "ba:46:95:bb:f9:e4"
-      evpn_role: none
       uplink_switch_interfaces: ['Ethernet3/1', 'Ethernet3/1', 'Ethernet3/1', 'Ethernet3/1']
     DC1-POD1-SPINE4:
       id: 13
       bgp_as: "64604"
-      mgmt_ip: "10.6.1.13/24"
       evpn_role: none
+      mgmt_ip: "10.6.1.13/24"
+      mac_address: "ba:46:95:bc:f9:e4"
       uplink_switch_interfaces: ['Ethernet4/1', 'Ethernet4/1', 'Ethernet4/1', 'Ethernet4/1']
 # In DC1 we define all variables on specific node / node_group
 l3leaf:

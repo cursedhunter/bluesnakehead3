@@ -33,6 +33,7 @@ spine:
     # ....
     # Is this uplink spine-superspine?
     max_uplink_switches: 16
+    # this is uplink to supers. Supers are even, starting at zero
     uplink_ipv4_pool: 172.16.32.0/24
     uplink_ptp:
       enable: true
@@ -49,7 +50,8 @@ spine:
       # This mac will be used in dhcpd.conf
       mac_address: 'f2:89:96:97:b5:1c'
       evpn_role: none
-      # destination port on sspines
+      # This switch used local 1/1 to 4/1, and mapped each one to 1/1 on the SS
+      # These are the destination ports on the SuperSpines
       uplink_switch_interfaces: ['Ethernet5/1', 'Ethernet5/1', 'Ethernet5/1', 'Ethernet5/1']
       structured_config:
         maintenance:
@@ -80,25 +82,40 @@ spine:
       mgmt_ip: "10.6.33.13/24"
       mac_address: 'f2:89:96:97:b5:1f'
       uplink_switch_interfaces: ['Ethernet8/1', 'Ethernet8/1', 'Ethernet8/1', 'Ethernet8/1']
-
 # In DC1 we define all variables on specific node / node_group
 l3leaf:
   defaults:
+    raw_eos_cli: |
+      service unsupported-transceiver Meadowgate_Lab b85d0a8
     bgp_as: 65000
     virtual_router_mac_address: 00:1c:73:00:dc:12
     platform: vEOS-LAB
     evpn_role: none
+    # client    neighbor EVPN-OVERLAY-PEERS next-hop-unchanged
+    # server    neighbor EVPN-OVERLAY-PEERS default-route-target only
     # evpn_route_servers: [ DC1-POD2-LEAF1A, DC1-POD2-LEAF1B ]
+    igmp_snooping_enabled: true
     spanning_tree_mode: rstp
     spanning_tree_priority: 4096
     loopback_ipv4_pool: 10.4.33.0/24
-    loopback_ipv4_offset: 2
+    # offset takes the "id:' and adds the offset
+    loopback_ipv4_offset: 0
     vtep_loopback_ipv4_pool: 10.5.33.0/24
     uplink_ipv4_pool: 172.17.32.0/23
     uplink_ptp:
       enable: true
-    uplink_interfaces: ['Ethernet29/1', 'Ethernet30/1', 'Ethernet31/1', 'Ethernet32/1']
-    uplink_switches: ['DC1-POD2-SPINE1', 'DC1-POD2-SPINE2', 'DC1-POD2-SPINE3', 'DC1-POD2-SPINE4']
+    # Leafs use this to source their uplinks to Spines, in order. # should match # of S's
+    uplink_interfaces: ['Ethernet29/1', 'Ethernet29/2',
+                        'Ethernet30/1', 'Ethernet30/2',
+                        'Ethernet31/1', 'Ethernet31/2',
+                        'Ethernet32/1', 'Ethernet32/2']
+    # uplink_interfaces: ['Ethernet29/1', 'Ethernet30/1', 'Ethernet31/1', 'Ethernet32/1']
+    uplink_switches: ['DC1-POD1-SPINE1', 'DC1-POD1-SPINE1',
+                      'DC1-POD1-SPINE2', 'DC1-POD1-SPINE2',
+                      'DC1-POD1-SPINE3', 'DC1-POD1-SPINE3',
+                      'DC1-POD1-SPINE4', 'DC1-POD1-SPINE4']
+    max_parallel_uplinks: 4
+    uplink_interface_speed: 'forced 100g'
     bgp_defaults:
       - 'no bgp default ipv4-unicast'
       - 'distance bgp 20 200 200'
