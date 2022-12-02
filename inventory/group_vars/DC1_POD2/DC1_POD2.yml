@@ -101,7 +101,7 @@ l3leaf:
     # offset takes the "id:' and adds the offset
     loopback_ipv4_offset: 0
     vtep_loopback_ipv4_pool: 10.5.33.0/24
-    uplink_ipv4_pool: 172.17.32.0/21
+    uplink_ipv4_pool: 172.17.32.0/20
     uplink_ptp:
       enable: true
     # Leafs use this to source their uplinks to Spines, in order. # should match # of S's
