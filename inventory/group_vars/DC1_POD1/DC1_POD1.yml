@@ -1,6 +1,6 @@
 ---
 pod_name: DC1_POD1
-# belowo has no effect in this position. Works under node_type:defaults:
+# below has no effect in this position. Works under node_type:defaults:
 # ztp_network_summary: "10.66.0.0/16" ; doesn't work here.
 defaults:
   raw_eos_cli: |
@@ -38,7 +38,7 @@ spine:
     #                               'Ethernet20/1', 'Ethernet20/2',
     #                               'Ethernet20/3', 'Ethernet20/4',]
     # Is this uplink spine-superspine?
-    max_uplink_switches: 32
+    max_uplink_switches: 16
     # this is uplink to supers. Supers are even, starting at zero
     uplink_ipv4_pool: 172.16.0.0/24
     uplink_ptp:
@@ -120,7 +120,7 @@ l3leaf:
                       'DC1-POD1-SPINE2', 'DC1-POD1-SPINE2',
                       'DC1-POD1-SPINE3', 'DC1-POD1-SPINE3',
                       'DC1-POD1-SPINE4', 'DC1-POD1-SPINE4']
-    max_parallel_uplinks: 16
+    max_parallel_uplinks: 4
     uplink_interface_speed: 'forced 100g'
     bgp_defaults:
       - 'no bgp default ipv4-unicast'

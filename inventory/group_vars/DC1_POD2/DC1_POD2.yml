@@ -1,14 +1,25 @@
 ---
-pod_name: DC1_POD2
-
-max_l3leaf_to_spine_links: 4
-mgmt_gateway: 192.168.0.1
+pod_name: DC1_POD1
+# below has no effect in this position. Works under node_type:defaults:
+# ztp_network_summary: "10.66.0.0/16" ; doesn't work here.
+defaults:
+  raw_eos_cli: |
+    service unsupported-transceiver Meadowgate_Lab b85d0a8
+# I take this to mean per leaf spine..
+# We are doing 2x100 each leaf to each spine
+max_l3leaf_to_spine_links: 16
+# this mgmt info can't be nested under node types.
+# Solution is a mgmt_gateway value # under each node in inventory
+# mgmt_gateway: 10.66.6.1, if not here, pulls from ABJ.yml
 mgmt_interface: Management1
 mgmt_interface_vrf: mgmt
 mgmt_destination_networks:
   - 0.0.0.0/0
+
 spine:
   defaults:
+    raw_eos_cli: |    #this is appended at the bottom of the config. Do I care?
+      service unsupported-transceiver Meadowgate_Lab b85d0a8
     platform: vEOS-LAB
     bgp_as: "64700"
     loopback_ipv4_pool: 10.4.32.0/24
