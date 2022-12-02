@@ -1,29 +1,39 @@
 ---
 pod_name: DC2_POD1
-
-max_l3leaf_to_spine_links: 4
-mgmt_gateway: 10.6.65.1
-mgmt_interface: Management0
+# below has no effect in this position. Works under node_type:defaults:
+# ztp_network_summary: "10.66.0.0/16" ; doesn't work here.
+defaults:
+  raw_eos_cli: |
+    service unsupported-transceiver Meadowgate_Lab b85d0a8
+# I take this to mean per leaf spine..
+# We are doing 2x100 each leaf to each spine
+max_l3leaf_to_spine_links: 16
+# this mgmt info can't be nested under node types.
+# Solution is a mgmt_gateway value # under each node in inventory
+# mgmt_gateway: 10.66.6.1, if not here, pulls from ABJ.yml
+mgmt_interface: Management1
 mgmt_interface_vrf: mgmt
 mgmt_destination_networks:
   - 0.0.0.0/0
+
 spine:
   defaults:
+    raw_eos_cli: |    #this is appended at the bottom of the config. Do I care?
+      service unsupported-transceiver Meadowgate_Lab b85d0a8
     platform: vEOS-LAB
     bgp_as: "64800"
     loopback_ipv4_pool: 10.4.64.0/24
+    # Spines use this to source their uplinks to SS, in order. # should match # of SS's and in SS interface description
     uplink_interfaces: ['Ethernet29/1', 'Ethernet30/1', 'Ethernet31/1', 'Ethernet32/1']
     uplink_switches: ['SUPER-SPINE1', 'SUPER-SPINE2', 'SUPER-SPINE3', 'SUPER-SPINE4']
-    uplink_switch_interfaces: ['Ethernet17/1', 'Ethernet17/2',
-                               'Ethernet17/3', 'Ethernet17/4',
-                               'Ethernet18/1', 'Ethernet18/2',
-                               'Ethernet18/3', 'Ethernet18/4',
-                               'Ethernet19/1', 'Ethernet19/2',
-                               'Ethernet19/3', 'Ethernet19/4',
-                               'Ethernet20/1', 'Ethernet20/2',
-                               'Ethernet20/3', 'Ethernet20/4']
-    max_uplink_switches: 4
-    uplink_ipv4_pool: 172.16.32.0/24
+    # USI maps to the SS listed above. S-to SSP from eth1 to eth17/1,
+    # Can't really use this, because every spine will try to map to SS's in the same order.
+    # It will overwrite the previous, so last in wins
+    #    uplink_switch_interfaces: ['Ethernet17/1', 'Ethernet17/2',
+    # ....
+    # Is this uplink spine-superspine?
+    max_uplink_switches: 16
+    uplink_ipv4_pool: 172.16.64.0/24
     uplink_ptp:
       enable: true
     bgp_defaults:
@@ -61,21 +71,37 @@ spine:
 # In DC2 we define all variables via defaults
 l3leaf:
   defaults:
+    raw_eos_cli: |
+      service unsupported-transceiver Meadowgate_Lab b85d0a8    
     bgp_as: 65100
     virtual_router_mac_address: 00:1c:73:00:dc:21
     platform: vEOS-LAB
     evpn_role: none
-    # evpn_route_servers: [ DC2-POD1-LEAF1A, DC2-POD1-LEAF1B ]
+    # client    neighbor EVPN-OVERLAY-PEERS next-hop-unchanged
+    # server    neighbor EVPN-OVERLAY-PEERS default-route-target only
+    # evpn_route_servers: [ DC1-POD2-LEAF1A, DC1-POD2-LEAF1B ]
+    igmp_snooping_enabled: true
     spanning_tree_mode: rstp
     spanning_tree_priority: 4096
     loopback_ipv4_pool: 10.4.65.0/24
-    loopback_ipv4_offset: 2
+    # offset takes the "id:' and adds the offset
+    loopback_ipv4_offset: 0
     vtep_loopback_ipv4_pool: 10.5.65.0/24
-    uplink_ipv4_pool: 172.17.64.0/23
+    uplink_ipv4_pool: 172.17.64.0/20
     uplink_ptp:
       enable: true
-    uplink_interfaces: ['Ethernet29/1', 'Ethernet30/1', 'Ethernet31/1', 'Ethernet32/1']
-    uplink_switches: ['DC2-POD1-SPINE1', 'DC2-POD1-SPINE2', 'DC2-POD1-SPINE3', 'DC2-POD1-SPINE4']
+    # Leafs use this to source their uplinks to Spines, in order. # should match # of S's
+    uplink_interfaces: ['Ethernet29/1', 'Ethernet29/2',
+                        'Ethernet30/1', 'Ethernet30/2',
+                        'Ethernet31/1', 'Ethernet31/2',
+                        'Ethernet32/1', 'Ethernet32/2']
+    # uplink_interfaces: ['Ethernet29/1', 'Ethernet30/1', 'Ethernet31/1', 'Ethernet32/1']
+    uplink_switches: ['DC1-POD1-SPINE1', 'DC1-POD1-SPINE1',
+                      'DC1-POD1-SPINE2', 'DC1-POD1-SPINE2',
+                      'DC1-POD1-SPINE3', 'DC1-POD1-SPINE3',
+                      'DC1-POD1-SPINE4', 'DC1-POD1-SPINE4']
+    max_parallel_uplinks: 4
+    uplink_interface_speed: 'forced 100g'
     bgp_defaults:
       - 'no bgp default ipv4-unicast'
       - 'distance bgp 20 200 200'
