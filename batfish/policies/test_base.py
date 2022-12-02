@@ -349,16 +349,16 @@ def test_layer1_provided_topology(bf):
     layer1_topology = bf.q.userProvidedLayer1Edges().answer().frame()
     write_to_csv_output(layer1_topology, "Layer1_Topology_Provided")
 
-#def test_traceroute_to_server_dc1_pod1_2(bf):
-#    os.environ['bf_policy_name'] = "Base configuration Hygiene Policies"
-#    bf.asserts.current_assertion = 'Assert traceroute to server-dc1-pod1-2 from dc1-pod1-leaf1A'
+def test_traceroute_to_server_dc1_pod1_2(bf):
+    os.environ['bf_policy_name'] = "Base configuration Hygiene Policies"
+    bf.asserts.current_assertion = 'Assert traceroute to server-dc1-pod1-2 from dc1-pod1-leaf3A'
 
-#    headers = HeaderConstraints(dstIps='server-dc1-pod1-2')
-#    tracert = bf.q.traceroute(startLocation="dc1-pod1-leaf1a[Loopback0]", headers=headers).answer().frame()
+    headers = HeaderConstraints(dstIps='server-dc1-pod1-2')
+    tracert = bf.q.traceroute(startLocation="dc1-pod1-leaf3a[Loopback0]", headers=headers).answer().frame()
 
-#    write_to_csv_output(tracert, "Traceroute")
-#    record_results(bf, status=STATUS_PASS,
-#                   message='Traceroute from dc1-pod1-leaf1a to server-2')
+    write_to_csv_output(tracert, "Traceroute")
+    record_results(bf, status=STATUS_PASS,
+                   message='Traceroute from dc1-pod1-leaf3a to server-2')
 
 # def test_reachability_to_server_dc1_pod1_2(bf):
 #    os.environ['bf_policy_name'] = "Base configuration Hygiene Policies"
