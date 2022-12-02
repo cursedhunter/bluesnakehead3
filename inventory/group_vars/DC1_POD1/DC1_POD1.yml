@@ -38,7 +38,7 @@ spine:
     #                               'Ethernet20/1', 'Ethernet20/2',
     #                               'Ethernet20/3', 'Ethernet20/4',]
     # Is this uplink spine-superspine?
-    max_uplink_switches: 16
+    max_uplink_switches: 8
     # this is uplink to supers. Supers are even, starting at zero
     uplink_ipv4_pool: 172.16.0.0/24
     uplink_ptp:
