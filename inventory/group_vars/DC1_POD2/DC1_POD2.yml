@@ -33,7 +33,7 @@ spine:
     # ....
     # Is this uplink spine-superspine?
     max_uplink_switches: 16
-    uplink_ipv4_pool: 172.16.32.0/24
+    uplink_ipv4_pool: 172.16.32.0/23
     uplink_ptp:
       enable: true
     bgp_defaults:
