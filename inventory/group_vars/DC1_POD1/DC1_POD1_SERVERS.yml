@@ -152,6 +152,35 @@ servers:
             DC1-POD1-LEAF7A,
           ]
         profile: TENANT_C_M2C2
+  #        structured_config:
+  #          description: Set using structured_config on server adapter
+  #        port_channel:
+  #          structured_config:
+  #            description: Set using structured_config on server adapter port-channel
+  #          description: Server-1 M2C2
+  #        raw_eos_cli: |
+  #          comment
+  #          Comment created from raw_eos_cli under adapter for switch Eth17
+  #          EOF
+
+  # This is concise and works:
+  # But still is a per-server entry. Thousands of these?
+  server-dc1-pod1-2:
+    rack: RackDC1_P1_R4
+    adapters:
+      - server_ports: [eno3, eno4]
+        switch_ports: [Ethernet10/1, Ethernet11/1]
+        switches: [DC1-POD1-LEAF3A, DC1-POD1-LEAF3B]
+        profile: TENANT_B
+  # this works! Find a way to identify snowflake/hw_profile and racks?
+  server-dc1-pod1-3:
+    rack: RackDC1_P1_R4
+    adapters:
+      - server_ports: [eno3, eno4, eno3, eno4]
+        switch_ports: [Ethernet9/1, Ethernet9/1, Ethernet9/1, Ethernet9/1]
+        switches:
+          [DC1-POD1-LEAF3A, DC1-POD1-LEAF5A, DC1-POD1-LEAF6A, DC1-POD1-LEAF7B]
+        profile: TENANT_B
 
 network_ports:
   - switches:
