@@ -20,7 +20,7 @@ spine:
     #      \ 'Ethernet19/1', 'Ethernet19/2', 'Ethernet19/3', 'Ethernet19/4', 'Ethernet20/1',\
     #      \ 'Ethernet20/2', 'Ethernet20/3', 'Ethernet20/4',]"
     max_uplink_switches: 4
-    uplink_ipv4_pool: 172.16.0.0/24
+    uplink_ipv4_pool: 172.16.32.0/24
     uplink_ptp:
       enable: true
     bgp_defaults:
@@ -32,29 +32,31 @@ spine:
     DC1-POD2-SPINE1:
       id: 20
       bgp_as: "64701"
-      mgmt_ip: "{{ ansible_host }}/24"
-      # mac_address: 'f2:89:96:97:b5:1c'
+      mgmt_ip: "10.6.33.10/24"
+      mac_address: 'f2:89:96:97:b5:1c'
       evpn_role: none
       # destination port on sspines
-      #      uplink_switch_interfaces: ['Ethernet5/1', 'Ethernet5/1', 'Ethernet5/1', 'Ethernet5/1']
       uplink_switch_interfaces: ['Ethernet5/1', 'Ethernet5/1', 'Ethernet5/1', 'Ethernet5/1']
     DC1-POD2-SPINE2:
       id: 21
       bgp_as: "64702"
       evpn_role: none
-      mgmt_ip: "{{ ansible_host }}/24"
+      mgmt_ip: "10.6.33.11/24"
+      mac_address: 'f2:89:96:97:b5:1d'
       uplink_switch_interfaces: ['Ethernet6/1', 'Ethernet6/1', 'Ethernet6/1', 'Ethernet6/1']
     DC1-POD2-SPINE3:
       id: 22
       bgp_as: "64703"
       evpn_role: none
-      mgmt_ip: "{{ ansible_host }}/24"
+      mgmt_ip: "10.6.33.12/24"
+      mac_address: 'f2:89:96:97:b5:1e'
       uplink_switch_interfaces: ['Ethernet7/1', 'Ethernet7/1', 'Ethernet7/1', 'Ethernet7/1']
     DC1-POD2-SPINE4:
       id: 23
       bgp_as: "64704"
       evpn_role: none
-      mgmt_ip: "{{ ansible_host }}/24"
+      mgmt_ip: "10.6.33.13/24"
+      mac_address: 'f2:89:96:97:b5:1f'
       uplink_switch_interfaces: ['Ethernet8/1', 'Ethernet8/1', 'Ethernet8/1', 'Ethernet8/1']
 
 # In DC1 we define all variables on specific node / node_group
@@ -106,11 +108,13 @@ l3leaf:
       nodes:
         DC1-POD2-LEAF1A:
           id: 20
-          mgmt_ip: "{{ ansible_host }}/24"
+          mgmt_ip: "10.6.33.20/24"
+          mac_address: 'f2:89:96:97:b0:00'
           uplink_switch_interfaces: [Ethernet1/1, Ethernet1/1, Ethernet1/1, Ethernet1/1]
         DC1-POD2-LEAF1B:
           id: 21
-          mgmt_ip: "{{ ansible_host }}/24"
+          mgmt_ip: "10.6.33.21/24"
+          mac_address: 'f2:89:96:97:b0:01'
           uplink_switch_interfaces: [Ethernet2/1, Ethernet2/1, Ethernet2/1, Ethernet2/1]
     RACK2_MLAG:
       platform: vEOS-LAB
@@ -127,11 +131,13 @@ l3leaf:
             domain_list:
               - structured-config.set.on.node
           id: 22
-          mgmt_ip: "{{ ansible_host }}/24"
+          mgmt_ip: "10.6.33.22/24"
+          mac_address: 'f2:89:96:97:b0:02'
           uplink_switch_interfaces: [Ethernet3/1, Ethernet3/1, Ethernet3/1, Ethernet3/1]
         DC1-POD2-LEAF2B:
           id: 23
-          mgmt_ip: "{{ ansible_host }}/24"
+          mgmt_ip: "10.6.33.23/24"
+          mac_address: 'f2:89:96:97:b0:03'
           uplink_switch_interfaces: [Ethernet4/1, Ethernet4/1, Ethernet4/1, Ethernet4/1]
     RACK3_MLAG:
       platform: vEOS-LAB
@@ -141,11 +147,13 @@ l3leaf:
       nodes:
         DC1-POD2-LEAF3A:
           id: 24
-          mgmt_ip: "{{ ansible_host }}/24"
+          mgmt_ip: "10.6.33.24/24"
+          mac_address: 'f2:89:96:97:b0:04'
           uplink_switch_interfaces: [Ethernet5/1, Ethernet5/1, Ethernet5/1, Ethernet5/1]
         DC1-POD2-LEAF3B:
           id: 25
-          mgmt_ip: "{{ ansible_host }}/24"
+          mgmt_ip: "10.6.33.25/24"
+          mac_address: 'f2:89:96:97:b0:05'
           uplink_switch_interfaces: [Ethernet6/1, Ethernet6/1, Ethernet6/1, Ethernet6/1]
     RACK4_MLAG:
       platform: vEOS-LAB
@@ -157,11 +165,13 @@ l3leaf:
       nodes:
         DC1-POD2-LEAF4A:
           id: 26
-          mgmt_ip: "{{ ansible_host }}/24"
+          mgmt_ip: "10.6.33.26/24"
+          mac_address: 'f2:89:96:97:b0:06'
           uplink_switch_interfaces: [Ethernet7/1, Ethernet7/1, Ethernet7/1, Ethernet7/1]
         DC1-POD2-LEAF4B:
           id: 27
-          mgmt_ip: "{{ ansible_host }}/24"
+          mgmt_ip: "10.6.33.27/24"
+          mac_address: 'f2:89:96:97:b0:07'
           uplink_switch_interfaces: [Ethernet8/1, Ethernet8/1, Ethernet8/1, Ethernet8/1]
     RACK5_MLAG:
       platform: vEOS-LAB
@@ -171,11 +181,13 @@ l3leaf:
       nodes:
         DC1-POD2-LEAF5A:
           id: 28
-          mgmt_ip: "{{ ansible_host }}/24"
+          mgmt_ip: "10.6.33.28/24"
+          mac_address: 'f2:89:96:97:b0:08'
           uplink_switch_interfaces: [Ethernet9/1, Ethernet9/1, Ethernet9/1, Ethernet9/1]
         DC1-POD2-LEAF5B:
           id: 29
-          mgmt_ip: "{{ ansible_host }}/24"
+          mgmt_ip: "10.6.33.29/24"
+          mac_address: 'f2:89:96:97:b0:09'
           uplink_switch_interfaces: [Ethernet10/1, Ethernet10/1, Ethernet10/1, Ethernet10/1]
     RACK6_MLAG:
       bgp_as: "65006"
@@ -185,11 +197,13 @@ l3leaf:
       nodes:
         DC1-POD2-LEAF6A:
           id: 30
-          mgmt_ip: "{{ ansible_host }}/24"
+          mgmt_ip: "10.6.33.30/24"
+          mac_address: 'f2:89:96:97:b0:0a'
           uplink_switch_interfaces: [Ethernet11/1, Ethernet11/1, Ethernet11/1, Ethernet11/1]
         DC1-POD2-LEAF6B:
           id: 31
-          mgmt_ip: "{{ ansible_host }}/24"
+          mgmt_ip: "10.6.33.31/24"
+          mac_address: 'f2:89:96:97:b0:0b'
           uplink_switch_interfaces: [Ethernet12/1, Ethernet12/1, Ethernet12/1, Ethernet12/1]
     RACK7_MLAG:
       bgp_as: "65007"
@@ -199,11 +213,13 @@ l3leaf:
       nodes:
         DC1-POD2-LEAF7A:
           id: 32
-          mgmt_ip: "{{ ansible_host }}/24"
+          mgmt_ip: "10.6.33.32/24"
+          mac_address: 'f2:89:96:97:b0:0c'
           uplink_switch_interfaces: [Ethernet13/1, Ethernet13/1, Ethernet13/1, Ethernet13/1]
         DC1-POD2-LEAF7B:
           id: 33
-          mgmt_ip: "{{ ansible_host }}/24"
+          mgmt_ip: "10.6.33.33/24"
+          mac_address: 'f2:89:96:97:b0:0d'
           uplink_switch_interfaces: [Ethernet14/1, Ethernet14/1, Ethernet14/1, Ethernet14/1]
     RACK8_MLAG:
       bgp_as: "65008"
@@ -213,11 +229,13 @@ l3leaf:
       nodes:
         DC1-POD2-LEAF8A:
           id: 34
-          mgmt_ip: "{{ ansible_host }}/24"
+          mgmt_ip: "10.6.33.34/24"
+          mac_address: 'f2:89:96:97:b0:0e'
           uplink_switch_interfaces: [Ethernet15/1, Ethernet15/1, Ethernet15/1, Ethernet15/1]
         DC1-POD2-LEAF8B:
           id: 35
-          mgmt_ip: "{{ ansible_host }}/24"
+          mgmt_ip: "10.6.33.35/24"
+          mac_address: 'f2:89:96:97:b0:0f'
           uplink_switch_interfaces: [Ethernet16/1, Ethernet16/1, Ethernet16/1, Ethernet16/1]
     RACK9_MLAG:
       bgp_as: "65009"
@@ -227,11 +245,13 @@ l3leaf:
       nodes:
         DC1-POD2-LEAF9A:
           id: 36
-          mgmt_ip: "{{ ansible_host }}/24"
+          mgmt_ip: "10.6.33.36/24"
+          mac_address: 'f2:89:96:97:b0:10'
           uplink_switch_interfaces: [Ethernet17/1, Ethernet17/1, Ethernet17/1, Ethernet17/1]
         DC1-POD2-LEAF9B:
           id: 37
-          mgmt_ip: "{{ ansible_host }}/24"
+          mgmt_ip: "10.6.33.37/24"
+          mac_address: 'f2:89:96:97:b0:11'
           uplink_switch_interfaces: [Ethernet18/1, Ethernet18/1, Ethernet18/1, Ethernet18/1]
     RACK10_MLAG:
       bgp_as: "65010"
@@ -241,11 +261,13 @@ l3leaf:
       nodes:
         DC1-POD2-LEAF10A:
           id: 38
-          mgmt_ip: "{{ ansible_host }}/24"
+          mgmt_ip: "10.6.33.38/24"
+          mac_address: 'f2:89:96:97:b0:12'
           uplink_switch_interfaces: [Ethernet19/1, Ethernet19/1, Ethernet19/1, Ethernet19/1]
         DC1-POD2-LEAF10B:
           id: 39
-          mgmt_ip: "{{ ansible_host }}/24"
+          mgmt_ip: "10.6.33.39/24"
+          mac_address: 'f2:89:96:97:b0:13'
           uplink_switch_interfaces: [Ethernet20/1, Ethernet20/1, Ethernet20/1, Ethernet20/1]
     RACK11_MLAG:
       bgp_as: "65011"
@@ -255,11 +277,13 @@ l3leaf:
       nodes:
         DC1-POD2-LEAF11A:
           id: 40
-          mgmt_ip: "{{ ansible_host }}/24"
+          mgmt_ip: "10.6.33.40/24"
+          mac_address: 'f2:89:96:97:b0:14'
           uplink_switch_interfaces: [Ethernet21/1, Ethernet21/1, Ethernet21/1, Ethernet21/1]
         DC1-POD2-LEAF11B:
           id: 41
-          mgmt_ip: "{{ ansible_host }}/24"
+          mgmt_ip: "10.6.33.41/24"
+          mac_address: 'f2:89:96:97:b0:15'
           uplink_switch_interfaces: [Ethernet22/1, Ethernet22/1, Ethernet22/1, Ethernet22/1]
     RACK12_MLAG:
       bgp_as: "65012"
@@ -269,11 +293,13 @@ l3leaf:
       nodes:
         DC1-POD2-LEAF12A:
           id: 42
-          mgmt_ip: "{{ ansible_host }}/24"
+          mgmt_ip: "10.6.33.42/24"
+          mac_address: 'f2:89:96:97:b0:16'
           uplink_switch_interfaces: [Ethernet23/1, Ethernet23/1, Ethernet23/1, Ethernet23/1]
         DC1-POD2-LEAF12B:
           id: 43
-          mgmt_ip: "{{ ansible_host }}/24"
+          mgmt_ip: "10.6.33.43/24"
+          mac_address: 'f2:89:96:97:b0:17'
           uplink_switch_interfaces: [Ethernet24/1, Ethernet24/1, Ethernet24/1, Ethernet24/1]
     RACK13_MLAG:
       bgp_as: "65013"
@@ -283,11 +309,13 @@ l3leaf:
       nodes:
         DC1-POD2-LEAF13A:
           id: 44
-          mgmt_ip: "{{ ansible_host }}/24"
+          mgmt_ip: "10.6.33.44/24"
+          mac_address: 'f2:89:96:97:b0:18'
           uplink_switch_interfaces: [Ethernet25/1, Ethernet25/1, Ethernet25/1, Ethernet25/1]
         DC1-POD2-LEAF13B:
           id: 45
-          mgmt_ip: "{{ ansible_host }}/24"
+          mgmt_ip: "10.6.33.45/24"
+          mac_address: 'f2:89:96:97:b0:19'
           uplink_switch_interfaces: [Ethernet26/1, Ethernet26/1, Ethernet26/1, Ethernet26/1]
     RACK14_MLAG:
       bgp_as: "65014"
@@ -297,9 +325,11 @@ l3leaf:
       nodes:
         DC1-POD2-LEAF14A:
           id: 46
-          mgmt_ip: "{{ ansible_host }}/24"
+          mgmt_ip: "10.6.33.46/24"
+          mac_address: 'f2:89:96:97:b0:1a'
           uplink_switch_interfaces: [Ethernet27/1, Ethernet27/1, Ethernet27/1, Ethernet27/1]
         DC1-POD2-LEAF14B:
           id: 47
-          mgmt_ip: "{{ ansible_host }}/24"
+          mgmt_ip: "10.6.33.47/24"
+          mac_address: 'f2:89:96:97:b0:1b'
           uplink_switch_interfaces: [Ethernet28/1, Ethernet28/1, Ethernet28/1, Ethernet28/1]
