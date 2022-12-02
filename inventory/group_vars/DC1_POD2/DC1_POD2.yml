@@ -44,10 +44,19 @@ spine:
       id: 20
       bgp_as: "64701"
       mgmt_ip: "10.6.33.10/24"
+      # This mac will be used in dhcpd.conf
       mac_address: 'f2:89:96:97:b5:1c'
       evpn_role: none
       # destination port on sspines
       uplink_switch_interfaces: ['Ethernet5/1', 'Ethernet5/1', 'Ethernet5/1', 'Ethernet5/1']
+      structured_config:
+        maintenance:
+          unit_profiles:
+            System:
+          units:
+            System:
+              quiesce: false
+              profile: System
     DC1-POD2-SPINE2:
       id: 21
       bgp_as: "64702"

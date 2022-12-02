@@ -47,13 +47,12 @@ spine:
       id: 10
       bgp_as: "64601"
       mgmt_ip: 10.6.1.10/24
-      # This mac will be used in dhpcd.conf
+      # This mac will be used in dhcpd.conf
       mac_address: 'f2:89:96:97:b5:1c'
       evpn_role: none
       # This switch used local 1/1 to 4/1, and mapped each one to 1/1 on the SS
       # These are the destination ports on the SuperSpines
       uplink_switch_interfaces: ['Ethernet1/1', 'Ethernet1/1', 'Ethernet1/1', 'Ethernet1/1']
-      # evpn_route_servers: [ DC2-SUPER-SPINE1, DC2-POD1-SPINE1, DC2-POD1-LEAF1A ]
       structured_config:
         maintenance:
           unit_profiles:
@@ -74,6 +73,7 @@ spine:
       id: 12
       bgp_as: "64603"
       mgmt_ip: "10.6.1.12/24"
+      mac_address: "ba:46:95:bb:f9:e4"
       evpn_role: none
       uplink_switch_interfaces: ['Ethernet3/1', 'Ethernet3/1', 'Ethernet3/1', 'Ethernet3/1']
     DC1-POD1-SPINE4:
