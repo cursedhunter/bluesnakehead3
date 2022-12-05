@@ -22,25 +22,50 @@
       ansible.builtin.import_role:
         name: eos_cli_config_gen
 
-- name: Create AVD nodes specific files for containerlab
-  tags: [generate]
-  hosts: AMS
-  gather_facts: false
-  tasks:
-    - name: 'Create avd nodes specific files'
-      ansible.builtin.import_role:
-        name: arista.avd.eos_designs_to_containerlab
-        tasks_from: create_avd_node_files
+#- name: Create AVD nodes specific files for containerlab
+#  tags: [generate]
+#  hosts: AMS
+#  gather_facts: false
+#  tasks:
+#    - name: 'Create avd nodes specific files'
+#      ansible.builtin.import_role:
+#        name: arista.avd.eos_designs_to_containerlab
+#        tasks_from: create_avd_node_files
 
-- name: Create and deploy containerlab topology
-  tags: [clab]
-  hosts: CONTAINERLAB
+#- name: Create and deploy containerlab topology
+#  tags: [clab]
+#  hosts: CONTAINERLAB
+#  gather_facts: false
+#  tasks:
+#    - name: 'Create and deploy containerlab topology'
+#      ansible.builtin.import_role:
+#        name: arista.avd.eos_designs_to_containerlab
+#        tasks_from: deploy
+
+- name: Layer1 Topology
+  hosts: AMS
+  connection: local
   gather_facts: false
+  collections:
+    - arista.avd
+    - arista.cvp
   tasks:
-    - name: 'Create and deploy containerlab topology'
-      ansible.builtin.import_role:
-        name: arista.avd.eos_designs_to_containerlab
-        tasks_from: deploy
+    - name: Run topology check to generate new file
+      tags: [generate]
+      run_once: true
+      delegate_to: localhost
+      ansible.builtin.script: ../inventory/documentation/fabric/topology_check.py
+      args:
+        executable: "$(which python3)"
+
+    - name: Copy topology file for integrity checker
+      tags: [generate]
+      run_once: true
+      delegate_to: localhost
+      ansible.builtin.template:
+        src: "../inventory/documentation/fabric/AMS-topology.json"
+        dest: "../batfish/json/layer1_topology.json"
+        mode: 0664
 
 - name: Configuration deployment with CVP
   hosts: cv_server
