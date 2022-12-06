@@ -101,7 +101,7 @@ l3leaf:
     # offset takes the "id:' and adds the offset
     loopback_ipv4_offset: 0
     vtep_loopback_ipv4_pool: 10.5.33.0/24
-    uplink_ipv4_pool: 172.17.32.0/20
+    uplink_ipv4_pool: 172.17.32.0/24
     uplink_ptp:
       enable: true
     # Leafs use this to source their uplinks to Spines, in order. # should match # of S's
@@ -110,10 +110,10 @@ l3leaf:
                         'Ethernet31/1', 'Ethernet31/2',
                         'Ethernet32/1', 'Ethernet32/2']
     # uplink_interfaces: ['Ethernet29/1', 'Ethernet30/1', 'Ethernet31/1', 'Ethernet32/1']
-    uplink_switches: ['DC1-POD1-SPINE1', 'DC1-POD1-SPINE1',
-                      'DC1-POD1-SPINE2', 'DC1-POD1-SPINE2',
-                      'DC1-POD1-SPINE3', 'DC1-POD1-SPINE3',
-                      'DC1-POD1-SPINE4', 'DC1-POD1-SPINE4']
+    uplink_switches: ['DC1-POD2-SPINE1', 'DC1-POD2-SPINE1',
+                      'DC1-POD2-SPINE2', 'DC1-POD2-SPINE2',
+                      'DC1-POD2-SPINE3', 'DC1-POD2-SPINE3',
+                      'DC1-POD2-SPINE4', 'DC1-POD2-SPINE4']
     max_parallel_uplinks: 4
     uplink_interface_speed: 'forced 100g'
     bgp_defaults:
@@ -243,7 +243,7 @@ l3leaf:
           id: 27
           mgmt_ip: "10.6.33.27/24"
           mac_address: 'f2:89:96:97:b0:07'
-        uplink_switch_interfaces: [Ethernet4/3, Ethernet4/4,
+          uplink_switch_interfaces: [Ethernet4/3, Ethernet4/4,
                                      Ethernet4/3, Ethernet4/4,
                                      Ethernet4/3, Ethernet4/4,
                                      Ethernet4/3, Ethernet4/4]
@@ -257,7 +257,7 @@ l3leaf:
           id: 28
           mgmt_ip: "10.6.33.28/24"
           mac_address: 'f2:89:96:97:b0:08'
-        uplink_switch_interfaces: [Ethernet5/1, Ethernet5/2,
+          uplink_switch_interfaces: [Ethernet5/1, Ethernet5/2,
                                      Ethernet5/1, Ethernet5/2,
                                      Ethernet5/1, Ethernet5/2,
                                      Ethernet5/1, Ethernet5/2]
@@ -287,7 +287,7 @@ l3leaf:
           id: 31
           mgmt_ip: "10.6.33.31/24"
           mac_address: 'f2:89:96:97:b0:0b'
-        uplink_switch_interfaces: [Ethernet6/3, Ethernet6/4,
+          uplink_switch_interfaces: [Ethernet6/3, Ethernet6/4,
                                      Ethernet6/3, Ethernet6/4,
                                      Ethernet6/3, Ethernet6/4,
                                      Ethernet6/3, Ethernet6/4]
@@ -309,7 +309,7 @@ l3leaf:
           id: 33
           mgmt_ip: "10.6.33.33/24"
           mac_address: 'f2:89:96:97:b0:0d'
-        uplink_switch_interfaces: [Ethernet7/3, Ethernet7/4,
+          uplink_switch_interfaces: [Ethernet7/3, Ethernet7/4,
                                      Ethernet7/3, Ethernet7/4,
                                      Ethernet7/3, Ethernet7/4,
                                      Ethernet7/3, Ethernet7/4]
@@ -367,7 +367,7 @@ l3leaf:
           id: 38
           mgmt_ip: "10.6.33.38/24"
           mac_address: 'f2:89:96:97:b0:12'
-  uplink_switch_interfaces: [Ethernet10/1, Ethernet10/2,
+          uplink_switch_interfaces: [Ethernet10/1, Ethernet10/2,
                                      Ethernet10/1, Ethernet10/2,
                                      Ethernet10/1, Ethernet10/2,
                                      Ethernet10/1, Ethernet10/2]
@@ -463,7 +463,7 @@ l3leaf:
           id: 47
           mgmt_ip: "10.6.33.47/24"
           mac_address: 'f2:89:96:97:b0:1b'
-        uplink_switch_interfaces: [Ethernet14/3, Ethernet14/4,
+          uplink_switch_interfaces: [Ethernet14/3, Ethernet14/4,
                                      Ethernet14/3, Ethernet14/4,
                                      Ethernet14/3, Ethernet14/4,
                                      Ethernet14/3, Ethernet14/4]
