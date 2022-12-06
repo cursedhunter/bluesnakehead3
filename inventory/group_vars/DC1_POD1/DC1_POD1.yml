@@ -121,9 +121,9 @@ l3leaf:
       - 'distance bgp 20 200 200'
       - 'graceful-restart restart-time 300'
       - 'graceful-restart'
-    # filter matches tags specified in TENANT_NETWORKS.yml.
-    # This is where we associate vrfs/racks. Vlans in servers
-    # would match specific nodes. I'll have to check 'tag' capabilites there
+    # filter matches tags specified in TENANT_NETWORKS.yml. This is where we associate vrfs/racks.
+    # Vlans in servers would match specific nodes. I'll have to check 'tag' capabilites there
+    # With filter commmented out, leafs received all vlans and vrfs, except Rack1 below.. which accepts none due to empty lists.
     filter:
       # Testing that we configure all VRFs even with no VLANs.
       always_include_vrfs_in_tenants: ['all']
@@ -218,7 +218,6 @@ l3leaf:
                                      Ethernet1/3, Ethernet1/4,
                                      Ethernet1/3, Ethernet1/4,
                                      Ethernet1/3, Ethernet1/4]
-
     # Regular MLAG pair
     DC1_RACK2_MLAG:
       platform: vEOS-LAB
