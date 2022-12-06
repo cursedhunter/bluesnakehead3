@@ -1,7 +1,7 @@
 ---
 # original didn't have --- to start the file
 - name: Configure DHCP Services
-  hosts: CVP-1-SSH
+  hosts: cv-server
   gather_facts: false
 
   tasks:
