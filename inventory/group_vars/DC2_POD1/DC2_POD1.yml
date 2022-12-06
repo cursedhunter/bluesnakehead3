@@ -71,14 +71,14 @@ spine:
       id: 13
       bgp_as: "64803"
       evpn_role: none
-      mgmt_ip: "10.6.65.11/24"
+      mgmt_ip: "10.6.65.12/24"
       mac_address: 'f2:89:96:99:aa:1d'
       uplink_switch_interfaces: ['Ethernet11/1', 'Ethernet11/1', 'Ethernet11/1', 'Ethernet11/1']
     DC2-POD1-SPINE4:
       id: 14
       bgp_as: "64804"
       evpn_role: none
-      mgmt_ip: "10.6.65.12/24"
+      mgmt_ip: "10.6.65.13/24"
       mac_address: 'f2:89:96:99:aa:1e'
       uplink_switch_interfaces: ['Ethernet12/1', 'Ethernet12/1', 'Ethernet12/1', 'Ethernet12/1']
 # In DC2 we define all variables via defaults

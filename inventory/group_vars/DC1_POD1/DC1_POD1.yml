@@ -518,7 +518,7 @@ l3leaf:
                                      Ethernet14/1, Ethernet14/2]
         DC1-POD1-LEAF14B:
           id: 47
-          mgmt_ip: "10.6.1.46/24"
+          mgmt_ip: "10.6.1.47/24"
           mac_address: '74:83:ef:54:40:bb'
           uplink_switch_interfaces: [Ethernet14/3, Ethernet14/4,
                                      Ethernet14/3, Ethernet14/4,
