@@ -88,7 +88,7 @@ l3leaf:
       service unsupported-transceiver Meadowgate_Lab b85d0a8
     bgp_as: 65100
     virtual_router_mac_address: 00:1c:73:00:dc:21
-    platform: vEOS-LAB
+    platform: 7060DX4
     evpn_role: none
     # client    neighbor EVPN-OVERLAY-PEERS next-hop-unchanged
     # server    neighbor EVPN-OVERLAY-PEERS default-route-target only
@@ -135,14 +135,6 @@ l3leaf:
     mlag_peer_l3_ipv4_pool: 172.19.64.0/24
     mlag_peer_ipv4_pool: 172.19.65.0/24
     mgmt_gateway: 10.66.66.1    # this has no effect at this level
-    type: l3leaf
-    connected_endpoints: true
-    default_evpn_role: none
-    mlag_support: true
-    network_services:
-      l2: true
-      l3: true
-    vtep: true
   node_groups:
     RACK1_MLAG:
       platform: vEOS-LAB
