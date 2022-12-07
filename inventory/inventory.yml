@@ -231,9 +231,6 @@ all:
                     DC1-POD2-LEAF1A:
                       type: l3leaf
                       ansible_host: 10.6.33.20
-                    DC1-POD2-LEAF1A:
-                      type: l3leaf
-                      ansible_host: 10.6.33.20
                       vlan100: 10.32.1.1/24
                       vlan67: 10.33.1.1/24
                     DC1-POD2-LEAF1B:
@@ -391,10 +388,6 @@ all:
                       ansible_host: 10.6.65.13
                 DC2_POD1_LEAFS:
                   hosts:
-                    DC2-POD1-LEAF1A:
-                      type: l3leaf
-                      ansible_host: 10.6.65.20
-
                     DC2-POD1-LEAF1A:
                       type: l3leaf
                       ansible_host: 10.6.65.20

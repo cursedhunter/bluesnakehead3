@@ -40,7 +40,7 @@ servers:
             eno1,
             eno2,
           ]
-        # 14 repeated entries, 
+        # 14 repeated entries,
         switch_ports:
           [
             Ethernet1/1,
