@@ -7,6 +7,7 @@ servers:
   server-1:
     # This is only used in snmp location data
     rack: RackDC1_P1_R4
+    # 14 pairs, so is this per elevelation? Pair per rack or 14 servers?
     adapters:
       - server_ports:
           [
@@ -39,6 +40,7 @@ servers:
             eno1,
             eno2,
           ]
+        # 14 repeated entries, 
         switch_ports:
           [
             Ethernet1/1,

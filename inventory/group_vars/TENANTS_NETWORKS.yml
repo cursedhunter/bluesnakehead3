@@ -49,14 +49,16 @@ tenants:
           100:
             name: Cust_A_Data
             description: optional for svi instead of vlan name
-            # i wonder if these tags are the L3 SVI and L2 VLAN based on filters applied to node_types
+            # are these tags L3 SVI and L2 VLAN based on filters applied to node_types
             tags: [Cust_A_opzone]
             enabled: true
             # anycast
-            ip_address_virtual: 10.0.10.1/24
-            ip_helpers: [10.0.10.10, 10.1.10.10]
-            igmp_snooping_enabled: true
-            vxlan: true
+            # this line works with an entry in inventory. might need to do this if pure L3. 
+            # Shoot, even in evpn if you want unique subnets per rack.
+            ip_address_virtual: "{{ vlan100 }}"
+            ip_helpers: [10.65.1.35, 10.65.2.9]
+            igmp_snooping_enabled: true # per vlan
+            vxlan: true # This only adds a vlan definitin with rd in the bgp block
             structured_config:
               description: set from structured_config on svi (was Cust_A_OP_Zone_1)
               # Everyone gets this, the node list calls out special configuration
@@ -64,21 +66,15 @@ tenants:
               #              DC1-POD1-LEAF2A:
               #                structured_config:
               #                  description: set from structured_config on svi for DC1-POD1-LEAF2A (was Cust_A_OP_Zone_1)
-          167:
-            #            vni_override: 50111
-            name: Cust_A_M2C2
-            tags: [Cust_A_opzone]
-            ip_address_virtual: 10.1.11.1/24
+          67:
+            # vni_override: 50111
+            name: Cust_A_C2
+            tags: [Cust_A_C2]
+            enabled: true #if enabled isn't here, it defaults to shutdown
+            ip_address_virtual: "{{ vlan67 }}"
             ip_helpers:
-              - 10.1.11.10
-          "133":
-            #            vni_override: 50112
-            name: Cust_A_OP_M2
-            tags: [Cust_A_opzone]
-            enabled: true
-            ip_address_virtual: 10.1.12.1/24
-            ip_helpers:
-              - 10.1.12.10
+              - 10.65.1.35
+              - 10.65.2.9
             vxlan: true
     # These are pure L2 vlans - so no SVI on l3leafs
     l2vlans:
