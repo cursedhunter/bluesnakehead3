@@ -6,7 +6,7 @@ servers:
   # "server-1" is prepended to the port-channel description
   server-1:
     # This is only used in snmp location data
-    rack: RackDC1_P1_R4
+    rack: RackDC1_U1
     # 14 pairs, so is this per elevelation? Pair per rack or 14 servers?
     adapters:
       - server_ports:
@@ -212,7 +212,198 @@ servers:
   #          comment
   #          Comment created from raw_eos_cli under adapter for switch Eth17
   #          EOF
-
+  server-2:
+    rack: RackDC1_u2
+    adapters:
+      - server_ports:
+          [
+            eno1,
+            eno2,
+            eno1,
+            eno2,
+            eno1,
+            eno2,
+            eno1,
+            eno2,
+            eno1,
+            eno2,
+            eno1,
+            eno2,
+            eno1,
+            eno2,
+            eno1,
+            eno2,
+            eno1,
+            eno2,
+            eno1,
+            eno2,
+            eno1,
+            eno2,
+            eno1,
+            eno2,
+            eno1,
+            eno2,
+            eno1,
+            eno2,
+          ]
+        # 14 repeated entries,
+        switch_ports:
+          [
+            Ethernet1/2,
+            Ethernet1/2,
+            Ethernet1/2,
+            Ethernet1/2,
+            Ethernet1/2,
+            Ethernet1/2,
+            Ethernet1/2,
+            Ethernet1/2,
+            Ethernet1/2,
+            Ethernet1/2,
+            Ethernet1/2,
+            Ethernet1/2,
+            Ethernet1/2,
+            Ethernet1/2,
+            Ethernet1/2,
+            Ethernet1/2,
+            Ethernet1/2,
+            Ethernet1/2,
+            Ethernet1/2,
+            Ethernet1/2,
+            Ethernet1/2,
+            Ethernet1/2,
+            Ethernet1/2,
+            Ethernet1/2,
+            Ethernet1/2,
+            Ethernet1/2,
+            Ethernet1/2,
+            Ethernet1/2,
+          ]
+        switches:
+          [
+            DC1-POD1-LEAF1A,
+            DC1-POD1-LEAF1B,
+            DC1-POD1-LEAF2A,
+            DC1-POD1-LEAF2B,
+            DC1-POD1-LEAF3A,
+            DC1-POD1-LEAF3B,
+            DC1-POD1-LEAF4A,
+            DC1-POD1-LEAF4B,
+            DC1-POD1-LEAF5A,
+            DC1-POD1-LEAF5B,
+            DC1-POD1-LEAF6A,
+            DC1-POD1-LEAF6B,
+            DC1-POD1-LEAF7A,
+            DC1-POD1-LEAF7B,
+            DC1-POD1-LEAF8A,
+            DC1-POD1-LEAF8B,
+            DC1-POD1-LEAF9A,
+            DC1-POD1-LEAF9B,
+            DC1-POD1-LEAF10A,
+            DC1-POD1-LEAF10B,
+            DC1-POD1-LEAF11A,
+            DC1-POD1-LEAF11B,
+            DC1-POD1-LEAF12A,
+            DC1-POD1-LEAF12B,
+            DC1-POD1-LEAF13A,
+            DC1-POD1-LEAF13B,
+            DC1-POD1-LEAF14A,
+            DC1-POD1-LEAF14B,
+          ]
+        profile: TENANT_C_DATA
+      - server_ports:
+          [
+            eno3,
+            eno4,
+            eno3,
+            eno4,
+            eno3,
+            eno4,
+            eno3,
+            eno4,
+            eno3,
+            eno4,
+            eno3,
+            eno4,
+            eno3,
+            eno4,
+            eno3,
+            eno4,
+            eno3,
+            eno4,
+            eno3,
+            eno4,
+            eno3,
+            eno4,
+            eno3,
+            eno4,
+            eno3,
+            eno4,
+            eno3,
+            eno4,
+          ]
+        switch_ports:
+          [
+            Ethernet6/2,
+            Ethernet6/2,
+            Ethernet6/2,
+            Ethernet6/2,
+            Ethernet6/2,
+            Ethernet6/2,
+            Ethernet6/2,
+            Ethernet6/2,
+            Ethernet6/2,
+            Ethernet6/2,
+            Ethernet6/2,
+            Ethernet6/2,
+            Ethernet6/2,
+            Ethernet6/2,
+            Ethernet6/2,
+            Ethernet6/2,
+            Ethernet6/2,
+            Ethernet6/2,
+            Ethernet6/2,
+            Ethernet6/2,
+            Ethernet6/2,
+            Ethernet6/2,
+            Ethernet6/2,
+            Ethernet6/2,
+            Ethernet6/2,
+            Ethernet6/2,
+            Ethernet6/2,
+            Ethernet6/2,
+          ]
+        switches:
+          [
+            DC1-POD1-LEAF1A,
+            DC1-POD1-LEAF1B,
+            DC1-POD1-LEAF2A,
+            DC1-POD1-LEAF2B,
+            DC1-POD1-LEAF3A,
+            DC1-POD1-LEAF3B,
+            DC1-POD1-LEAF4A,
+            DC1-POD1-LEAF4B,
+            DC1-POD1-LEAF5A,
+            DC1-POD1-LEAF5B,
+            DC1-POD1-LEAF6A,
+            DC1-POD1-LEAF6B,
+            DC1-POD1-LEAF7A,
+            DC1-POD1-LEAF7B,
+            DC1-POD1-LEAF8A,
+            DC1-POD1-LEAF8B,
+            DC1-POD1-LEAF9A,
+            DC1-POD1-LEAF9B,
+            DC1-POD1-LEAF10A,
+            DC1-POD1-LEAF10B,
+            DC1-POD1-LEAF11A,
+            DC1-POD1-LEAF11B,
+            DC1-POD1-LEAF12A,
+            DC1-POD1-LEAF12B,
+            DC1-POD1-LEAF13A,
+            DC1-POD1-LEAF13B,
+            DC1-POD1-LEAF14A,
+            DC1-POD1-LEAF14B,
+          ]
+        profile: TENANT_C_M2C2
   # This is concise and works:
   # But still is a per-server entry. Thousands of these?
   server-dc1-pod1-2:
@@ -232,7 +423,7 @@ servers:
           [DC1-POD1-LEAF3A, DC1-POD1-LEAF3B, DC1-POD1-LEAF4A, DC1-POD1-LEAF4B]
         profile: TENANT_C_DATA
 
-network_ports:
+network_ports: # Not clear how we could use this construct with bonds or multiple groups
   - switches:
       - DC1-POD1-LEAF.*
     switch_ports:
