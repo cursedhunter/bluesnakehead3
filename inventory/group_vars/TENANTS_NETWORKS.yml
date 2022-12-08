@@ -10,16 +10,6 @@ tenants:
       default:
         vrf_vni: 1
         svis:
-          67:
-            name: Default
-            description: SVI for VLAN 67
-            # i wonder if these tags are the L3 SVI and L2 VLAN based on filters applied to node_types
-            tags: [DC1-POD1-VLAN-67]
-            enabled: true
-            # anycast
-            ip_address_virtual: 10.0.100.1/24
-            ip_helpers: [10.0.100.10, 10.1.100.10]
-            igmp_snooping_enabled: true
           68:
             name: Default
             description: SVI for VLAN 68

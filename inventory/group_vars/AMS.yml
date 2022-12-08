@@ -11,7 +11,7 @@ underlay_routing_protocol: EBGP
 overlay_routing_protocol: EBGP
 
 # Defaults. Put these 4 in DCx_PODx for specifics
-mgmt_gateway: 10.66.0.1
+mgmt_gateway: 10.6.0.1
 mgmt_interface: Management1
 mgmt_interface_vrf: mgmt
 mgmt_destination_networks:

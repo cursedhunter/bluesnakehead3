@@ -128,8 +128,8 @@ l3leaf:
       # Testing that we configure all VRFs even with no VLANs.
       always_include_vrfs_in_tenants: ['all']
       # tags: ['all']
-      #      tags: [ Cust_A_opzone ]
-      tags: []
+      tags: [ Cust_A_opzone, Cust_A_C2, bitbucket, vmotion ]
+      # tags: []
     connected_endpoints: true
     mlag: true
     mlag_interfaces: [Ethernet15/1, Ethernet16/1]
@@ -182,11 +182,11 @@ l3leaf:
       evpn_role: none
       # let's figure out what this line means. If I'm a server, do I have spec this?
       #      evpn_route_servers: [ DC1-POD1-LEAF1A, DC1-POD1-LEA1B ]
-      filter:
-        tenants: []
-        tags: []
-        # Testing that we respect the empty tenants list, so no VRFs will be configured.
-        always_include_vrfs_in_tenants: ['all']
+      # filter:
+      #   tenants: []
+      #   tags: []
+      # Testing that we respect the empty tenants list, so no VRFs will be configured.
+      #   always_include_vrfs_in_tenants: ['all']
         #      Below will not have any effect since it is overridden on the node level. So just a negative test.
         #      raw_eos_cli: |
         #        interface Loopback1001
@@ -284,8 +284,8 @@ l3leaf:
       bgp_as: "64904"
       mlag_dual_primary_detection: true
       mlag_peer_l3_vlan: 4094 # Using 4094 for both mlag peer and l3 peerings.
-      filter:
-        tags: [Cust_A_opzone]
+      # filter:
+      # tags: [Cust_A_opzone]
       # tags: [DC1-POD1-VLAN-67]
       nodes:
         DC1-POD1-LEAF4A:
