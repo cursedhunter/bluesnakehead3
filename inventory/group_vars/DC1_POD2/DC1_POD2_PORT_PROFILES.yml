@@ -1,0 +1,136 @@
+---
+# Consider making these based on a hw profile
+port_profiles:
+
+  # Profile to be used for unused ports
+  UNUSED_PORT:
+    mode: access
+    vlans: 999
+    spanning_tree_bpduguard: "enabled"
+    spanning_tree_portfast: edge
+    # storm_control:
+    #   broadcast:
+    #     level: 10
+    structured_config:
+      shutdown: true
+
+  NESTED_TENANT_A:
+    parent_profile: TENANT_A
+    raw_eos_cli: |
+      comment
+      Comment created from raw_eos_cli under profile NESTED_TENANT_A
+      EOF
+    port_channel:
+      raw_eos_cli: |
+        comment
+        Comment created from raw_eos_cli under port_channel on profile NESTED_TENANT_A
+        EOF
+# This "TENANT" not be to be confused with Tenant in Tenant networks. May wish to change this to more role relevant. Thoughts?
+  TENANT_A:
+    # parent_profile:
+    # speed: < interface_speed | forced interface_speed | auto interface_speed >
+    # mode: access | dot1q-tunnel | trunk
+    mode: access
+    # l2_mtu: <l2_mtu - if defined this profile should only be used for platforms support the l2 mtu  cli >
+    # native_vlan: <native vland ID>
+    # vlans: <vlans as a string>
+    vlans: "100"
+    # spanning_tree_portfast: <edge | network >
+    # spanning_tree_bpdufilter: < true | false >
+    # spanning_tree_bpduguard: < true | false >
+    # flowcontrol:
+    #  received: < "received" | "send" | "on" >
+    # qos_profile: < qos_profile_name >
+    # ptp:
+    #  enable: < true | false >
+    # storm_control:
+    #  all:
+    #    level: < Configure maximum storm-control level >
+    #    unit: < percent | pps > | Optional var and is hardware dependant - default is percent)
+    #  broadcast:
+    #     level: < Configure maximum storm-control level >
+    #     unit: < percent | pps > | Optional var and is hardware dependant - default is percent)
+    #  multicast:
+    #    level: < Configure maximum storm-control level >
+    #    unit: < percent | pps > | Optional var and is hardware dependant - default is percent)
+    #  unknown_unicast:
+    #    level: < Configure maximum storm-control level >
+    #    unit: < percent | pps > | Optional var and is hardware dependant - default is percent)
+    # port_channel:
+    #  description: < port_channel_description >
+    #  mode: < "active" | "passive" | "on" >
+    #  lacp_fallback:
+    #    mode: < static > | Currently only static mode is supported
+    #    timeout: < timeout in seconds > | Optional - default is 90 seconds
+    qos_profile: "foo"
+    # shows up under port 13/1's port-channel config
+
+  TENANT_B:
+    mode: access
+    vlans: "67"
+    qos_profile: "foo"
+    port_channel:
+      raw_eos_cli: port-channel lacp fallback individual
+      state: present
+      description: PortChannel
+      mode: active
+
+  TENANT_C:
+    mode: access
+    # Mtu works well here
+    mtu: 9000
+    spanning_tree_portfast: edge
+    spanning_tree_bpdufilter: true
+    spanning_tree_bpduguard: true
+    flowcontrol:
+      received: "on"
+    ptp:
+      enable: true
+      # storm_control:
+      #  all:
+      #    level: < Configure maximum storm-control level >
+      #    unit: < percent | pps > | Optional var and is hardware dependant - default is percent)
+      #  broadcast:
+      #     level: < Configure maximum storm-control level >
+      #     unit: < percent | pps > | Optional var and is hardware dependant - default is percent)
+      #  multicast:
+      #    level: < Configure maximum storm-control level >
+      #    unit: < percent | pps > | Optional var and is hardware dependant - default is percent)
+      #  unknown_unicast:
+      #    level: < Configure maximum storm-control level >
+      #    unit: < percent | pps > | Optional var and is hardware dependant - default is percent)
+      # PC could be here, but to get more meaningful desscriptions - need to have it in the child
+      # port_channel:
+      #  description: < port_channel_description >
+      #  state: present
+      #  mode: "active"
+      #  raw_eos_cli: port-channel lacp fallback individual
+      # lacp_fallback:
+      #   mode: < static > | Currently only static mode is supported
+      #   timeout: < timeout in seconds > | Optional - default is 90 seconds
+
+  TENANT_C_DATA:
+    parent_profile: TENANT_C
+    speed: 100g
+    vlans: "100"
+    qos_profile: "data"
+    port_channel:
+      # This is appended to the name (eg) server-1_data
+      description: data
+      state: present
+      mode: active
+      # mtu: 9000 //doesn't do anything here.
+      raw_eos_cli: port-channel lacp fallback individual
+
+  TENANT_C_M2C2:
+    parent_profile: TENANT_C
+    #   mtu here overrides parent
+    mtu: 1500
+    speed: forced 25gfull
+    vlans: "67"
+    qos_profile: "m2c2"
+    port_channel:
+      description: m2c2
+      state: present
+      mode: active
+      raw_eos_cli: port-channel lacp fallback individual
