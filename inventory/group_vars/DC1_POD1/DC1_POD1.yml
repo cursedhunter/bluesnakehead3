@@ -128,7 +128,7 @@ l3leaf:
       # Testing that we configure all VRFs even with no VLANs.
       always_include_vrfs_in_tenants: ['all']
       # tags: ['all']
-      tags: [ Cust_A_opzone, Cust_A_C2, bitbucket, vmotion ]
+      tags: [Cust_A_opzone, Cust_A_C2, bitbucket, vmotion]
       # tags: []
     connected_endpoints: true
     mlag: true
@@ -187,10 +187,10 @@ l3leaf:
       #   tags: []
       # Testing that we respect the empty tenants list, so no VRFs will be configured.
       #   always_include_vrfs_in_tenants: ['all']
-        #      Below will not have any effect since it is overridden on the node level. So just a negative test.
-        #      raw_eos_cli: |
-        #        interface Loopback1001
-        #          description Loopback created from raw_eos_cli under node-group RACK1_SINGLE
+      #      Below will not have any effect since it is overridden on the node level. So just a negative test.
+      #      raw_eos_cli: |
+      #        interface Loopback1001
+      #          description Loopback created from raw_eos_cli under node-group RACK1_SINGLE
       nodes:
         DC1-POD1-LEAF1A:
           id: 20
