@@ -3476,24 +3476,6 @@ servers:
             DC1-POD2-LEAF14B,
           ]
         profile: TENANT_C_M2C2
-  # This is concise and works:
-  # But still is a per-server entry. Thousands of these?
-  # server-DC1-POD2-2:
-  #  rack: RackDC1_P1_R4
-  #  adapters:
-  #    - server_ports: [eno3, eno4]
-  #      switch_ports: [Ethernet10/1, Ethernet10/1]
-  #      switches: [DC1-POD2-LEAF4A, DC1-POD2-LEAF4B]
-  #      profile: TENANT_C_DATA
-  # this works! Find a way to identify snowflake/hw_profile and racks?
-  # server-DC1-POD2-3:
-  #  rack: RackDC1_P1_R4
-  #  adapters:
-  #    - server_ports: [eno3, eno4, eno3, eno4]
-  #      switch_ports: [Ethernet9/1, Ethernet9/1, Ethernet9/1, Ethernet9/1]
-  #      switches:
-  #        [DC1-POD2-LEAF3A, DC1-POD2-LEAF3B, DC1-POD2-LEAF4A, DC1-POD2-LEAF4B]
-  #      profile: TENANT_C_DATA
 
 network_ports: # Not clear how we could use this construct with bonds or multiple groups
   - switches:
