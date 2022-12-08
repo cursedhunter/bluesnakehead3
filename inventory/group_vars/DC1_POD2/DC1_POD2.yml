@@ -183,7 +183,7 @@ l3leaf:
     RACK2_MLAG:
       platform: vEOS-LAB
       bgp_as: "65002"
-      evpn_role: none
+      evpn_role: server
       mlag: true
       mlag_dual_primary_detection: true
       mlag_peer_l3_vlan: 4094 # Using 4094 for both mlag peer and l3 peerings.
@@ -234,8 +234,8 @@ l3leaf:
       bgp_as: "65004"
       mlag_dual_primary_detection: true
       mlag_peer_l3_vlan: 4094 # Using 4094 for both mlag peer and l3 peerings.
-      filter:
-        tags: [Cust_A_opzone]
+      # filter:
+      #  tags: [Cust_A_opzone]
       nodes:
         DC1-POD2-LEAF4A:
           id: 26

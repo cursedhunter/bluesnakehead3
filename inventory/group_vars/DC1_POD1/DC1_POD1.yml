@@ -218,11 +218,10 @@ l3leaf:
                                      Ethernet1/3, Ethernet1/4,
                                      Ethernet1/3, Ethernet1/4,
                                      Ethernet1/3, Ethernet1/4]
-    # Regular MLAG pair
     DC1_RACK2_MLAG:
       platform: vEOS-LAB
       bgp_as: "64902"
-      evpn_role: none
+      evpn_role: server
       #      evpn_route_servers: [ DC1-POD1-LEAF1A, DC1-POD1-LEAF1B ]
       mlag: true
       mlag_dual_primary_detection: true
@@ -234,6 +233,7 @@ l3leaf:
               - structured-config.set.on.node
           id: 22
           mgmt_ip: "10.6.1.22/24"
+          mac_address: 'f2:99:96:97:b0:02'
           uplink_switch_interfaces: [Ethernet2/1, Ethernet2/2,
                                      Ethernet2/1, Ethernet2/2,
                                      Ethernet2/1, Ethernet2/2,
@@ -241,6 +241,7 @@ l3leaf:
         DC1-POD1-LEAF2B:
           id: 23
           mgmt_ip: "10.6.1.23/24"
+          mac_address: 'f2:9a:96:97:b0:02'
           uplink_switch_interfaces: [Ethernet2/3, Ethernet2/4,
                                      Ethernet2/3, Ethernet2/4,
                                      Ethernet2/3, Ethernet2/4,
