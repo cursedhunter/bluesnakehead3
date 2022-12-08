@@ -89,7 +89,7 @@ l3leaf:
     bgp_as: 65100
     virtual_router_mac_address: 00:1c:73:00:dc:21
     platform: 7060DX4
-    evpn_role: none
+    evpn_role: server
     # client    neighbor EVPN-OVERLAY-PEERS next-hop-unchanged
     # server    neighbor EVPN-OVERLAY-PEERS default-route-target only
     # evpn_route_servers: [ DC1-POD2-LEAF1A, DC1-POD2-LEAF1B ]
@@ -127,8 +127,8 @@ l3leaf:
       # Testing that we configure all VRFs even with no VLANs.
       always_include_vrfs_in_tenants: ['all']
       # tags: ['all']
-      #      tags: [ Cust_A_opzone ]
-      tags: []
+      tags: [Cust_A_opzone, Cust_A_C2, bitbucket, vmotion]
+      # tags: []
     connected_endpoints: true
     mlag: true
     mlag_interfaces: [Ethernet15/1, Ethernet16/1]
@@ -142,12 +142,18 @@ l3leaf:
       mlag: true
       mlag_dual_primary_detection: true
       mlag_peer_l3_vlan: 4094 # Using 4094 for both mlag peer and l3 peerings.
-      # evpn_role: server
-      filter:
-        tenants: [Cust_A, Cust_B]
-        tags: [Cust_B_opzone]
-        # Testing that we respect the empty tenants list, so no VRFs will be configured.
-        always_include_vrfs_in_tenants: ['all']
+      # evpn_role: none
+      # let's figure out what this line means. If I'm a server, do I have spec this?
+      #      evpn_route_servers: [ DC1-POD1-LEAF1A, DC1-POD1-LEA1B ]
+      # filter:
+      #   tenants: []
+      #   tags: []
+      # Testing that we respect the empty tenants list, so no VRFs will be configured.
+      #   always_include_vrfs_in_tenants: ['all']
+      #      Below will not have any effect since it is overridden on the node level. So just a negative test.
+      #      raw_eos_cli: |
+      #        interface Loopback1001
+      #          description Loopback created from raw_eos_cli under node-group RACK1_SINGLE
       nodes:
         DC2-POD1-LEAF1A:
           id: 20
@@ -176,7 +182,7 @@ l3leaf:
     RACK2_MLAG:
       platform: vEOS-LAB
       bgp_as: "65102"
-      # evpn_role: server
+      evpn_role: server
       mlag: true
       mlag_dual_primary_detection: true
       mlag_peer_l3_vlan: 4094 # Using 4094 for both mlag peer and l3 peerings.

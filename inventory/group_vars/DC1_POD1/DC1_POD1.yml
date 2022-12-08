@@ -179,7 +179,7 @@ l3leaf:
       #      mlag_interfaces: [ Ethernet15/1, Ethernet16/1 ]
       mlag_dual_primary_detection: true
       mlag_peer_l3_vlan: 4094 # Using 4094 for both mlag peer and l3 peerings.
-      evpn_role: none
+      # evpn_role: none
       # let's figure out what this line means. If I'm a server, do I have spec this?
       #      evpn_route_servers: [ DC1-POD1-LEAF1A, DC1-POD1-LEA1B ]
       # filter:
