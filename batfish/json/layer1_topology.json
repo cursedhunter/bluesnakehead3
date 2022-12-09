@@ -6403,6 +6403,16 @@
         {
             "node1": {
                 "hostname": "DC1-POD2-LEAF7A",
+                "interfaceName": "Ethernet15/1"
+            },
+            "node2": {
+                "hostname": "DC1-POD2-LEAF7B",
+                "interfaceName": "Ethernet15/1"
+            }
+        },
+        {
+            "node1": {
+                "hostname": "DC1-POD2-LEAF7A",
                 "interfaceName": "Ethernet16/1"
             },
             "node2": {
