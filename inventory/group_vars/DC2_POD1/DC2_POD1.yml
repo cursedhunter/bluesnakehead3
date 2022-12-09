@@ -61,21 +61,21 @@ spine:
               quiesce: false
               profile: System
     DC2-POD1-SPINE2:
-      id: 12
+      id: 11
       bgp_as: "64802"
       evpn_role: none
       mgmt_ip: "10.6.65.11/24"
       mac_address: 'f2:89:96:99:aa:1c'
       uplink_switch_interfaces: ['Ethernet10/1', 'Ethernet10/1', 'Ethernet10/1', 'Ethernet10/1']
     DC2-POD1-SPINE3:
-      id: 13
+      id: 12
       bgp_as: "64803"
       evpn_role: none
       mgmt_ip: "10.6.65.12/24"
       mac_address: 'f2:89:96:99:aa:1d'
       uplink_switch_interfaces: ['Ethernet11/1', 'Ethernet11/1', 'Ethernet11/1', 'Ethernet11/1']
     DC2-POD1-SPINE4:
-      id: 14
+      id: 13
       bgp_as: "64804"
       evpn_role: none
       mgmt_ip: "10.6.65.13/24"
@@ -100,7 +100,7 @@ l3leaf:
     # offset takes the "id:' and adds the offset
     loopback_ipv4_offset: 0
     vtep_loopback_ipv4_pool: 10.5.65.0/24
-    uplink_ipv4_pool: 172.17.64.0/20
+    uplink_ipv4_pool: 172.17.64.0/23
     uplink_ptp:
       enable: true
     # Leafs use this to source their uplinks to Spines, in order. # should match # of S's

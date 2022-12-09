@@ -44,7 +44,7 @@ spine:
       - 'graceful-restart'
   nodes:
     DC1-POD2-SPINE1:
-      id: 20
+      id: 10
       bgp_as: "64701"
       mgmt_ip: "10.6.33.10/24"
       # This mac will be used in dhcpd.conf
@@ -62,21 +62,21 @@ spine:
               quiesce: false
               profile: System
     DC1-POD2-SPINE2:
-      id: 21
+      id: 11
       bgp_as: "64702"
       evpn_role: none
       mgmt_ip: "10.6.33.11/24"
       mac_address: 'f2:89:96:97:b5:1d'
       uplink_switch_interfaces: ['Ethernet6/1', 'Ethernet6/1', 'Ethernet6/1', 'Ethernet6/1']
     DC1-POD2-SPINE3:
-      id: 22
+      id: 12
       bgp_as: "64703"
       evpn_role: none
       mgmt_ip: "10.6.33.12/24"
       mac_address: 'f2:89:96:97:b5:1e'
       uplink_switch_interfaces: ['Ethernet7/1', 'Ethernet7/1', 'Ethernet7/1', 'Ethernet7/1']
     DC1-POD2-SPINE4:
-      id: 23
+      id: 13
       bgp_as: "64704"
       evpn_role: none
       mgmt_ip: "10.6.33.13/24"
@@ -101,7 +101,7 @@ l3leaf:
     # offset takes the "id:' and adds the offset
     loopback_ipv4_offset: 0
     vtep_loopback_ipv4_pool: 10.5.33.0/24
-    uplink_ipv4_pool: 172.17.32.0/20
+    uplink_ipv4_pool: 172.17.32.0/23
     uplink_ptp:
       enable: true
     # Leafs use this to source their uplinks to Spines, in order. # should match # of S's

@@ -101,7 +101,7 @@ l3leaf:
     # offset takes the "id:' and adds the offset
     loopback_ipv4_offset: 0
     vtep_loopback_ipv4_pool: 10.5.1.0/24
-    uplink_ipv4_pool: 172.17.0.0/20
+    uplink_ipv4_pool: 172.17.0.0/23
     uplink_ptp:
       enable: true
     # Leafs use this to source their uplinks to Spines, in order. # should match # of S's
@@ -222,7 +222,6 @@ l3leaf:
       platform: vEOS-LAB
       bgp_as: "64902"
       evpn_role: server
-      #      evpn_route_servers: [ DC1-POD1-LEAF1A, DC1-POD1-LEAF1B ]
       mlag: true
       mlag_dual_primary_detection: true
       mlag_peer_l3_vlan: 4094 # Using 4094 for both mlag peer and l3 peerings.
@@ -246,16 +245,11 @@ l3leaf:
                                      Ethernet2/3, Ethernet2/4,
                                      Ethernet2/3, Ethernet2/4,
                                      Ethernet2/3, Ethernet2/4]
-
-    # Trying defaults
-    # Regular MLAG pair
     RACK3_MLAG:
       platform: vEOS-LAB
       # uplink_switches: [ DC1-POD1-SPINE1, DC1-POD1-SPINE2, DC1-POD1-SPINE1, DC1-POD1-SPINE2 ]
       bgp_as: "64903"
-      #      evpn_route_servers: [ DC1-POD1-LEAF1A, DC1-POD1-LEAF1B ]
       mlag: true
-      # mlag_interfaces: [ Ethernet5, Ethernet6 ]
       mlag_dual_primary_detection: true
       mlag_peer_l3_vlan: 4094 # Using 4094 for both mlag peer and l3 peerings.
       #      spanning_tree_mode: mstp
