@@ -50,7 +50,8 @@ spine:
       # This mac will be used in dhcpd.conf
       mac_address: 'f2:89:96:99:b5:1c'
       evpn_role: none
-      # next line specifies interface on SS
+      # This switch used local 1/1 to 4/1, and mapped each one to 1/1 on the SS
+      # These are the destination ports on the SuperSpines
       uplink_switch_interfaces: ['Ethernet9/1', 'Ethernet9/1', 'Ethernet9/1', 'Ethernet9/1']
       structured_config:
         maintenance:

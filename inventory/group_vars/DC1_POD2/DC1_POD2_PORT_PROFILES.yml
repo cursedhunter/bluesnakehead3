@@ -125,7 +125,7 @@ port_profiles:
   TENANT_C_M2C2:
     parent_profile: TENANT_C
     #   mtu here overrides parent
-    mtu: 1500
+    # mtu: 1500
     speed: forced 25gfull
     vlans: "67"
     qos_profile: "m2c2"

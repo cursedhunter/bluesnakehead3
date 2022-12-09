@@ -170,13 +170,8 @@ l3leaf:
     #              description Loopback created from raw_eos_cli under node DC1-POD1-LEAF1A
     DC1_RACK1_MLAG:
       platform: vEOS-LAB
-      # Moved to defaults
-      #      uplink_interfaces: ['Ethernet1', 'Ethernet2']
-      #      uplink_switches: ['DC1-POD1-SPINE1', 'DC1-POD1-SPINE2']
-      #      spanning_tree_mode: none
       bgp_as: "64901"
       mlag: true
-      #      mlag_interfaces: [ Ethernet15/1, Ethernet16/1 ]
       mlag_dual_primary_detection: true
       mlag_peer_l3_vlan: 4094 # Using 4094 for both mlag peer and l3 peerings.
       # evpn_role: none
@@ -196,8 +191,6 @@ l3leaf:
           id: 20
           mgmt_ip: 10.6.1.20/24
           mac_address: "32:17:3c:7b:0b:38"
-          # Doesn't seem to be picking up defaults. Wait... this isn't a default. uplink_switch, uplink_interfaces.. but what is this?L2?
-          # If like the ss/s, this has to be unique
           uplink_switch_interfaces: [Ethernet1/1, Ethernet1/2,
                                      Ethernet1/1, Ethernet1/2,
                                      Ethernet1/1, Ethernet1/2,
@@ -218,7 +211,7 @@ l3leaf:
                                      Ethernet1/3, Ethernet1/4,
                                      Ethernet1/3, Ethernet1/4,
                                      Ethernet1/3, Ethernet1/4]
-    DC1_RACK2_MLAG:
+    RACK2_MLAG:
       platform: vEOS-LAB
       bgp_as: "64902"
       evpn_role: server
@@ -247,18 +240,11 @@ l3leaf:
                                      Ethernet2/3, Ethernet2/4]
     RACK3_MLAG:
       platform: vEOS-LAB
-      # uplink_switches: [ DC1-POD1-SPINE1, DC1-POD1-SPINE2, DC1-POD1-SPINE1, DC1-POD1-SPINE2 ]
       bgp_as: "64903"
-      mlag: true
       mlag_dual_primary_detection: true
       mlag_peer_l3_vlan: 4094 # Using 4094 for both mlag peer and l3 peerings.
-      #      spanning_tree_mode: mstp
-      #      spanning_tree_priority: 4096
       nodes:
         DC1-POD1-LEAF3A:
-          #          structured_config:
-          #            domain_list:
-          #              - structured-config.set.on.node
           id: 24
           mgmt_ip: "10.6.1.24/24"
           mac_address: '74:83:ef:54:3f:ea'
@@ -279,9 +265,6 @@ l3leaf:
       bgp_as: "64904"
       mlag_dual_primary_detection: true
       mlag_peer_l3_vlan: 4094 # Using 4094 for both mlag peer and l3 peerings.
-      # filter:
-      # tags: [Cust_A_opzone]
-      # tags: [DC1-POD1-VLAN-67]
       nodes:
         DC1-POD1-LEAF4A:
           id: 26
@@ -302,7 +285,6 @@ l3leaf:
     RACK5_MLAG:
       platform: vEOS-LAB
       bgp_as: "64905"
-      # mlag_interfaces: [ Ethernet5, Ethernet6 ]
       mlag_dual_primary_detection: true
       mlag_peer_l3_vlan: 4094 # Using 4094 for both mlag peer and l3 peerings.
       nodes:
