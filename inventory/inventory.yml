@@ -22,7 +22,7 @@ all:
         CVP-1-SSH:
       vars:
         ansible_user: cvpadmin
-        ansible_password: ChangeMe!@34
+        ansible_password: cvpadmin
         ansible_connection: httpapi
         ansible_httpapi_use_ssl: true
         ansible_httpapi_validate_certs: false
