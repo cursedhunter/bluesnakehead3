@@ -20,7 +20,8 @@ spine:
   defaults:
     raw_eos_cli: |    #this is appended at the bottom of the config. Do I care?
       service unsupported-transceiver Meadowgate_Lab b85d0a8
-    platform: vEOS-LAB
+      ntp server vrf mgmt 10.1.1.10 source Management1
+    platform: 7060PX4
     bgp_as: "64600"
     loopback_ipv4_pool: 10.4.0.0/24
     # Spines use this to source their uplinks to SS, in order. # should match # of SS's and in SS interface description

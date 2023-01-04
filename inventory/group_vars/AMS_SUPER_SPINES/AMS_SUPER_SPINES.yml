@@ -7,7 +7,7 @@ mgmt_destination_networks:
 
 super_spine:
   defaults:
-    platform: 7060X
+    platform: 7060DX4
     bgp_as: 650000
     loopback_ipv4_pool: 10.4.27.0/24
     bgp_defaults:

@@ -1,0 +1,24 @@
+
+## Summary
+
+(Summarize what the network change is)
+
+## Variables
+
+| Name | Value |
+| ---- | ----- |
+| Batfish Testing | Yes |
+| Batfish Hostname | batfish |
+| Virtual Env Testing | Yes |
+| Playbook Name | playbooks/ams-deploy.yml |
+| Generate Tag Name | generate |
+| Deploy Tag Name | deploy |
+| Inventory Name | inventory/inventory.yml |
+| CVP Node Name | cv_server |
+| Change Control Template | cc_templates/cvp-multi-stage-change-control-v3.j2 |
+| Validate Tag Name | validate |
+
+## Change Control options
+## cvp-multi-stage-change-control-v3.j2 //change control for multiple stages (spine, super, leaf). Stages are executed in parallel, but in each stage devices are serial
+## cvp-parallel-change-control-v3.j2 //change control with a single stage and all devices arein parallel
+## cvp-series-change-control-v3.j2 // change control with single stage and all devices are in series

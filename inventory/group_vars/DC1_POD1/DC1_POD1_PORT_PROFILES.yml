@@ -5,7 +5,7 @@ port_profiles:
   # Profile to be used for unused ports
   UNUSED_PORT:
     mode: access
-    vlans: 999
+    vlans: 666
     spanning_tree_bpduguard: "enabled"
     spanning_tree_portfast: edge
     # storm_control:
@@ -82,8 +82,8 @@ port_profiles:
     spanning_tree_portfast: edge
     spanning_tree_bpdufilter: true
     spanning_tree_bpduguard: true
-    flowcontrol:
-      received: "on"
+    flowcontrol: # if uncommented, inserts flowcontrol receive True.. which fails
+      received: "'on'"
     ptp:
       enable: true
       # storm_control:
@@ -122,15 +122,39 @@ port_profiles:
       # mtu: 9000 //doesn't do anything here.
       raw_eos_cli: port-channel lacp fallback individual
 
-  TENANT_C_M2C2:
+  TENANT_C_C2:
     parent_profile: TENANT_C
     #   mtu here overrides parent
     # mtu: 1500
     speed: forced 25gfull
     vlans: "67"
     qos_profile: "m2c2"
+    # port_channel:
+    #  description: m2c2
+    #  state: present
+    #  mode: active
+    #  raw_eos_cli: port-channel lacp fallback individual
+
+  TENANT_C_M2:
+    parent_profile: TENANT_C
+    #   mtu here overrides parent
+    # mtu: 1500
+    speed: forced 25gfull
+    vlans: "33"
+    qos_profile: "m2c2"
+    # port_channel:
+    #  description: m2
+    #  state: present
+    #  mode: active
+    #  raw_eos_cli: port-channel lacp fallback individual
+
+  TENANT_C_C2M2:
+    parent_profile: TENANT_C
+    speed: forced 25gfull
+    vlans: "33,67" # this is necessary format for trunk
+    mode: trunk
     port_channel:
-      description: m2c2
+      description: c2m2
       state: present
       mode: active
       raw_eos_cli: port-channel lacp fallback individual

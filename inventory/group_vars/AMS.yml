@@ -1,8 +1,6 @@
 ---
 fabric_name: AMS
 
-cvp_ingestauth_key: "$6$82gqIqw8b3nibNrk$MoZO0S8QMQN8uw"
-
 # evpn_ebgp_multihop: 5
 # evpn_overlay_bgp_rtc: true
 
@@ -23,17 +21,17 @@ local_users:
   admin:
     privilege: 15
     role: network-admin
-    sha512_password: $6$82gqIqw8b3nibNrk$MoZO0S8QMQN8uwnR8v48dbGrL0Ec/6q36tSx8y9IsExi4L.HtmokW9rX8VehLxhg542mNTBKqxMBF.LgnCTm4.
+    sha512_password: $6$YVnLIl0TUTUmRDVR$N1.D2KM7z8AHDdY.4ooFwkIC8beXaVOigbbFOPqUkkmA9CbOdKBkAVr2B4B/kl55Az2W1T.k6u5RY82WoUOre/
 
   cvpadmin:
     privilege: 15
     role: network-admin
-    sha512_password: "$6$t6kTflZYzb.aBgf.$bO5g8VNl3r.KiqOAhOckBoYoTbZ.27ZmaTriznKKD13XwOpstTL6E1PRnSGmXC2pcTHw5DU2MUUIEv3WLSRDW1"
+    sha512_password: $6$YVnLIl0TUTUmRDVR$N1.D2KM7z8AHDdY.4ooFwkIC8beXaVOigbbFOPqUkkmA9CbOdKBkAVr2B4B/kl55Az2W1T.k6u5RY82WoUOre/
 
   ansible:
     privilege: 15
     role: network-admin
-    sha512_password: "$6$Dzu11L7yp9j3nCM9$FSptxMPyIL555OMO.ldnjDXgwZmrfMYwHSr0uznE5Qoqvd9a6UdjiFcJUhGLtvXVZR1r.A/iF5aAt50hf/EK4/"
+    sha512_password: $6$YVnLIl0TUTUmRDVR$N1.D2KM7z8AHDdY.4ooFwkIC8beXaVOigbbFOPqUkkmA9CbOdKBkAVr2B4B/kl55Az2W1T.k6u5RY82WoUOre/
 
 # Cloud Vision server information
 cvp_instance_ip: 10.65.2.9
@@ -47,6 +45,15 @@ daemon_terminattr:
   cvvrf: mgmt
   ingestexclude: "/Sysdb/cell/1/agent,/Sysdb/cell/2/agent"
   smashexcludes: "ale,flexCounter,hardware,kni,pulse,strata"
+
+  # The below config works for streaming
+  # exec /usr/bin/TerminAttr -cvaddr=10.65.2.9:9910 -cvcompression=gzip -taillogs -
+  # cvauth=token,/tmp/token -cvproxy= -
+  # smashexcludes=ale,flexCounter,hardware,kni,pulse,strata -ingestexclude=/Sysdb/cell/1/agent,/Sysdb/cell/2/agent
+  # this is what is being generated in the configs
+  # exec /usr/bin/TerminAttr -cvaddr=10.65.2.9:9910 -cvauth=key,
+  # $6$82gqIqw8b3nibNrk$MoZO0S8QMQN8uw -cvvrf=mgmt
+  # -smashexcludes=ale,flexCounter,hardware,kni,pulse,strata -ingestexclude=/Sysdb/cell/1/agent,/Sysdb/cell/2/agent -taillogs
 
 bgp_peer_groups:
   IPv4_UNDERLAY_PEERS:

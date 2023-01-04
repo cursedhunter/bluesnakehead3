@@ -1,16 +1,19 @@
 ---
 # original didn't have --- to start the file
 - name: Configure DHCP Services
-  hosts: cv-server
-  gather_facts: false
+  hosts: dhcp_server
+  gather_facts: true
+  collections:
+    - arista.cvp
 
   tasks:
-
+    - name: Load vars file
+      ansible.builtin.include_vars:
+        file: /var/tmp/examples/blue-snakehead/inventory/ztp_dhcp_inventory.yml
     - name: Configure and enable DHCP services for ZTP provisioning
       ansible.builtin.import_role:
-        name: arista.avd.dhcp_provisioner
-      vars:
-        ansible_user: root
+        name: arista.cvp.dhcp_configuration
+
 # ---
 # - name: Build Switch configuration
 #   hosts: cv_server
