@@ -25,8 +25,16 @@ spine:
     bgp_as: "64800"
     loopback_ipv4_pool: 10.4.64.0/24
     # Spines use this to source their uplinks to SS, in order. # should match # of SS's and in SS interface description
-    uplink_interfaces: ['Ethernet29/1', 'Ethernet30/1', 'Ethernet31/1', 'Ethernet32/1']
-    uplink_switches: ['SUPER-SPINE1', 'SUPER-SPINE2', 'SUPER-SPINE3', 'SUPER-SPINE4']
+    uplink_interfaces: ['Ethernet17/1', 'Ethernet18/1', 'Ethernet19/1',
+                        'Ethernet20/1', 'Ethernet21/1', 'Ethernet22/1',
+                        'Ethernet23/1', 'Ethernet24/1', 'Ethernet25/1',
+                        'Ethernet26/1', 'Ethernet27/1', 'Ethernet28/1',
+                        'Ethernet29/1', 'Ethernet30/1', 'Ethernet31/1']
+    uplink_switches: ['SUPER-SPINE1', 'SUPER-SPINE1', 'SUPER-SPINE1',
+                      'SUPER-SPINE2', 'SUPER-SPINE2', 'SUPER-SPINE2',
+                      'SUPER-SPINE3', 'SUPER-SPINE3', 'SUPER-SPINE3',
+                      'SUPER-SPINE4', 'SUPER-SPINE4', 'SUPER-SPINE4',
+                      'SUPER-SPINE5', 'SUPER-SPINE5', 'SUPER-SPINE5']
     # USI maps to the SS listed above. S-to SSP from eth1 to eth17/1,
     # Can't really use this, because every spine will try to map to SS's in the same order.
     # It will overwrite the previous, so last in wins
@@ -53,7 +61,11 @@ spine:
       evpn_role: none
       # This switch used local 1/1 to 4/1, and mapped each one to 1/1 on the SS
       # These are the destination ports on the SuperSpines
-      uplink_switch_interfaces: ['Ethernet9/1', 'Ethernet9/1', 'Ethernet9/1', 'Ethernet9/1']
+      uplink_switch_interfaces: ['Ethernet25/1', 'Ethernet26/1', 'Ethernet27/1',
+                                 'Ethernet25/1', 'Ethernet26/1', 'Ethernet27/1',
+                                 'Ethernet25/1', 'Ethernet26/1', 'Ethernet27/1',
+                                 'Ethernet25/1', 'Ethernet26/1', 'Ethernet27/1',
+                                 'Ethernet25/1', 'Ethernet26/1', 'Ethernet27/1']
       structured_config:
         maintenance:
           unit_profiles:
@@ -68,21 +80,33 @@ spine:
       evpn_role: none
       mgmt_ip: "10.6.65.11/24"
       mac_address: 'f2:89:96:99:aa:1c'
-      uplink_switch_interfaces: ['Ethernet10/1', 'Ethernet10/1', 'Ethernet10/1', 'Ethernet10/1']
+      uplink_switch_interfaces: ['Ethernet28/1', 'Ethernet29/1', 'Ethernet30/1',
+                                 'Ethernet28/1', 'Ethernet29/1', 'Ethernet30/1',
+                                 'Ethernet28/1', 'Ethernet29/1', 'Ethernet30/1',
+                                 'Ethernet28/1', 'Ethernet29/1', 'Ethernet30/1',
+                                 'Ethernet28/1', 'Ethernet29/1', 'Ethernet30/1']
     DC2-POD1-SPINE3:
       id: 12
       bgp_as: "64803"
       evpn_role: none
       mgmt_ip: "10.6.65.12/24"
       mac_address: 'f2:89:96:99:aa:1d'
-      uplink_switch_interfaces: ['Ethernet11/1', 'Ethernet11/1', 'Ethernet11/1', 'Ethernet11/1']
+      uplink_switch_interfaces: ['Ethernet31/1', 'Ethernet32/1', 'Ethernet33/1',
+                                 'Ethernet31/1', 'Ethernet32/1', 'Ethernet33/1',
+                                 'Ethernet31/1', 'Ethernet32/1', 'Ethernet33/1',
+                                 'Ethernet31/1', 'Ethernet32/1', 'Ethernet33/1',
+                                 'Ethernet31/1', 'Ethernet32/1', 'Ethernet33/1']
     DC2-POD1-SPINE4:
       id: 13
       bgp_as: "64804"
       evpn_role: none
       mgmt_ip: "10.6.65.13/24"
       mac_address: 'f2:89:96:99:aa:1e'
-      uplink_switch_interfaces: ['Ethernet12/1', 'Ethernet12/1', 'Ethernet12/1', 'Ethernet12/1']
+      uplink_switch_interfaces: ['Ethernet34/1', 'Ethernet35/1', 'Ethernet36/1',
+                                 'Ethernet34/1', 'Ethernet35/1', 'Ethernet36/1',
+                                 'Ethernet34/1', 'Ethernet35/1', 'Ethernet36/1',
+                                 'Ethernet34/1', 'Ethernet35/1', 'Ethernet36/1',
+                                 'Ethernet34/1', 'Ethernet35/1', 'Ethernet36/1']
 # In DC2 we define all variables via defaults
 l3leaf:
   defaults:
@@ -106,15 +130,22 @@ l3leaf:
     uplink_ptp:
       enable: true
     # Leafs use this to source their uplinks to Spines, in order. # should match # of S's
-    uplink_interfaces: ['Ethernet29/1', 'Ethernet29/2',
-                        'Ethernet30/1', 'Ethernet30/2',
-                        'Ethernet31/1', 'Ethernet31/2',
-                        'Ethernet32/1', 'Ethernet32/2']
-    # uplink_interfaces: ['Ethernet29/1', 'Ethernet30/1', 'Ethernet31/1', 'Ethernet32/1']
-    uplink_switches: ['DC2-POD1-SPINE1', 'DC2-POD1-SPINE1',
-                      'DC2-POD1-SPINE2', 'DC2-POD1-SPINE2',
-                      'DC2-POD1-SPINE3', 'DC2-POD1-SPINE3',
-                      'DC2-POD1-SPINE4', 'DC2-POD1-SPINE4']
+    uplink_interfaces: ['Ethernet29/1',
+                        'Ethernet29/2',
+                        'Ethernet29/3',
+                        'Ethernet29/4',
+                        'Ethernet31/1',
+                        'Ethernet31/2',
+                        'Ethernet31/3',
+                        'Ethernet31/4']
+    uplink_switches: ['DC2-POD1-SPINE1',
+                      'DC2-POD1-SPINE1',
+                      'DC2-POD1-SPINE2',
+                      'DC2-POD1-SPINE2',
+                      'DC2-POD1-SPINE3',
+                      'DC2-POD1-SPINE3',
+                      'DC2-POD1-SPINE4',
+                      'DC2-POD1-SPINE4']
     max_parallel_uplinks: 4
     uplink_interface_speed: 'forced 100g'
     bgp_defaults:
@@ -130,10 +161,9 @@ l3leaf:
       always_include_vrfs_in_tenants: ['all']
       # tags: ['all']
       tags: [Cust_A_opzone, Cust_A_C2, bitbucket, vmotion]
-      # tags: []
     connected_endpoints: true
     mlag: true
-    mlag_interfaces: [Ethernet15/1, Ethernet16/1]
+    mlag_interfaces: [Ethernet25/1, Ethernet27/1]
     mlag_peer_l3_ipv4_pool: 172.19.64.0/24
     mlag_peer_ipv4_pool: 172.19.65.0/24
     mgmt_gateway: 10.66.66.1    # this has no effect at this level
@@ -144,18 +174,6 @@ l3leaf:
       mlag: true
       mlag_dual_primary_detection: true
       mlag_peer_l3_vlan: 4094 # Using 4094 for both mlag peer and l3 peerings.
-      # evpn_role: none
-      # let's figure out what this line means. If I'm a server, do I have spec this?
-      #      evpn_route_servers: [ DC1-POD1-LEAF1A, DC1-POD1-LEA1B ]
-      # filter:
-      #   tenants: []
-      #   tags: []
-      # Testing that we respect the empty tenants list, so no VRFs will be configured.
-      #   always_include_vrfs_in_tenants: ['all']
-      #      Below will not have any effect since it is overridden on the node level. So just a negative test.
-      #      raw_eos_cli: |
-      #        interface Loopback1001
-      #          description Loopback created from raw_eos_cli under node-group RACK1_SINGLE
       nodes:
         DC2-POD1-LEAF1A:
           id: 20
